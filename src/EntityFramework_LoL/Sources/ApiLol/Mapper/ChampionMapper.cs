@@ -12,5 +12,11 @@ namespace ApiLol.Mapper
                 Name = champion.Name,
             };
         }
+
+        public static Champion ToModel(this ChampionDto championDto)
+        {
+            
+        }
+
     }
 }
