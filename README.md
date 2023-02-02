@@ -31,7 +31,7 @@ Tout d'abord si ce n'est pas fait cloner le dépôt de la branche **master/main*
 
 </div>
 
-Vous pouvez le cloner via un terminal dans le répertoire que vous souhaitez taper la commande : **git clone https://codefirst.iut.uca.fr/git/emre.kartal/LolProject.git** ou utiliser Visual Studio et cloner en entrant le lien :
+Vous pouvez le cloner via un terminal dans le répertoire que vous souhaitez en tapant la commande : **git clone https://codefirst.iut.uca.fr/git/emre.kartal/LolProject.git** ou utiliser Visual Studio et cloner en entrant le lien :
 
 <div align = center>
 
@@ -45,9 +45,10 @@ Vous pouvez le cloner via un terminal dans le répertoire que vous souhaitez tap
 - ### Comment lancer Le projet Entity Framework ? 
 
 Afin de générer les migrations et les tables.
+<br>
 Vous devez avoir installé correctement EntityFrameworkCore, pour cela il existe la commande : **dotnet tool install --global dotnet-ef** qui peut être lancé à partir d'un terminal, si il est déjà installer mais n'a pas la bonne version : **dotnet tool update --global dotnet-ef** (oui y que le *install* qui change vous êtes perspicace)!
 
-Aussi assurer d'avoir installé sur Visual Studio au préalable les package Nuget suivants : 
+Aussi assurer vous d'avoir installé sur Visual Studio au préalable les package Nuget suivants : 
 
 <div align = center>
 
@@ -88,11 +89,11 @@ Mon environnement de travail se base sur un outil et un langage en particulier :
 
 </div>
 
-<img src="doc/Images/Title-Technicien.png" width="460" >
+<img src="doc/Images/Title-Technicien.png" width="400" >
 
 ⚙️ Emre KARTAL
 <br>
 
 <div align = center>
-© Groupe 4
+© PM2
 </div>
