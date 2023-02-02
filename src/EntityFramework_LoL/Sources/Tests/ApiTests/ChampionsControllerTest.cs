@@ -10,7 +10,7 @@ namespace ApiTests
     public class ChampionsControllerTest
     {
         private readonly StubData stub;
-        private readonly ChampionsControllerTest champs;
+        private readonly ChampionsController champs;
         public ChampionsControllerTest()
         {
             stub = new StubData();
@@ -18,21 +18,21 @@ namespace ApiTests
         }
 
         [TestMethod]
-        public async void TestGetChampions()
+        public async Task TestGetChampions()
         {
             //Arrange
 
             //Act
-            var champion = champs.Get();
+            var champion = await champs.Get();
 
             //Assert
             var objectResult = champion as OkObjectResult;
             Assert.IsNotNull(objectResult);
 
-            var champions = objectResult?.Value as IEnumerable<Champion>;
+            var champions = objectResult?.Value as IEnumerable<ChampionDto>;
             Assert.IsNotNull(champions);
 
-            Assert.AreEqual(champions.Count(), await stub.ChampionsMgr.GetItems(0,5).Count());
+            Assert.AreEqual(champions.Count(), await stub.ChampionsMgr.GetNbItems());
 
         }
 
@@ -42,17 +42,18 @@ namespace ApiTests
             //Arange
             var ChampionDto = new ChampionDto
             {
-                Name = "Sylas"
+                Name = "Sylas",
+                Bio = "Good"
             };
 
             //Act
             var championsResult = await champs.Post(ChampionDto);
 
             //Assert
-            var objectResult = championsResult as OkObjectResult;
+            var objectResult = championsResult as CreatedAtActionResult;
             Assert.IsNotNull(objectResult);
 
-            var champions = objectResult?.Value as IEnumerable<Champion>;
+            var champions = objectResult?.Value as Champion;
             Assert.IsNotNull(champions);
 
         }
