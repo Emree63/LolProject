@@ -1,10 +1,12 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using MyFlib;
 
-Console.WriteLine("Hello, World!");
-
-using(var context = new LolDbContext())
+using (var context = new LolDbContext())
 {
-    //var champions = context.Champions.where
+
+    foreach (var c in context.Champions)
+    {
+        Console.WriteLine($"{c.Name} - {c.Bio}");
+    }
     context.SaveChangesAsync(); // or context.SaveChangesAsync
 }

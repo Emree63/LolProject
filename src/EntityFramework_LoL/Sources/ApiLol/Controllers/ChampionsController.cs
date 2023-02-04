@@ -17,8 +17,8 @@ namespace ApiLol.Controllers
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var champions =  await dataManager.GetItems(0, await dataManager.GetNbItems()); // Le await va permettre que les lignes suivantes ne s'éxécute pas
-            return Ok(new { result = champions.Select(c => c.ToDto())});
+            var champions = await dataManager.GetItems(0, await dataManager.GetNbItems()); // Le await va permettre que les lignes suivantes ne s'éxécute pas
+            return Ok(new { result = champions.Select(c => c.ToDto()) });
         }
 
         // GET api/<ValuesController>/5

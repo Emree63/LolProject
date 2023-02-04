@@ -19,7 +19,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiLol", "ApiLol\ApiLol.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DTO", "DTO\DTO.csproj", "{3919E408-EB12-4422-989B-C6ED4816D465}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyFlib", "MyFlib\MyFlib.csproj", "{2142AB69-B483-4B0A-96DC-CFA87DEB11A5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyFlib", "MyFlib\MyFlib.csproj", "{2142AB69-B483-4B0A-96DC-CFA87DEB11A5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UT_EF", "Tests\UT_EF\UT_EF.csproj", "{F896C30B-A6FE-42B2-BAC8-08360BC48DC6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +57,10 @@ Global
 		{2142AB69-B483-4B0A-96DC-CFA87DEB11A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2142AB69-B483-4B0A-96DC-CFA87DEB11A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2142AB69-B483-4B0A-96DC-CFA87DEB11A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F896C30B-A6FE-42B2-BAC8-08360BC48DC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F896C30B-A6FE-42B2-BAC8-08360BC48DC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F896C30B-A6FE-42B2-BAC8-08360BC48DC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F896C30B-A6FE-42B2-BAC8-08360BC48DC6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -62,6 +68,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{1889FA6E-B7C6-416E-8628-9449FB9070B9} = {C76D0C23-1FFA-4963-93CD-E12BD643F030}
 		{B01D7EF2-2D64-409A-A29A-61FB7BB7A9DB} = {2C607793-B163-4731-A4D1-AFE8A7C4C170}
+		{F896C30B-A6FE-42B2-BAC8-08360BC48DC6} = {C76D0C23-1FFA-4963-93CD-E12BD643F030}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {92F3083D-793F-4552-8A9A-0AD6534159C9}
