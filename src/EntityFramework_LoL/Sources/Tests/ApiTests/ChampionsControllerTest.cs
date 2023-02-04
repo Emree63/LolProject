@@ -53,7 +53,7 @@ namespace ApiTests
             var objectResult = championsResult as CreatedAtActionResult;
             Assert.IsNotNull(objectResult);
 
-            var champions = objectResult?.Value as Champion;
+            var champions = objectResult?.Value as ChampionDto;
             Assert.IsNotNull(champions);
 
         }

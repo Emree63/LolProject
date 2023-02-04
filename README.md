@@ -5,7 +5,7 @@
 </div>
 
 
-**Thème du projet** : Réalisation d'une API et d'un ORM(Entity Framework) qui seront reliés à une base de données dans le thème de League of legends <img src="https://logo-marque.com/wp-content/uploads/2020/11/League-of-Legends-Embleme.png" width="40" >
+**Thème du projet** : Réalisation d'une API et d'un ORM(Entity Framework) qui seront reliés à une base de données dans le thème de League of Legends <img src="https://logo-marque.com/wp-content/uploads/2020/11/League-of-Legends-Embleme.png" width="40" >
 </br>
 
 <img src="doc/Images/Title-Répartition.png" width="400">
@@ -62,7 +62,9 @@ Ensuite sur le terminal PowerShell ou Visual Studio, lancer la migration via la 
 
 C'est bien beau toutes ces étapes mais s’il n'y a pas de résultat à quoi cela sert !
 
-Afin de visualiser la migration dans la base de données, cliquer dans l'onglet **Affichage**->**Explorateur d'objets SQL Server** :
+Tout d'abord veuille  regarder dans l'onglet extension, si l'outil **SQLite and SQL Server Compact Toolbax** est bien installer.
+
+Puis, afin de visualiser la migration dans la base de données, cliquer dans l'onglet **Outils**->**SQLLite/ SQL Server compact Toolbox** :
 
 <div align = center>
 
@@ -70,9 +72,17 @@ Afin de visualiser la migration dans la base de données, cliquer dans l'onglet 
 
 </div>
 
-Puis dans l'Explorateur d'objets SQL Server, cliquer sur **SQL Server**-> **(localdb)\MSSQLLocalDB ...**->**Bases de données**
+Et enfin cliquer sur l'icône ci-dessous pour faire la connexion à la solution courent :
 
-:information_source: *Notez qu'il est également possible d'utiliser l'Explorateur d'objets SQL Server pour ajouter, modifier ou supprimer des données dans les tables.*
+<div align = center>
+
+![Connection BD](doc/Images/Connection_BD.png)
+
+</div>
+
+Vous pouvez dorénavant voir toutes les tables qui y sont enregistrées !
+
+:information_source: *Notez qu'il est également possible grâce à SQLLite d'ajouter, modifier ou supprimer des données dans les tables.*
 
 <img src="doc/Images/Title-Environnement.png" width="400" >
 
