@@ -80,7 +80,8 @@ Et enfin cliquer sur l'icône ci-dessous pour faire la connexion à la solution 
 
 </div>
 
-Vous pouvez dorénavant voir toutes les tables qui y sont enregistrées !
+Vous pouvez dorénavant voir toutes les tables qui y sont enregistrées ! Si vous souhaitez ajouter des modifications à la base de données et les visualiser, 
+réaliser à nouveau la migration (ou *updater* celui actuel), puis supprimer toutes les tables et lancer la commande : **dotnet ef database update** et enfin rafraichiser la BD !
 
 :information_source: *Notez qu'il est également possible grâce à SQLLite d'ajouter, modifier ou supprimer des données dans les tables.*
 

@@ -28,12 +28,12 @@ namespace MyFlib
             modelBuilder.Entity<ChampionEntity>().HasKey(e => e.Id);
             modelBuilder.Entity<ChampionEntity>().Property(e => e.Id).ValueGeneratedOnAdd();
             modelBuilder.Entity<ChampionEntity>().HasData(
-                new ChampionEntity { Id = 1, Name = "Akali", Class = ChampionClassEntity.Assassin, Bio = "", Icon = "", Image = "" },
-                new ChampionEntity { Id = 2, Name = "Aatrox", Class = ChampionClassEntity.Fighter, Bio = "", Icon = "", Image = "" },
-                new ChampionEntity { Id = 3, Name = "Ahri", Class = ChampionClassEntity.Mage, Bio = "", Icon = "", Image = "" },
-                new ChampionEntity { Id = 4, Name = "Akshan", Class = ChampionClassEntity.Marksman, Bio = "", Icon = "", Image = "" },
-                new ChampionEntity { Id = 5, Name = "Bard", Class = ChampionClassEntity.Support, Bio = "", Icon = "", Image = "" },
-                new ChampionEntity { Id = 6, Name = "Alistar", Class = ChampionClassEntity.Tank, Bio = "", Icon = "", Image = "" }
+                new ChampionEntity { Id = Guid.Parse("{4422C524-B2CB-43EF-8263-990C3CEA7CAE}"), Name = "Akali", Class = ChampionClassEntity.Assassin, Bio = "", Icon = "", Image = "" },
+                new ChampionEntity { Id = Guid.Parse("{A4F84D92-C20F-4F2D-B3F9-CA00EF556E72}"), Name = "Aatrox", Class = ChampionClassEntity.Fighter, Bio = "", Icon = "", Image = "" },
+                new ChampionEntity { Id = Guid.Parse("{AE5FE535-F041-445E-B570-28B75BC78CB9}"), Name = "Ahri", Class = ChampionClassEntity.Mage, Bio = "", Icon = "", Image = "" },
+                new ChampionEntity { Id = Guid.Parse("{3708dcfd-02a1-491e-b4f7-e75bf274cf23}"), Name = "Akshan", Class = ChampionClassEntity.Marksman, Bio = "", Icon = "", Image = "" },
+                new ChampionEntity { Id = Guid.Parse("{7f7746fa-b1cb-49da-9409-4b3e6910500e}"), Name = "Bard", Class = ChampionClassEntity.Support, Bio = "", Icon = "", Image = "" },
+                new ChampionEntity { Id = Guid.Parse("{36ad2a82-d17b-47de-8a95-6e154a7df557}"), Name = "Alistar", Class = ChampionClassEntity.Tank, Bio = "", Icon = "", Image = "" }
             );
 
         }
