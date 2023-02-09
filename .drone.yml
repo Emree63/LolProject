@@ -49,7 +49,7 @@ steps:
   - name: docker-build-and-push
     image: plugins/docker
     settings:
-       dockerfile: src/EntityFramework_LoL/Sources//Dockerfile
+       dockerfile: src/EntityFramework_LoL/Sources/ApiLol/Dockerfile
        context: src/EntityFramework_LoL/Sources/
        registry: hub.codefirst.iut.uca.fr
        repo: hub.codefirst.iut.uca.fr/my.login/myRepository
