@@ -52,12 +52,19 @@ steps:
        dockerfile: src/EntityFramework_LoL/Sources/ApiLol/Dockerfile
        context: src/EntityFramework_LoL/Sources/
        registry: hub.codefirst.iut.uca.fr
-       repo: hub.codefirst.iut.uca.fr/my.login/myRepository
+       repo: hub.codefirst.iut.uca.fr/emre.kartal/LolProject
        username:
          from_secret: SECRET_REGISTRY_USERNAME
        password:
          from_secret: SECRET_REGISTRY_PASSWORD
-
+  # container deployment
+  - name: deploy-container
+    image: hub.codefirst.iut.uca.fr/thomas.bellembois/codefirst-dockerproxy-clientdrone:latest
+    environment:
+        IMAGENAME: hub.codefirst.iut.uca.fr/my.login/my_repository:latest
+        CONTAINERNAME: ApiLol
+        COMMAND: create
+        OVERWRITE: true
   #- name: generate-and-deploy-docs
     #image: hub.codefirst.iut.uca.fr/thomas.bellembois/codefirst-docdeployer
     #failure: ignore
