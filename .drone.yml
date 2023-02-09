@@ -50,7 +50,7 @@ steps:
     image: plugins/docker
     settings:
        dockerfile: src/EntityFramework_LoL/Sources/ApiLol/Dockerfile
-       context: src/EntityFramework_LoL/Sources/
+       context: src/EntityFramework_LoL/Sources/ApiLol/
        registry: hub.codefirst.iut.uca.fr
        repo: hub.codefirst.iut.uca.fr/emre.kartal/LolProject
        username:
