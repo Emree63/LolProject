@@ -57,20 +57,20 @@ steps:
          from_secret: SECRET_REGISTRY_USERNAME
        password:
          from_secret: SECRET_REGISTRY_PASSWORD
-  #- name: generate-and-deploy-docs
-    #image: hub.codefirst.iut.uca.fr/thomas.bellembois/codefirst-docdeployer
-    #failure: ignore
-    #volumes:
-     # - name: docs
-      #  path: /docs
-    #commands:
+  - name: generate-and-deploy-docs
+    image: hub.codefirst.iut.uca.fr/thomas.bellembois/codefirst-docdeployer
+    failure: ignore
+    volumes:
+      - name: docs
+        path: /docs
+    commands:
       #- cd Documentation/doxygen
       #- doxygen Doxyfile
-      #- /entrypoint.sh
-    #when:
-      #branch:
-        #- master
-    #depends_on: [ build ]
+      - /entrypoint.sh
+    when:
+      branch:
+        - master
+    depends_on: [ build ]
 
 #volumes:
 #- name: docs
