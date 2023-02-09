@@ -52,7 +52,7 @@ steps:
        dockerfile: src/EntityFramework_LoL/Sources/ApiLol/Dockerfile
        context: src/EntityFramework_LoL/Sources/
        registry: hub.codefirst.iut.uca.fr
-       repo: hub.codefirst.iut.uca.fr/emre.kartal/LolProject
+       repo: hub.codefirst.iut.uca.fr/emre.kartal/lolproject
        username:
          from_secret: SECRET_REGISTRY_USERNAME
        password:
