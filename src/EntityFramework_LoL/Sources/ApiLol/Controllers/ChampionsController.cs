@@ -1,6 +1,7 @@
 ﻿using ApiLol.Mapper;
 using DTO;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 using Model;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -32,7 +33,7 @@ namespace ApiLol.Controllers
         {
             var dtos = (await _manager.ChampionsMgr.GetItemsByName(name,0, await _manager.ChampionsMgr.GetNbItems()))
                 .Select(x => x.ToDto());
-            if(dtos == null)
+            if(dtos.IsNullOrEmpty())
             {
                 return NotFound();
             }
@@ -47,18 +48,28 @@ namespace ApiLol.Controllers
                     (await _manager.ChampionsMgr.AddItem(champion.ToModel())).ToDto());
         }
 
-/*        // PUT api/<ValuesController>/5
+        // PUT api/<ValuesController>/5
         [HttpPut("{name}")]
-        public async void Put(string name, [FromBody] ChampionDto champion)
+        public async Task<IActionResult> Put(string name, [FromBody] ChampionDto champion)
         {
-            return Ok(await _manager.ChampionsMgr.UpdateItem(, champion.ToModel()));
-        }*/
+            var dtos = (await _manager.ChampionsMgr.GetItemsByName(name, 0, await _manager.ChampionsMgr.GetNbItems()));
+            if(dtos.IsNullOrEmpty())
+            {
+                return BadRequest();
+            }
+            return Ok(await _manager.ChampionsMgr.UpdateItem(dtos.First(), champion.ToModel()));
+        }
 
         // DELETE api/<ValuesController>/5
-        [HttpDelete]
-        public async Task<IActionResult> Delete([FromBody] ChampionDto champion)
+        [HttpDelete("{name}")]
+        public async Task<IActionResult> Delete(string name)
         {
-            return Ok(await _manager.ChampionsMgr.DeleteItem(champion.ToModel()));
+            var dtos = (await _manager.ChampionsMgr.GetItemsByName(name, 0, await _manager.ChampionsMgr.GetNbItems()));
+            if (dtos.IsNullOrEmpty())
+            {
+                return BadRequest();
+            }
+            return Ok(await _manager.ChampionsMgr.DeleteItem(dtos.First()));
         }
     }
 }
