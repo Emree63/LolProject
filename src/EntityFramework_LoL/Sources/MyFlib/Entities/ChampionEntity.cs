@@ -13,13 +13,17 @@ namespace MyFlib
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
-        [MaxLength(255)]
+        [Required]
+        [MaxLength(64)]
         public string Name { get; set; }
+        [Required]
         [MaxLength(255)]
         public string Bio { get; set; }
         public string Icon { get; set; }
-        public string Image { get; set; }
+        public LargeImageEntity Image { get; set; }
+        [Required]
         public ChampionClassEntity Class { get; set; }
+        public ICollection<SkillEntity> Skills { get; set; }
 
     }
 }

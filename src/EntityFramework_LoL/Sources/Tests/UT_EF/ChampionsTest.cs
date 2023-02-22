@@ -19,7 +19,11 @@ namespace UT_EF
                 ChampionEntity hecarim = new ChampionEntity { Name = "Hecarim", Class = ChampionClassEntity.Fighter, Bio = "", Icon = "", Image = "" };
                 ChampionEntity yuumi = new ChampionEntity { Name = "yuumi", Class = ChampionClassEntity.Mage, Bio = "", Icon = "", Image = "" };
 
-                context.Champions.AddRange(sylas, hecarim, yuumi);
+                // test contrainte 
+                ChampionEntity errorName = new ChampionEntity { Name = "c1832f35-f909-422d-a1fb-e0b79a62f562-fa7c5fe2-89b7-432e-9e0f-a5736445b381-3f75c0f8-de2e-4cf4-82d2-3d24411f6422-6b7e9196-3664-4813-b971-e9cc08a4b255-c1832f35-f909-422d-a1fb-e0b79a62f562-fa7c5fe2-89b7-432e-9e0f-a5736445b381-3f75c0f8-de2e-4cf4-82d2-3d24411f6422-6b7e9196-3664-4813-b971-e9cc08a4b255"
+                    , Class = ChampionClassEntity.Mage, Bio = "", Icon = "", Image = "" };
+
+                context.Champions.AddRange(sylas, hecarim, yuumi, errorName);
                 context.SaveChanges();
             }
 
