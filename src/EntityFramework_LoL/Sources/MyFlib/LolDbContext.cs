@@ -61,9 +61,9 @@ namespace MyFlib
             );
 
             //RuneEntity
-            modelBuilder.Entity<SkinEntity>().HasData(
-                new SkinEntity { Name = "Akali Infernale", ChampionForeignKey = Guid.Parse("{4422C524-B2CB-43EF-8263-990C3CEA7CAE}"), Description = "Djinn qu'on invoque en dessous du monde, l'Infernale connue sous le nom d'Akali réduira en cendres les ennemis de son maître… mais le prix de son service est toujours exorbitant.", Icon = "empty", Price = 520, ImageId = 1 },
-                new SkinEntity { Name = "Akshan Cyberpop", ChampionForeignKey = Guid.Parse("{3708dcfd-02a1-491e-b4f7-e75bf274cf23}"), Description = "Les bas-fonds d'Audio City ont un nouveau héros : le Rebelle fluo. Cette position, Akshan la doit à son courage, sa sagesse et sa capacité à s'infiltrer dans des bâtiments d'affaires hautement sécurisés, et ce, sans être repéré. Son charme ravageur l'a aussi beaucoup aidé.", Icon = "empty", Price = 1350, ImageId = 2 }
+            modelBuilder.Entity<RuneEntity>().HasData(
+                new RuneEntity { Name = "Hextech Flashtraption ", Description = "While Flash is on cooldown, it is replaced by Hexflash.", SkillType = SkillTypeEntity.Passive, ImageId = 1 },
+                new RuneEntity { Name = "Manaflow Band ", Description = "Hitting enemy champions with a spell grants 25 maximum mana, up to 250 mana.", SkillType = SkillTypeEntity.Basic, ImageId = 2 }            
             );
 
         }
