@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MyFlib
 {
-    public class Rune
+    public class RuneEntity
     {
         [Key]
         [MaxLength(256)]

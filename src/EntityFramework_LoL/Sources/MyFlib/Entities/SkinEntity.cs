@@ -20,8 +20,10 @@ namespace MyFlib
         public string Icon { get; set; }
         [Required]
         public float Price { get; set; }
+        [ForeignKey("ChampionForeignKey")]
+        public ChampionEntity Champion { get; set; }
+        public Guid ChampionForeignKey { get; set; }
         public LargeImageEntity Image { get; set; }
-
         [ForeignKey("Image")]
         public int ImageId { get; set; }
 

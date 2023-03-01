@@ -23,6 +23,8 @@ namespace MyFlib
         [Required]
         public ChampionClassEntity Class { get; set; }
         public ICollection<SkillEntity> Skills { get; set; }
+        public ICollection<SkinEntity> Skins { get; set; }
+
         public LargeImageEntity Image { get; set; }
 
         [ForeignKey("Image")]
