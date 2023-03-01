@@ -9,7 +9,9 @@ namespace MyFlib
 {
     public class LargeImageEntity
     {
+
         [Key]
+        public int ImageId { get; set; }
         public string Base64 { get; set; }
 
     }

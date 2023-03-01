@@ -20,7 +20,7 @@ namespace MyFlib
         [MaxLength(255)]
         public string Bio { get; set; }
         public string Icon { get; set; }
-        public LargeImageEntity Image { get; set; }
+        public string Image { get; set; }
         [Required]
         public ChampionClassEntity Class { get; set; }
         public ICollection<SkillEntity> Skills { get; set; }
