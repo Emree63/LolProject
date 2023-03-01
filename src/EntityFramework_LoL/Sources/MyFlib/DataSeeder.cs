@@ -10,9 +10,11 @@ namespace MyFlib
     {
         public static void SeedData(LolDbContext context)
         {
-            ChampionEntity hecarim = new ChampionEntity { Name = "Hecarim", Class = ChampionClassEntity.Assassin, Bio = "", Icon = "", Image = "" };
-            ChampionEntity nasus = new ChampionEntity { Name = "Nasus", Class = ChampionClassEntity.Tank, Bio = "", Icon = "", Image = "" };
-            ChampionEntity ashe = new ChampionEntity { Name = "Ashe", Class = ChampionClassEntity.Marksman, Bio = "", Icon = "", Image = "" };
+            var image1 = new LargeImageEntity { Id = 1, Base64 = "empty" };
+
+            ChampionEntity hecarim = new ChampionEntity { Name = "Hecarim", Class = ChampionClassEntity.Assassin, Bio = "", Icon = "", ImageId = 1 };
+            ChampionEntity nasus = new ChampionEntity { Name = "Nasus", Class = ChampionClassEntity.Tank, Bio = "", Icon = "", ImageId = 1 };
+            ChampionEntity ashe = new ChampionEntity { Name = "Ashe", Class = ChampionClassEntity.Marksman, Bio = "", Icon = "", ImageId = 1 };
 
             context.AddRange(hecarim, nasus, ashe);
 

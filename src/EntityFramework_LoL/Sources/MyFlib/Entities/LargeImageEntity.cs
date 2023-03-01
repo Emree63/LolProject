@@ -11,7 +11,7 @@ namespace MyFlib
     {
 
         [Key]
-        public int ImageId { get; set; }
+        public int Id { get; set; }
         public string Base64 { get; set; }
 
     }
