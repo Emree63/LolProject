@@ -1,6 +1,8 @@
 using ApiLol.Controllers;
 using DTO;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
 using Model;
 using StubLib;
 
@@ -14,7 +16,7 @@ namespace ApiTests
         public ChampionsControllerTest()
         {
             stub = new StubData();
-            champs = new ChampionsController(stub);
+            champs = new ChampionsController(stub, new NullLogger<ChampionsController>());
         }
 
         [TestMethod]
@@ -23,7 +25,8 @@ namespace ApiTests
             //Arrange
 
             //Act
-            var champion = await champs.Get();
+            var total = await stub.ChampionsMgr.GetNbItems();
+            var champion = await champs.Get(new PageRequest());
 
             //Assert
             var objectResult = champion as OkObjectResult;
@@ -32,7 +35,7 @@ namespace ApiTests
             var champions = objectResult?.Value as IEnumerable<ChampionDto>;
             Assert.IsNotNull(champions);
 
-            Assert.AreEqual(champions.Count(), await stub.ChampionsMgr.GetNbItems());
+            Assert.AreEqual(champions.Count(), total);
 
         }
 
