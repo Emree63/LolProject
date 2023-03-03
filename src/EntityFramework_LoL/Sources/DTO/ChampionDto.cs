@@ -8,6 +8,7 @@
         public string Icon { get; set; }
         public LargeImageDto Image { get; set; }
         public IEnumerable<SkinDto> Skins { get; set; }
+        public IEnumerable<SkillDto> Skills { get; set; }
 
     }
 }

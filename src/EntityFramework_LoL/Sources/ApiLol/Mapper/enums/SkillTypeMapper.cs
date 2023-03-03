@@ -1,8 +1,7 @@
 ﻿using DTO;
-using DTO.enums;
 using Model;
 
-namespace ApiLol.Mapper.enums
+namespace ApiLol.Mapper
 {
     public static class SkillTypeMapper
     {
