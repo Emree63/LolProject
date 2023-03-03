@@ -3,7 +3,6 @@ using DTO;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
-using Model;
 using StubLib;
 
 namespace ApiTests
@@ -46,7 +45,12 @@ namespace ApiTests
             var ChampionDto = new ChampionDto
             {
                 Name = "Sylas",
-                Bio = "Good"
+                Bio = "Good",
+                Class = ChampionClassDto.Tank,
+                Icon = "",
+                Image = new LargeImageDto() { Base64 = "" },
+                Skins = new List<SkinDto>()
+
             };
 
             //Act
