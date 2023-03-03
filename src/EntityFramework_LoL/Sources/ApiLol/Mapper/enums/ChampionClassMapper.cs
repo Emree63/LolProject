@@ -9,9 +9,9 @@ namespace ApiLol.Mapper
         {
             return (ChampionClassDto) championClass;
         }
-        public static ChampionClass ToModel(this ChampionClassDto championClass)
+        public static ChampionClass ToModel(this ChampionClassDto championClassDto)
         {
-            return (ChampionClass) championClass;
+            return (ChampionClass) championClassDto;
         }
     }
 }

@@ -28,7 +28,7 @@ namespace ApiLol.Controllers
             if (pageRequest.count + pageRequest.index > nbTotal)
             {
                 _logger.LogWarning($"too many, maximum {nbTotal}");
-                pageRequest.count = 10;
+                return BadRequest("Champion limit exceed");
             }
 
             _logger.LogInformation($"method Get call");

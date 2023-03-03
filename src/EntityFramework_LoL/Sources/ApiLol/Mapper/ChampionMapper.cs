@@ -13,13 +13,14 @@ namespace ApiLol.Mapper
                 Bio = champion.Bio,
                 Class = champion.Class.ToDto(),
                 Icon = champion.Icon,
-                Image = champion.Image.Base64
+                Image = champion.Image.ToDto(),
+                Skins = champion.Skins.Select(e => e.ToDto())
             };
         }
 
         public static Champion ToModel(this ChampionDto championDto)
         {
-            return new Champion(championDto.Name, championDto.Class.ToModel(), championDto.Icon, championDto.Image,championDto.Bio);
+            return new Champion(championDto.Name, championDto.Class.ToModel(), championDto.Icon, championDto.Image.Base64,championDto.Bio);
         }
 
     }

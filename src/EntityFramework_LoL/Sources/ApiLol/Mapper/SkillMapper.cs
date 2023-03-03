@@ -14,7 +14,7 @@ namespace ApiLol.Mapper
             };
         }
 
-/*        public static Skill ToModel(this SkillDto skill)
+/*        public static Skill ToModel(this SkillDto skillDto)
         {
             return new Skill(skill.Name)
             {
