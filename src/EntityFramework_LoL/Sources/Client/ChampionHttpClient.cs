@@ -28,15 +28,15 @@ namespace Client
             await _httpClient.PostAsJsonAsync<ChampionDto>(ApiChampions, champion);
         }
 
-/*        public async void Delete(ChampionDto champion)
+        public async void Delete(ChampionDto champion)
         {
-            await _httpClient.DeleteAsync(champion);
+            await _httpClient.DeleteAsync(champion.Name);
         }
 
         public async void Update(ChampionDto champion)
         {
             await _httpClient.PutAsJsonAsync<ChampionDto>(ApiChampions, champion);
-        }*/
+        }
 
     }
 }
