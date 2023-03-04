@@ -1,4 +1,5 @@
 ﻿using ApiLol.Mapper;
+using Azure.Core;
 using DTO;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -35,7 +36,7 @@ namespace ApiLol.Controllers.v2
                     return BadRequest($"Champion limit exceed, max {nbTotal}");
                 }
 
-                _logger.LogInformation($"method Get call");
+                _logger.LogInformation("Executing {Action} with parameters: {Parameters}", nameof(Get), pageRequest);
                 IEnumerable<ChampionDto> dtos = (await _manager.ChampionsMgr.GetItems(pageRequest.index, pageRequest.count))
                         .Select(x => x.ToDto());
                 return Ok(dtos);
@@ -58,13 +59,13 @@ namespace ApiLol.Controllers.v2
                     pageRequest.index = 0;
                     pageRequest.count = nbTotal;
                 }
-                else if (pageRequest.count * pageRequest.index >= nbTotal)
+                else if (pageRequest.count * pageRequest.index >= nbTotal || pageRequest.count > nbTotal)
                 {
                     _logger.LogWarning($"too many, maximum {nbTotal}");
                     return BadRequest($"Champion limit exceed, max {nbTotal}");
                 }
 
-                _logger.LogInformation($"method Get call");
+                _logger.LogInformation("Executing {Action} with parameters: {Parameters}", nameof(Get), pageRequest);
                 IEnumerable<ChampionDto> dtos = (await _manager.ChampionsMgr.GetItems(pageRequest.index, pageRequest.count))
                         .Select(x => x.ToDto());
                 return Ok(dtos);
@@ -81,7 +82,7 @@ namespace ApiLol.Controllers.v2
         {
             try
             {
-                _logger.LogInformation($"method GetByName call with {name}");
+                _logger.LogInformation("method {Action} call with {name}", nameof(Get), name);
                 var dtos = (await _manager.ChampionsMgr.GetItemsByName(name, 0, await _manager.ChampionsMgr.GetNbItems()))
                     .Select(x => x.ToDto());
                 if (dtos.IsNullOrEmpty())
@@ -89,7 +90,7 @@ namespace ApiLol.Controllers.v2
                     _logger.LogWarning($"{name} was not found");
                     return NotFound();
                 }
-                return Ok(dtos);
+                return Ok(dtos.First());
             }
             catch (Exception e)
             {
@@ -103,7 +104,7 @@ namespace ApiLol.Controllers.v2
         {
             try
             {
-                _logger.LogInformation($"method Post call");
+                _logger.LogInformation("method {Action} call with {item}", nameof(Post), champion);
                 var dtos = (await _manager.ChampionsMgr.GetItemsByName(champion.Name, 0, await _manager.ChampionsMgr.GetNbItems()));
                 if (!dtos.IsNullOrEmpty())
                 {
@@ -124,11 +125,11 @@ namespace ApiLol.Controllers.v2
         {
             try
             {
-                _logger.LogInformation($"method Put call with {name}");
+                _logger.LogInformation("method {Action} call with {name} and {item}", nameof(Put), name, champion);
                 var dtos = (await _manager.ChampionsMgr.GetItemsByName(name, 0, await _manager.ChampionsMgr.GetNbItems()));
                 if (dtos.IsNullOrEmpty())
                 {
-                    return NotFound("Name not exist");
+                    return NotFound($"Name {name} not exist");
                 }
                 // Checks if the new name exists
                 if (name != champion.Name)
@@ -152,6 +153,7 @@ namespace ApiLol.Controllers.v2
         {
             try
             {
+                _logger.LogInformation("method {Action} call with {name}", nameof(GetChampionsSkins), name);
                 var champions = await _manager.ChampionsMgr.GetItemsByName(name, 0, await _manager.ChampionsMgr.GetNbItems());
                 //skinsDTO
                 IEnumerable<SkinDto> res = champions.First().Skins.Select(e => e.ToDto());
@@ -169,6 +171,7 @@ namespace ApiLol.Controllers.v2
         {
             try
             {
+                _logger.LogInformation("method {Action} call with {name}", nameof(GetChampionsSkills), name);
                 var champions = await _manager.ChampionsMgr.GetItemsByName(name, 0, await _manager.ChampionsMgr.GetNbItems());
                 //SkillDTO
                 IEnumerable<SkillDto> res = champions.First().Skills.Select(e => e.ToDto());
@@ -187,11 +190,11 @@ namespace ApiLol.Controllers.v2
         {
             try
             {
-                _logger.LogInformation($"method Delete call with {name}");
+                _logger.LogInformation("method {Action} call with {name}", nameof(Delete), name);
                 var dtos = (await _manager.ChampionsMgr.GetItemsByName(name, 0, await _manager.ChampionsMgr.GetNbItems()));
                 if (dtos.IsNullOrEmpty())
                 {
-                    _logger.LogWarning($"{name} was not found");
+                    _logger.LogWarning("{name} was not found", name);
                     return BadRequest();
                 }
                 return Ok(await _manager.ChampionsMgr.DeleteItem(dtos.First()));

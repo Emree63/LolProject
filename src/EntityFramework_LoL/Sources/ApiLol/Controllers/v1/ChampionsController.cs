@@ -28,7 +28,7 @@ namespace ApiLol.Controllers.v1
 
             int nbTotal = await _manager.ChampionsMgr.GetNbItems();
 
-            _logger.LogInformation($"method Get call");
+            _logger.LogInformation("Executing {Action} with parameters: {Parameters}", nameof(Get), pageRequest);
             IEnumerable<ChampionDto> dtos = (await _manager.ChampionsMgr.GetItems(pageRequest.index, pageRequest.count))
                     .Select(x => x.ToDto());
             return Ok(dtos);
@@ -38,11 +38,11 @@ namespace ApiLol.Controllers.v1
         [HttpGet("{name}")]
         public async Task<IActionResult> Get(string name)
         {
-            _logger.LogInformation($"method GetByName call with {name}");
+            _logger.LogInformation("method {Action} call with {name}", nameof(Get), name);
             var dtos = (await _manager.ChampionsMgr.GetItemsByName(name, 0, await _manager.ChampionsMgr.GetNbItems()))
                 .Select(x => x.ToDto());
 
-            return Ok(dtos);
+            return Ok(dtos.First());
 
         }
 
@@ -51,7 +51,7 @@ namespace ApiLol.Controllers.v1
         public async Task<IActionResult> Post([FromBody] ChampionDto champion)
         {
 
-            _logger.LogInformation($"method Post call");
+            _logger.LogInformation("method {Action} call with {item}", nameof(Post), champion);
             return CreatedAtAction(nameof(Get),
                     (await _manager.ChampionsMgr.AddItem(champion.ToModel())).ToDto());
 
@@ -62,7 +62,7 @@ namespace ApiLol.Controllers.v1
         public async Task<IActionResult> Put(string name, [FromBody] ChampionDto champion)
         {
 
-            _logger.LogInformation($"method Put call with {name}");
+            _logger.LogInformation("method {Action} call with {name} and {item}", nameof(Put), name, champion);
             var dtos = (await _manager.ChampionsMgr.GetItemsByName(name, 0, await _manager.ChampionsMgr.GetNbItems()));
 
             return Ok(await _manager.ChampionsMgr.UpdateItem(dtos.First(), champion.ToModel()));
@@ -74,7 +74,7 @@ namespace ApiLol.Controllers.v1
         public async Task<IActionResult> Delete(string name)
         {
 
-            _logger.LogInformation($"method Delete call with {name}");
+            _logger.LogInformation("method {Action} call with {name}", nameof(Delete), name);
             var dtos = (await _manager.ChampionsMgr.GetItemsByName(name, 0, await _manager.ChampionsMgr.GetNbItems()));
 
             return Ok(await _manager.ChampionsMgr.DeleteItem(dtos.First()));

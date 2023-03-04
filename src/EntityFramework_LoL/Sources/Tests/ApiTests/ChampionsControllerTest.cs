@@ -26,7 +26,7 @@ namespace ApiTests
 
             //Act
             var total = await stub.ChampionsMgr.GetNbItems();
-            var champion = await champs.Get(new PageRequest() { index = 0, count = total });
+            var champion = await champs.Get(new PageRequest());
 
             //Assert
             var objectResult = champion as OkObjectResult;
