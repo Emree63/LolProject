@@ -1,4 +1,5 @@
 using ApiLol.Controllers;
+using ApiLol.Controllers.v2;
 using DTO;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -50,7 +51,6 @@ namespace ApiTests
                 Icon = "",
                 Image = new LargeImageDto() { Base64 = "" },
                 Skins = new List<SkinDto>()
-
             };
 
             //Act

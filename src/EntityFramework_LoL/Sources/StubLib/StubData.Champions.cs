@@ -84,7 +84,7 @@ namespace StubLib
                                     .Select(tuple => tuple.Item1)
                                     .Skip(index*count).Take(count));
 
-            private Func<Champion, string, bool> filterByName = (champ, substring) => champ.Name.Contains(substring, StringComparison.InvariantCultureIgnoreCase);
+            private Func<Champion, string, bool> filterByName = (champ, substring) => champ.Name.Equals(substring, StringComparison.InvariantCultureIgnoreCase);
 
             public Task<int> GetNbItemsByName(string substring)
                 => parent.champions.GetNbItemsWithFilter(champ => filterByName(champ, substring));

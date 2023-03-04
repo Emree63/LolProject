@@ -23,12 +23,12 @@ namespace Client
             var url = $"{ApiChampions}?index={index}&count={count}";
             return await _httpClient.GetFromJsonAsync<IEnumerable<ChampionDto>>(url);
         }
-        public async void Add(ChampionDto champion)
+/*        public async void Add(ChampionDto champion)
         {
             await _httpClient.PostAsJsonAsync<ChampionDto>(ApiChampions, champion);
-        }
+        }*/
 
-        public async void Delete(ChampionDto champion)
+/*        public async void Delete(ChampionDto champion)
         {
             await _httpClient.DeleteAsync(champion.Name);
         }
@@ -36,7 +36,7 @@ namespace Client
         public async void Update(ChampionDto champion)
         {
             await _httpClient.PutAsJsonAsync<ChampionDto>(ApiChampions, champion);
-        }
+        }*/
 
     }
 }
