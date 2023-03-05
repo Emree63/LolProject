@@ -48,7 +48,9 @@ namespace StubLib
 
             private static Func<Skin, Champion?, bool> filterByChampion = (skin, champion) => champion != null && skin.Champion.Equals(champion!);
 
-            private static Func<Skin, string, bool> filterByName = (skin, substring) => skin.Name.Contains(substring, StringComparison.InvariantCultureIgnoreCase);
+            private static Func<Skin, string, bool> filterByName = (skin, substring) => skin.Name.Equals(substring, StringComparison.InvariantCultureIgnoreCase);
+
+            private static Func<Skin, string, bool> filterByNameContains = (skin, substring) => skin.Name.Contains(substring, StringComparison.InvariantCultureIgnoreCase);
 
             public Task<IEnumerable<Skin?>> GetItemsByChampion(Champion? champion, int index, int count, string? orderingPropertyName = null, bool descending = false)
                 => parent.skins.GetItemsWithFilterAndOrdering(
@@ -56,6 +58,11 @@ namespace StubLib
                     index, count, orderingPropertyName, descending);
 
             public Task<IEnumerable<Skin?>> GetItemsByName(string substring, int index, int count, string? orderingPropertyName = null, bool descending = false)
+                => parent.skins.GetItemsWithFilterAndOrdering(
+                    skin => filterByNameContains(skin, substring),
+                    index, count, orderingPropertyName, descending);
+
+            public Task<IEnumerable<Skin?>> GetItemByName(string substring, int index, int count, string? orderingPropertyName = null, bool descending = false)
                 => parent.skins.GetItemsWithFilterAndOrdering(
                     skin => filterByName(skin, substring),
                     index, count, orderingPropertyName, descending);

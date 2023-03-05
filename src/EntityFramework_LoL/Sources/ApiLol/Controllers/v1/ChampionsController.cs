@@ -25,12 +25,9 @@ namespace ApiLol.Controllers.v1
         [HttpGet]
         public async Task<IActionResult> Get([FromQuery] PageRequest pageRequest)
         {
-
-            int nbTotal = await _manager.ChampionsMgr.GetNbItems();
-
             _logger.LogInformation("Executing {Action} with parameters: {Parameters}", nameof(Get), pageRequest);
-            IEnumerable<ChampionDto> dtos = (await _manager.ChampionsMgr.GetItems(pageRequest.index, pageRequest.count))
-                    .Select(x => x.ToDto());
+            IEnumerable<ChampionDto> dtos = (await _manager.ChampionsMgr.GetItems(pageRequest.index, pageRequest.count, pageRequest.orderingPropertyName, pageRequest.descending))
+                .Select(x => x.ToDto());
             return Ok(dtos);
         }
 
@@ -39,7 +36,7 @@ namespace ApiLol.Controllers.v1
         public async Task<IActionResult> Get(string name)
         {
             _logger.LogInformation("method {Action} call with {name}", nameof(Get), name);
-            var dtos = (await _manager.ChampionsMgr.GetItemsByName(name, 0, await _manager.ChampionsMgr.GetNbItems()))
+            var dtos = (await _manager.ChampionsMgr.GetItemByName(name, 0, await _manager.ChampionsMgr.GetNbItems()))
                 .Select(x => x.ToDto());
 
             return Ok(dtos.First());
@@ -63,7 +60,7 @@ namespace ApiLol.Controllers.v1
         {
 
             _logger.LogInformation("method {Action} call with {name} and {item}", nameof(Put), name, champion);
-            var dtos = (await _manager.ChampionsMgr.GetItemsByName(name, 0, await _manager.ChampionsMgr.GetNbItems()));
+            var dtos = (await _manager.ChampionsMgr.GetItemByName(name, 0, await _manager.ChampionsMgr.GetNbItems()));
 
             return Ok(await _manager.ChampionsMgr.UpdateItem(dtos.First(), champion.ToModel()));
 
@@ -75,7 +72,7 @@ namespace ApiLol.Controllers.v1
         {
 
             _logger.LogInformation("method {Action} call with {name}", nameof(Delete), name);
-            var dtos = (await _manager.ChampionsMgr.GetItemsByName(name, 0, await _manager.ChampionsMgr.GetNbItems()));
+            var dtos = (await _manager.ChampionsMgr.GetItemByName(name, 0, await _manager.ChampionsMgr.GetNbItems()));
 
             return Ok(await _manager.ChampionsMgr.DeleteItem(dtos.First()));
 

@@ -41,6 +41,23 @@ Vous pouvez le cloner via un terminal dans le répertoire de votre choix en util
 
 :information_source: *Si vous ne disposez pas de Visual Studio, allez sur le site [Microsoft Visual Studio](https://visualstudio.microsoft.com/fr/downloads/) pour pouvoir le télécharger !!!*
 
+- ### Comment lancer l'API dotnet ? 
+
+Pour pouvoir utiliser toutes les requêtes de l'API, il est nécessaire de récupérer le projet si cela n'a pas été fait, puis de le lancer à partir de Visual Studio. Vous pouvez directement cliquer sur la solution du projet. Ensuite, dans les projets de démarrage, choisissez "Api-Lol" :
+
+<div align = center>
+
+![Lancer l'API](doc/Images/Api_Launcher.png)
+
+</div>
+
+Normalement, tout est bon et vous serez redirigé vers Swagger, qui est l'interface graphique permettant d'effectuer facilement des requêtes. Il vous suffit ensuite de choisir la version en haut à droite. La version 3.0 est normalement la plus récente et la plus performante en termes de gestion d'erreur :
+
+<div align = center>
+
+![Version API](doc/Images/Swagger_Version.png)
+
+</div>
 
 - ### Comment lancer Le projet Entity Framework ? 
 

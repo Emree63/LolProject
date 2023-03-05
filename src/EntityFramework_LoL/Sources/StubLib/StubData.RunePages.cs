@@ -27,6 +27,9 @@ namespace StubLib
 				=> this.parent = parent;
 
             private static Func<RunePage, string, bool> filterByName
+                = (rp, substring) => rp.Name.Equals(substring, StringComparison.InvariantCultureIgnoreCase);
+
+            private static Func<RunePage, string, bool> filterByNameContains
                 = (rp, substring) => rp.Name.Contains(substring, StringComparison.InvariantCultureIgnoreCase);
 
             private static Func<RunePage, Rune?, bool> filterByRune
@@ -51,6 +54,11 @@ namespace StubLib
                         .Skip(index*count).Take(count));
 
             public Task<IEnumerable<RunePage?>> GetItemsByName(string substring, int index, int count, string? orderingPropertyName = null, bool descending = false)
+                => parent.runePages.GetItemsWithFilterAndOrdering(
+                    rp => filterByNameContains(rp, substring),
+                    index, count, orderingPropertyName, descending);
+
+            public Task<IEnumerable<RunePage?>> GetItemByName(string substring, int index, int count, string? orderingPropertyName = null, bool descending = false)
                 => parent.runePages.GetItemsWithFilterAndOrdering(
                     rp => filterByName(rp, substring),
                     index, count, orderingPropertyName, descending);

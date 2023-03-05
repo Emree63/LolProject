@@ -92,10 +92,10 @@ namespace StubLib
                 => parent.champions.GetNbItemsWithFilter(champ => filterByName(champ, substring));
 
             public Task<IEnumerable<Champion?>> GetItemsByName(string substring, int index, int count, string? orderingPropertyName, bool descending = false)
-                => parent.champions.GetItemsWithFilterAndOrdering(champ => filterByName(champ, substring), index, count, orderingPropertyName, descending);
-
-            public Task<IEnumerable<Champion?>> GetItemsByNameContains(string substring, int index, int count, string? orderingPropertyName, bool descending = false)
                 => parent.champions.GetItemsWithFilterAndOrdering(champ => filterByNameContains(champ, substring), index, count, orderingPropertyName, descending);
+
+            public Task<IEnumerable<Champion?>> GetItemByName(string substring, int index, int count, string? orderingPropertyName, bool descending = false)
+                => parent.champions.GetItemsWithFilterAndOrdering(champ => filterByName(champ, substring), index, count, orderingPropertyName, descending);
 
             public Task<Champion?> UpdateItem(Champion? oldItem, Champion? newItem)
                 => parent.champions.UpdateItem(oldItem, newItem);

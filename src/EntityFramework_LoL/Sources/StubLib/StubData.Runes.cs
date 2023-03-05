@@ -37,6 +37,9 @@ namespace StubLib
                 = (rune, family) => rune.Family == family;
 
             private static Func<Rune, string, bool> filterByName
+                = (rune, substring) => rune.Name.Equals(substring, StringComparison.InvariantCultureIgnoreCase);
+
+            private static Func<Rune, string, bool> filterByNameContains
                 = (rune, substring) => rune.Name.Contains(substring, StringComparison.InvariantCultureIgnoreCase);
 
             public Task<IEnumerable<Rune?>> GetItemsByFamily(RuneFamily family, int index, int count, string? orderingPropertyName = null, bool descending = false)
@@ -45,6 +48,11 @@ namespace StubLib
                     index, count, orderingPropertyName, descending);
 
             public Task<IEnumerable<Rune?>> GetItemsByName(string substring, int index, int count, string? orderingPropertyName = null, bool descending = false)
+                => parent.runes.GetItemsWithFilterAndOrdering(
+                    rune => filterByNameContains(rune, substring),
+                    index, count, orderingPropertyName, descending);
+
+            public Task<IEnumerable<Rune?>> GetItemByName(string substring, int index, int count, string? orderingPropertyName = null, bool descending = false)
                 => parent.runes.GetItemsWithFilterAndOrdering(
                     rune => filterByName(rune, substring),
                     index, count, orderingPropertyName, descending);

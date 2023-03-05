@@ -54,20 +54,23 @@ namespace ApiLol.Controllers
 
         // POST api/<SkinsController>
         [HttpPost]
-        public async void Post([FromBody] string value)
+        public async Task<IActionResult> Post([FromBody] string value)
         {
+            return Ok();
         }
 
         // PUT api/<SkinsController>/5
         [HttpPut("{name}")]
-        public async void Put(int id, [FromBody] string value)
+        public async Task<IActionResult> Put(int id, [FromBody] string value)
         {
+            return Ok();
         }
 
         // DELETE api/<SkinsController>/5
         [HttpDelete("{name}")]
-        public async void Delete(string name)
+        public async Task<IActionResult> Delete(string name)
         {
+            return Ok();
         }
     }
 }
