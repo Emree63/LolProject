@@ -21,7 +21,12 @@ namespace ApiLol.Mapper
 
         public static Champion ToModel(this ChampionDto championDto)
         {
-            return new Champion(championDto.Name, championDto.Class.ToModel(), championDto.Icon, championDto.Image.Base64, championDto.Bio);
+            var champ = new Champion(championDto.Name, championDto.Class.ToModel(), championDto.Icon, championDto.Image.Base64, championDto.Bio);
+            foreach(var skin in championDto.Skins)
+            {
+                champ.AddSkin(skin.ToModel(champ));
+            }
+            return champ;
         }
 
     }

@@ -10,7 +10,7 @@ namespace DTO
     {
         public int index { get; set; } = 0;
         public int count { get; set; } = 0;
-        public string? orderingPropertyName { get; set; } = null;
-        public bool descending { get; set; } = true;
+        public string? orderingPropertyName { get; set; } = "Name";
+        public bool descending { get; set; } = false;
     }
 }

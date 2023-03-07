@@ -29,6 +29,7 @@ namespace ApiLol.Controllers.v1
             IEnumerable<ChampionDto> dtos = (await _manager.ChampionsMgr.GetItems(pageRequest.index, pageRequest.count, pageRequest.orderingPropertyName, pageRequest.descending))
                 .Select(x => x.ToDto());
             return Ok(dtos);
+
         }
 
         // GET api/<ValuesController>/5
@@ -62,7 +63,7 @@ namespace ApiLol.Controllers.v1
             _logger.LogInformation("method {Action} call with {name} and {item}", nameof(Put), name, champion);
             var dtos = (await _manager.ChampionsMgr.GetItemByName(name, 0, await _manager.ChampionsMgr.GetNbItems()));
 
-            return Ok(await _manager.ChampionsMgr.UpdateItem(dtos.First(), champion.ToModel()));
+            return Ok((await _manager.ChampionsMgr.UpdateItem(dtos.First(), champion.ToModel())).ToDto());
 
         }
 

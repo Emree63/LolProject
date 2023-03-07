@@ -45,9 +45,9 @@ namespace ApiLol.Controllers.v2
                         .Select(x => x.ToDto());
                 return Ok(dtos);
             }
-            catch (Exception e)
+            catch (Exception error)
             {
-                return BadRequest(e.Message);
+                return BadRequest(error.Message);
             }
         }
 
@@ -69,13 +69,13 @@ namespace ApiLol.Controllers.v2
                 }
 
                 _logger.LogInformation("Executing {Action} with parameters: {Parameters}", nameof(Get), pageRequest);
-                IEnumerable<ChampionDto> dtos = (await _manager.ChampionsMgr.GetItems(pageRequest.index, pageRequest.count))
+                IEnumerable<ChampionDto> dtos = (await _manager.ChampionsMgr.GetItems(pageRequest.index, pageRequest.count, pageRequest.orderingPropertyName, pageRequest.descending))
                         .Select(x => x.ToDto());
-                return Ok(dtos);
+                return Ok(new { Data = dtos, index = pageRequest.index, count = pageRequest.count, total = nbTotal});
             }
-            catch (Exception e)
+            catch (Exception error)
             {
-                return BadRequest(e.Message);
+                return BadRequest(error.Message);
             }
         }
 
@@ -95,9 +95,9 @@ namespace ApiLol.Controllers.v2
                 }
                 return Ok(dtos.First());
             }
-            catch (Exception e)
+            catch (Exception error)
             {
-                return BadRequest(e.Message);
+                return BadRequest(error.Message);
             }
         }
 
@@ -116,9 +116,9 @@ namespace ApiLol.Controllers.v2
                 return CreatedAtAction(nameof(Get),
                         (await _manager.ChampionsMgr.AddItem(champion.ToModel())).ToDto());
             }
-            catch (Exception e)
+            catch (Exception error)
             {
-                return BadRequest(e.Message);
+                return BadRequest(error.Message);
             }
         }
 
@@ -143,11 +143,11 @@ namespace ApiLol.Controllers.v2
                         return BadRequest("Name is already exist");
                     }
                 }
-                return Ok(await _manager.ChampionsMgr.UpdateItem(dtos.First(), champion.ToModel()));
+                return Ok((await _manager.ChampionsMgr.UpdateItem(dtos.First(), champion.ToModel())).ToDto());
             }
-            catch (Exception e)
+            catch (Exception error)
             {
-                return BadRequest(e.Message);
+                return BadRequest(error.Message);
             }
         }
 
@@ -163,9 +163,9 @@ namespace ApiLol.Controllers.v2
 
                 return Ok(res);
             }
-            catch (Exception e)
+            catch (Exception error)
             {
-                return BadRequest(e.Message);
+                return BadRequest(error.Message);
             }
         }
 
@@ -181,9 +181,9 @@ namespace ApiLol.Controllers.v2
 
                 return Ok(res);
             }
-            catch (Exception e)
+            catch (Exception error)
             {
-                return BadRequest(e.Message);
+                return BadRequest(error.Message);
             }
         }
 
@@ -202,9 +202,9 @@ namespace ApiLol.Controllers.v2
                 }
                 return Ok(await _manager.ChampionsMgr.DeleteItem(dtos.First()));
             }
-            catch (Exception e)
+            catch (Exception error)
             {
-                return BadRequest(e.Message);
+                return BadRequest(error.Message);
             }
         }
     }
