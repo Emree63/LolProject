@@ -3,19 +3,19 @@ using Model;
 
 namespace StubLib
 {
-	public partial class StubData
-	{
-		private List<Champion> champions = new()
-		{
-			new Champion("Akali", ChampionClass.Assassin),
-			new Champion("Aatrox", ChampionClass.Fighter),
-			new Champion("Ahri", ChampionClass.Mage),
-			new Champion("Akshan", ChampionClass.Marksman),
-			new Champion("Bard", ChampionClass.Support),
-			new Champion("Alistar", ChampionClass.Tank),
-		};
+    public partial class StubData
+    {
+        private List<Champion> champions = new()
+        {
+            new Champion("Akali", ChampionClass.Assassin),
+            new Champion("Aatrox", ChampionClass.Fighter),
+            new Champion("Ahri", ChampionClass.Mage),
+            new Champion("Akshan", ChampionClass.Marksman),
+            new Champion("Bard", ChampionClass.Support),
+            new Champion("Alistar", ChampionClass.Tank),
+        };
 
-		public class ChampionsManager : IChampionsManager
+        public class ChampionsManager : IChampionsManager
         {
             private readonly StubData parent;
 
@@ -82,19 +82,24 @@ namespace StubLib
                             (parent.championsAndRunePages
                                     .Where(tuple => tuple.Item2.Equals(runePage))
                                     .Select(tuple => tuple.Item1)
-                                    .Skip(index*count).Take(count));
+                                    .Skip(index * count).Take(count));
 
-            private Func<Champion, string, bool> filterByName = (champ, substring) => champ.Name.Contains(substring, StringComparison.InvariantCultureIgnoreCase);
+            private Func<Champion, string, bool> filterByName = (champ, substring) => champ.Name.Equals(substring, StringComparison.InvariantCultureIgnoreCase);
+
+            private Func<Champion, string, bool> filterByNameContains = (champ, substring) => champ.Name.Contains(substring, StringComparison.InvariantCultureIgnoreCase);
 
             public Task<int> GetNbItemsByName(string substring)
                 => parent.champions.GetNbItemsWithFilter(champ => filterByName(champ, substring));
 
             public Task<IEnumerable<Champion?>> GetItemsByName(string substring, int index, int count, string? orderingPropertyName, bool descending = false)
+                => parent.champions.GetItemsWithFilterAndOrdering(champ => filterByNameContains(champ, substring), index, count, orderingPropertyName, descending);
+
+            public Task<IEnumerable<Champion?>> GetItemByName(string substring, int index, int count, string? orderingPropertyName, bool descending = false)
                 => parent.champions.GetItemsWithFilterAndOrdering(champ => filterByName(champ, substring), index, count, orderingPropertyName, descending);
 
             public Task<Champion?> UpdateItem(Champion? oldItem, Champion? newItem)
                 => parent.champions.UpdateItem(oldItem, newItem);
         }
-	}
+    }
 }
 

@@ -5,12 +5,12 @@
 </div>
 
 
-**Thème du projet** : Réalisation d'une API et d'un ORM(Entity Framework) qui seront reliés à une base de données dans le thème de League of Legends <img src="https://logo-marque.com/wp-content/uploads/2020/11/League-of-Legends-Embleme.png" width="40" >
+**Thème du projet** : Réalisation d'une API et d'un ORM (Entity Framework) qui seront reliés à une base de données dans le thème de League of Legends <img src="https://logo-marque.com/wp-content/uploads/2020/11/League-of-Legends-Embleme.png" width="40" >
 </br>
 
 <img src="doc/Images/Title-Répartition.png" width="400">
 
-La racine de notre gitlab est composée de deux dossiers essentiels au projet:
+La racine de mon GitLab contient deux dossiers essentiels pour le projet :
 
 [**src**](src) : **Toute la partie codage de l'application**
 
@@ -23,7 +23,7 @@ La racine de notre gitlab est composée de deux dossiers essentiels au projet:
 
 - ### Comment récupérer le projet ? 
 
-Tout d'abord si ce n'est pas fait cloner le dépôt de la branche **master/main**, pour cela copier le lien URL du dépôt git :
+Tout d'abord, si ce n'est pas déjà fait, clonez le dépôt de la branche **master/main**. Pour ce faire, copiez le lien URL du dépôt git :
 
 <div align = center>
 
@@ -31,7 +31,7 @@ Tout d'abord si ce n'est pas fait cloner le dépôt de la branche **master/main*
 
 </div>
 
-Vous pouvez le cloner via un terminal dans le répertoire que vous souhaitez en tapant la commande : **git clone https://codefirst.iut.uca.fr/git/emre.kartal/LolProject.git** ou utiliser Visual Studio et cloner en entrant le lien :
+Vous pouvez le cloner via un terminal dans le répertoire de votre choix en utilisant la commande : **git clone https://codefirst.iut.uca.fr/git/emre.kartal/LolProject.git**. Sinon, vous pouvez utiliser Visual Studio et cloner le dépôt en entrant le lien :
 
 <div align = center>
 
@@ -39,16 +39,31 @@ Vous pouvez le cloner via un terminal dans le répertoire que vous souhaitez en 
 
 </div>
 
-:information_source: *Si vous ne disposez pas de Visual Studio, allé sur le site [Microsoft Visual Studio](https://visualstudio.microsoft.com/fr/downloads/) pour pouvoir le télécharger !!!*
+:information_source: *Si vous ne disposez pas de Visual Studio, allez sur le site [Microsoft Visual Studio](https://visualstudio.microsoft.com/fr/downloads/) pour pouvoir le télécharger !!!*
 
+- ### Comment lancer l'API dotnet ? 
+
+Pour pouvoir utiliser toutes les requêtes de l'API, il est nécessaire de récupérer le projet si cela n'a pas été fait, puis de le lancer à partir de Visual Studio. Vous pouvez directement cliquer sur la solution du projet. Ensuite, dans les projets de démarrage, choisissez "Api-Lol" :
+
+<div align = center>
+
+![Lancer l'API](doc/Images/Api_Launcher.png)
+
+</div>
+
+Normalement, tout est bon et vous serez redirigé vers Swagger, qui est l'interface graphique permettant d'effectuer facilement des requêtes. Il vous suffit ensuite de choisir la version en haut à droite. La version 3.0 est normalement la plus récente et la plus performante en termes de gestion d'erreur :
+
+<div align = center>
+
+![Version API](doc/Images/Swagger_Version.png)
+
+</div>
 
 - ### Comment lancer Le projet Entity Framework ? 
 
-Afin de générer les migrations et les tables.
-<br>
-Vous devez avoir installé correctement EntityFrameworkCore, pour cela il existe la commande : **dotnet tool install --global dotnet-ef** qui peut être lancé à partir d'un terminal, si il est déjà installer mais n'a pas la bonne version : **dotnet tool update --global dotnet-ef** (oui y que le *install* qui change vous êtes perspicace)!
+Afin de générer les migrations et les tables, vous devez avoir installé correctement EntityFrameworkCore. Pour cela il existe la commande : **dotnet tool install --global dotnet-ef**, qui peut être lancé à partir d'un terminal. Si elle est déjà installée mais n'a pas la bonne version : **dotnet tool update --global dotnet-ef** (oui, il n'y a que l'*install* qui change. Vous êtes perspicace !).
 
-Aussi assurer vous d'avoir installé sur Visual Studio au préalable les package Nuget suivants : 
+Assurez-vous également d'avoir installé les packages Nuget suivants sur Visual Studio au préalable :
 
 <div align = center>
 
@@ -56,13 +71,13 @@ Aussi assurer vous d'avoir installé sur Visual Studio au préalable les package
 
 </div>
 
-Ensuite sur le terminal PowerShell ou Visual Studio, lancer la migration via la commande : **dotnet ef migrations add monNomDeMigration** (n'oublier pas de vous situer dans le dossier "/MyFlib" lorsque vous l'exécuter)!
+Ensuite, sur le terminal PowerShell ou Visual Studio, lancer la migration via la commande : **dotnet ef migrations add monNomDeMigration** (n'oubliez pas de vous situer dans le dossier "/MyFlib" lorsque vous l'exécutez)!
 
 - ### Comment voir la base de données ?
 
-C'est bien beau toutes ces étapes mais s’il n'y a pas de résultat à quoi cela sert !
+C'est bien beau toutes ces étapes, mais s’il n'y a pas de résultat, à quoi cela sert !
 
-Tout d'abord veuillez regarder dans l'onglet extension, si l'outil **SQLite and SQL Server Compact Toolbax** est bien installé.
+Tout d'abord, veuillez regarder dans l'onglet Extensions si l'outil **SQLite and SQL Server Compact Toolbax** est bien installé.
 
 Puis, afin de visualiser la migration dans la base de données, cliquer dans l'onglet **Outils**->**SQLLite/ SQL Server compact Toolbox** :
 
@@ -72,7 +87,7 @@ Puis, afin de visualiser la migration dans la base de données, cliquer dans l'o
 
 </div>
 
-Et enfin cliquer sur l'icône ci-dessous pour faire la connexion à la solution courent :
+Et enfin cliquez sur l'icône ci-dessous pour établir la connexion à la solution en cours :
 
 <div align = center>
 
@@ -80,14 +95,14 @@ Et enfin cliquer sur l'icône ci-dessous pour faire la connexion à la solution 
 
 </div>
 
-Vous pouvez dorénavant voir toutes les tables qui y sont enregistrées ! Si vous souhaitez ajouter des modifications à la base de données et les visualiser, 
-réaliser à nouveau la migration (ou *updater* celui actuel), puis supprimer toutes les tables et lancer la commande : **dotnet ef database update** et enfin rafraichissez la BD !
+Vous pouvez désormais voir toutes les tables qui y sont enregistrées ! Si vous souhaitez ajouter des modifications à la base de données et les visualiser, 
+réalisez à nouveau la migration (ou mettez à jour celle actuelle), puis supprimez toutes les tables et lancez la commande : **dotnet ef database update** et enfin rafraîchissez la base de données !
 
-:information_source: *Notez qu'il est également possible grâce à SQLLite d'ajouter, modifier ou supprimer des données dans les tables.*
+:information_source: *Notez qu'il est également possible, grâce à SQLLite, d'ajouter, modifier ou supprimer des données dans les tables.*
 
 <img src="doc/Images/Title-Environnement.png" width="400" >
 
-Mon environnement de travail se base sur un outil et un langage en particulier :👇
+Mon environnement de travail est basé sur un outil et un langage en particulier : 👇
 
 <div align = center>
 

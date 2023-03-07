@@ -18,19 +18,19 @@ namespace Client
             httpClient.BaseAddress = new Uri("https://localhost:7252;http://localhost:5252");
         }
 
-        public async Task<IEnumerable<ChampionDto>> GetChampion()
+        public async Task<IEnumerable<ChampionDto>> GetChampion(int index, int count)
         {
-            var champions = await _httpClient.GetFromJsonAsync<IEnumerable<ChampionDto>>(ApiChampions);
-            return champions;
+            var url = $"{ApiChampions}?index={index}&count={count}";
+            return await _httpClient.GetFromJsonAsync<IEnumerable<ChampionDto>>(url);
         }
-        public async void Add(ChampionDto champion)
+/*        public async void Add(ChampionDto champion)
         {
             await _httpClient.PostAsJsonAsync<ChampionDto>(ApiChampions, champion);
-        }
+        }*/
 
 /*        public async void Delete(ChampionDto champion)
         {
-            await _httpClient.DeleteAsync(champion);
+            await _httpClient.DeleteAsync(champion.Name);
         }
 
         public async void Update(ChampionDto champion)

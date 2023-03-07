@@ -14,7 +14,7 @@ namespace ApiLol.Mapper
             };
         }
 
-/*        public static Rune ToModel(this RuneDto rune)
+/*        public static Rune ToModel(this RuneDto runeDto)
         {
             return new Rune(rune.Name)
             {

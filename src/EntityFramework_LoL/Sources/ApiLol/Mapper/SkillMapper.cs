@@ -11,15 +11,13 @@ namespace ApiLol.Mapper
             {
                 Name = skill.Name,
                 Description = skill.Description,
+                Type = skill.Type.ToDto()
             };
         }
 
-/*        public static Skill ToModel(this SkillDto skill)
+        public static Skill ToModel(this SkillDto skillDto)
         {
-            return new Skill(skill.Name)
-            {
-                Description = skill.Description
-            };
-        }*/
+            return new Skill(skillDto.Name, skillDto.Type.ToModel(), skillDto.Description);
+        }
     }
 }
