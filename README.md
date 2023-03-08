@@ -108,7 +108,7 @@ Mon environnement de travail est basé sur un outil et un langage en particulier
 
 ---
 
-&nbsp; ![Docnet](https://img.shields.io/badge/Docnet-000?style=for-the-badge&logo=Docnet&logoColor=white&color=white)
+&nbsp; ![Dotnet](https://img.shields.io/badge/Core-000?style=for-the-badge&logo=Dotnet&logoColor=white&color=purple)
 &nbsp; ![C#](https://img.shields.io/badge/Csharp-000?style=for-the-badge&logo=csharp&logoColor=white&color=blue)
 
 ---
