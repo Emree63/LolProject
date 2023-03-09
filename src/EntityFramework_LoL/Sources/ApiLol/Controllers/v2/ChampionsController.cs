@@ -27,6 +27,7 @@ namespace ApiLol.Controllers.v2
         [HttpGet]
         public async Task<IActionResult> Get([FromQuery] PageRequest pageRequest)
         {
+            _logger.LogInformation("Executing {Action} - CHAMPION - V2.0 with parameters: {Parameters}", nameof(Get), pageRequest.count);
             try
             {
                 int nbTotal = await _manager.ChampionsMgr.GetNbItems();
@@ -40,7 +41,6 @@ namespace ApiLol.Controllers.v2
                     return BadRequest($"Champion limit exceed, max {nbTotal}");
                 }
 
-                _logger.LogInformation("Executing {Action} with parameters: {Parameters}", nameof(Get), pageRequest.count);
                 IEnumerable<ChampionDto> dtos = (await _manager.ChampionsMgr.GetItems(pageRequest.index, pageRequest.count))
                         .Select(x => x.ToDto());
                 return Ok(dtos);
@@ -55,6 +55,7 @@ namespace ApiLol.Controllers.v2
         [HttpGet, MapToApiVersion("3.0")]
         public async Task<IActionResult> GetV3([FromQuery] PageRequest pageRequest)
         {
+            _logger.LogInformation("Executing {Action} - CHAMPION - V3.0 with parameters: {Parameters}", nameof(Get), pageRequest);
             try
             {
                 int nbTotal = await _manager.ChampionsMgr.GetNbItems();
@@ -68,7 +69,6 @@ namespace ApiLol.Controllers.v2
                     return BadRequest($"Champion limit exceed, max {nbTotal}");
                 }
 
-                _logger.LogInformation("Executing {Action} with parameters: {Parameters}", nameof(Get), pageRequest);
                 IEnumerable<ChampionDto> dtos = (await _manager.ChampionsMgr.GetItems(pageRequest.index, pageRequest.count, pageRequest.orderingPropertyName, pageRequest.descending))
                         .Select(x => x.ToDto());
                 return Ok(new { Data = dtos, index = pageRequest.index, count = pageRequest.count, total = nbTotal});
@@ -83,15 +83,15 @@ namespace ApiLol.Controllers.v2
         [HttpGet("{name}")]
         public async Task<IActionResult> Get(string name)
         {
+            _logger.LogInformation("method {Action} - CHAMPION - V2.0 call with {name}", nameof(Get), name);
             try
             {
-                _logger.LogInformation("method {Action} call with {name}", nameof(Get), name);
                 var dtos = (await _manager.ChampionsMgr.GetItemByName(name, 0, await _manager.ChampionsMgr.GetNbItems()))
                     .Select(x => x.ToDto());
                 if (dtos.IsNullOrEmpty())
                 {
                     _logger.LogWarning($"{name} was not found");
-                    return NotFound();
+                    return NotFound($"{name} was not found");
                 }
                 return Ok(dtos.First());
             }
@@ -105,16 +105,16 @@ namespace ApiLol.Controllers.v2
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] ChampionDto champion)
         {
+            _logger.LogInformation("method {Action} - CHAMPION - V2.0 call with {item}", nameof(Post), champion);
             try
             {
-                _logger.LogInformation("method {Action} call with {item}", nameof(Post), champion);
-                var dtos = (await _manager.ChampionsMgr.GetItemByName(champion.Name, 0, await _manager.ChampionsMgr.GetNbItems()));
-                if (!dtos.IsNullOrEmpty())
+                if (await _manager.ChampionsMgr.GetNbItemsByName(champion.Name) == 0)
                 {
-                    return BadRequest("Name is already exist");
-                }
-                return CreatedAtAction(nameof(Get),
+                    return CreatedAtAction(nameof(Get),
                         (await _manager.ChampionsMgr.AddItem(champion.ToModel())).ToDto());
+                }
+                _logger.LogWarning($"Name : {champion.Name} is already exist");
+                return BadRequest($"Name : {champion.Name} is already exist");
             }
             catch (Exception error)
             {
@@ -126,9 +126,9 @@ namespace ApiLol.Controllers.v2
         [HttpPut("{name}")]
         public async Task<IActionResult> Put(string name, [FromBody] ChampionDto champion)
         {
+            _logger.LogInformation("method {Action} - CHAMPION - V2.0 call with {name} and {item}", nameof(Put), name, champion);
             try
             {
-                _logger.LogInformation("method {Action} call with {name} and {item}", nameof(Put), name, champion);
                 var dtos = (await _manager.ChampionsMgr.GetItemByName(name, 0, await _manager.ChampionsMgr.GetNbItems()));
                 if (dtos.IsNullOrEmpty())
                 {
@@ -154,9 +154,9 @@ namespace ApiLol.Controllers.v2
         [HttpGet("/{name}/skins")]
         public async Task<ActionResult<SkinDto>> GetChampionsSkins(string name)
         {
+            _logger.LogInformation("method {Action} - CHAMPION - V2.0 call with {name}", nameof(GetChampionsSkins), name);
             try
             {
-                _logger.LogInformation("method {Action} call with {name}", nameof(GetChampionsSkins), name);
                 var champions = await _manager.ChampionsMgr.GetItemByName(name, 0, await _manager.ChampionsMgr.GetNbItems());
                 //skinsDTO
                 IEnumerable<SkinDto> res = champions.First().Skins.Select(e => e.ToDto());
@@ -174,7 +174,7 @@ namespace ApiLol.Controllers.v2
         {
             try
             {
-                _logger.LogInformation("method {Action} call with {name}", nameof(GetChampionsSkills), name);
+                _logger.LogInformation("method {Action} - CHAMPION - V2.0 call with {name}", nameof(GetChampionsSkills), name);
                 var champions = await _manager.ChampionsMgr.GetItemByName(name, 0, await _manager.ChampionsMgr.GetNbItems());
                 //SkillDTO
                 IEnumerable<SkillDto> res = champions.First().Skills.Select(e => e.ToDto());
@@ -191,9 +191,9 @@ namespace ApiLol.Controllers.v2
         [HttpDelete("{name}")]
         public async Task<IActionResult> Delete(string name)
         {
+            _logger.LogInformation("method {Action} - CHAMPION - V2.0 call with {name}", nameof(Delete), name);
             try
             {
-                _logger.LogInformation("method {Action} call with {name}", nameof(Delete), name);
                 var dtos = (await _manager.ChampionsMgr.GetItemByName(name, 0, await _manager.ChampionsMgr.GetNbItems()));
                 if (dtos.IsNullOrEmpty())
                 {
