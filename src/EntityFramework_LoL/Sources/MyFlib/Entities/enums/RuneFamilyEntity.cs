@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MyFlib.Entities.enums
 {
-    enum RuneFamilyEntity
+    public enum RuneFamilyEntity
     {
         Unknown,
         Precision,

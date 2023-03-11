@@ -28,7 +28,7 @@ namespace MyFlib
         public LargeImageEntity Image { get; set; }
 
         [ForeignKey("Image")]
-        public int ImageId { get; set; }
+        public Guid ImageId { get; set; }
 
     }
 }

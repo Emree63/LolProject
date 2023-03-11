@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyFlib.Entities.enums;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -11,16 +12,17 @@ namespace MyFlib
     public class RuneEntity
     {
         [Key]
-        [MaxLength(256)]
+        [MaxLength(64)]
         public string Name { get; set; }
 
         [Required]
         [MaxLength(500)]
         public string Description { get; set; }
-        public SkillTypeEntity SkillType { get; set; }
+        [Required]
+        public RuneFamilyEntity Family { get; set; }
         public LargeImageEntity Image { get; set; }
 
         [ForeignKey("Image")]
-        public int ImageId { get; set; }
+        public Guid ImageId { get; set; }
     }
 }

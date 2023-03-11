@@ -10,7 +10,7 @@ namespace MyFlib
     public class SkillEntity
     {
         [Key]
-        [MaxLength(256)]
+        [MaxLength(64)]
         public string Name { get; set; }
 
         [Required]
