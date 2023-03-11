@@ -8,25 +8,21 @@ using System.Threading.Tasks;
 
 namespace MyFlib
 {
-    public class ChampionEntity
+    public class SkinEntity
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid Id { get; set; }
-        [Required]
-        [MaxLength(64)]
+        [MaxLength(256)]
         public string Name { get; set; }
         [Required]
-        [MaxLength(255)]
-        public string Bio { get; set; }
+        [MaxLength(500)]
+        public string Description { get; set; }
+        [Required]
         public string Icon { get; set; }
         [Required]
-        public ChampionClassEntity Class { get; set; }
-        public ICollection<SkillEntity> Skills { get; set; }
-        public ICollection<SkinEntity> Skins { get; set; }
-
+        public float Price { get; set; }
+        public ChampionEntity Champion { get; set; }
+        public Guid ChampionForeignKey { get; set; }
         public LargeImageEntity Image { get; set; }
-
         [ForeignKey("Image")]
         public Guid ImageId { get; set; }
 

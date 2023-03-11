@@ -10,15 +10,25 @@ namespace UT_EF
         public void TestAdd()
         {
             var options = new DbContextOptionsBuilder<LolDbContext>()
-                .UseInMemoryDatabase(databaseName: "Add_Test_database")
+                .UseInMemoryDatabase(databaseName: "Add_Test_Champion_database")
                 .Options;
 
             using (var context = new LolDbContext(options))
             {
-                ChampionEntity sylas = new ChampionEntity { Name = "Sylas", Class = ChampionClassEntity.Assassin, Bio = "", Icon = "", Image = "" };
-                ChampionEntity hecarim = new ChampionEntity { Name = "Hecarim", Class = ChampionClassEntity.Fighter, Bio = "", Icon = "", Image = "" };
-                ChampionEntity yuumi = new ChampionEntity { Name = "yuumi", Class = ChampionClassEntity.Mage, Bio = "", Icon = "", Image = "" };
 
+                ChampionEntity sylas = new ChampionEntity { Name = "Sylas", Class = ChampionClassEntity.Assassin, Bio = "", Icon = "", ImageId = Guid.Parse("{8d121cdc-6787-4738-8edd-9e026ac16b65}") };
+                ChampionEntity hecarim = new ChampionEntity { Name = "Hecarim", Class = ChampionClassEntity.Fighter, Bio = "", Icon = "", ImageId = Guid.Parse("{8d121cdc-6787-4738-8edd-9e026ac16b65}") };
+                ChampionEntity yuumi = new ChampionEntity { Name = "yuumi", Class = ChampionClassEntity.Mage, Bio = "", Icon = "", ImageId = Guid.Parse("{8d121cdc-6787-4738-8edd-9e026ac16b65}") };
+                
+                // test contrainte 
+                ChampionEntity errorName = new ChampionEntity
+                {
+                    Name = "c1832f35-f909-422d-a1fb-e0b79a62f562-fa7c5fe2-89b7-432e-9e0f-a5736445b381-3f75c0f8-de2e-4cf4-82d2-3d24411f6422-6b7e9196-3664-4813-b971-e9cc08a4b255-c1832f35-f909-422d-a1fb-e0b79a62f562-fa7c5fe2-89b7-432e-9e0f-a5736445b381-3f75c0f8-de2e-4cf4-82d2-3d24411f6422-6b7e9196-3664-4813-b971-e9cc08a4b255",
+                    Class = ChampionClassEntity.Mage,
+                    Bio = "",
+                    Icon = "",
+                    ImageId = Guid.Parse("{8d121cdc-6787-4738-8edd-9e026ac16b65}")
+                };
                 context.Champions.AddRange(sylas, hecarim, yuumi);
                 context.SaveChanges();
             }
@@ -34,14 +44,15 @@ namespace UT_EF
         public void Modify_Test()
         {
             var options = new DbContextOptionsBuilder<LolDbContext>()
-                .UseInMemoryDatabase(databaseName: "Modify_Test_database")
+                .UseInMemoryDatabase(databaseName: "Modify_Test_Champion_database")
                 .Options;
 
             using (var context = new LolDbContext(options))
             {
-                ChampionEntity sylas = new ChampionEntity { Name = "Sylas", Class = ChampionClassEntity.Assassin, Bio = "", Icon = "", Image = "" };
-                ChampionEntity hecarim = new ChampionEntity { Name = "Hecarim", Class = ChampionClassEntity.Fighter, Bio = "", Icon = "", Image = "" };
-                ChampionEntity yuumi = new ChampionEntity { Name = "yuumi", Class = ChampionClassEntity.Mage, Bio = "", Icon = "", Image = "" };
+
+                ChampionEntity sylas = new ChampionEntity { Name = "Sylas", Class = ChampionClassEntity.Assassin, Bio = "", Icon = "", ImageId = Guid.Parse("{8d121cdc-6787-4738-8edd-9e026ac16b65}") };
+                ChampionEntity hecarim = new ChampionEntity { Name = "Hecarim", Class = ChampionClassEntity.Fighter, Bio = "", Icon = "", ImageId = Guid.Parse("{8d121cdc-6787-4738-8edd-9e026ac16b65}") };
+                ChampionEntity yuumi = new ChampionEntity { Name = "yuumi", Class = ChampionClassEntity.Mage, Bio = "", Icon = "", ImageId = Guid.Parse("{8d121cdc-6787-4738-8edd-9e026ac16b65}") };
 
                 context.Champions.AddRange(sylas, hecarim, yuumi);
                 context.SaveChanges();
@@ -79,14 +90,15 @@ namespace UT_EF
         public void Delete_Test()
         {
             var options = new DbContextOptionsBuilder<LolDbContext>()
-                .UseInMemoryDatabase(databaseName: "Delete_Test_database")
+                .UseInMemoryDatabase(databaseName: "Delete_Test_Champion_database")
                 .Options;
 
             using (var context = new LolDbContext(options))
             {
-                ChampionEntity sylas = new ChampionEntity { Name = "Sylas", Class = ChampionClassEntity.Assassin, Bio = "", Icon = "", Image = "" };
-                ChampionEntity hecarim = new ChampionEntity { Name = "Hecarim", Class = ChampionClassEntity.Fighter, Bio = "", Icon = "", Image = "" };
-                ChampionEntity yuumi = new ChampionEntity { Name = "yuumi", Class = ChampionClassEntity.Mage, Bio = "", Icon = "", Image = "" };
+
+                ChampionEntity sylas = new ChampionEntity { Name = "Sylas", Class = ChampionClassEntity.Assassin, Bio = "", Icon = "", ImageId = Guid.Parse("{8d121cdc-6787-4738-8edd-9e026ac16b65}") };
+                ChampionEntity hecarim = new ChampionEntity { Name = "Hecarim", Class = ChampionClassEntity.Fighter, Bio = "", Icon = "", ImageId = Guid.Parse("{8d121cdc-6787-4738-8edd-9e026ac16b65}") };
+                ChampionEntity yuumi = new ChampionEntity { Name = "yuumi", Class = ChampionClassEntity.Mage, Bio = "", Icon = "", ImageId = Guid.Parse("{8d121cdc-6787-4738-8edd-9e026ac16b65}") };
 
                 context.Champions.AddRange(sylas, hecarim, yuumi);
                 context.SaveChanges();
