@@ -4,7 +4,7 @@ using Xunit;
 
 namespace UT_EF
 {
-    public class UnitTest1
+    public class ChampionsTest
     {
         [Fact]
         public void TestAdd()

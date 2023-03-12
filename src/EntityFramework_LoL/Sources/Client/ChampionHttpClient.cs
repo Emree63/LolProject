@@ -10,17 +10,17 @@ namespace Client
 {
     public class ChampionHttpClient
     {
-        private const string ApiChampions = "api/champions";
+        private const string UrlApiChampions = "/api/v3/champions";
         private readonly HttpClient _httpClient;
         public ChampionHttpClient(HttpClient httpClient)
         {
             _httpClient = httpClient;
-            httpClient.BaseAddress = new Uri("https://localhost:7252;http://localhost:5252");
+            httpClient.BaseAddress = new Uri("https://localhost:7252");
         }
 
         public async Task<IEnumerable<ChampionDto>> GetChampion(int index, int count)
         {
-            var url = $"{ApiChampions}?index={index}&count={count}";
+            var url = $"{UrlApiChampions}?index={index}&count={count}";
             return await _httpClient.GetFromJsonAsync<IEnumerable<ChampionDto>>(url);
         }
 /*        public async void Add(ChampionDto champion)

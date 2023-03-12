@@ -7,49 +7,35 @@ namespace ApiLol.Mapper
     {
         public static SkillTypeDto ToDto(this SkillType skillType)
         {
-            if (skillType == SkillType.Unknown)
+            switch (skillType)
             {
-                return SkillTypeDto.Unknown;
-            }
-            if (skillType == SkillType.Basic)
-            {
-                return SkillTypeDto.Basic;
-            }
-            if (skillType == SkillType.Passive)
-            {
-                return SkillTypeDto.Passive;
-            }
-            if (skillType == SkillType.Ultimate)
-            {
-                return SkillTypeDto.Ultimate;
-            }
-            else
-            {
-                return SkillTypeDto.Unknown;
+                case SkillType.Unknown:
+                    return SkillTypeDto.Unknown;
+                case SkillType.Basic:
+                    return SkillTypeDto.Basic;
+                case SkillType.Passive:
+                    return SkillTypeDto.Passive;
+                case SkillType.Ultimate:
+                    return SkillTypeDto.Ultimate;
+                default:
+                    return SkillTypeDto.Unknown;
             }
 
         }
         public static SkillType ToModel(this SkillTypeDto skillTypeDto)
         {
-            if (skillTypeDto == SkillTypeDto.Unknown)
+            switch (skillTypeDto)
             {
-                return SkillType.Unknown;
-            }
-            if (skillTypeDto == SkillTypeDto.Basic)
-            {
-                return SkillType.Basic;
-            }
-            if (skillTypeDto == SkillTypeDto.Passive)
-            {
-                return SkillType.Passive;
-            }
-            if (skillTypeDto == SkillTypeDto.Ultimate)
-            {
-                return SkillType.Ultimate;
-            }
-            else
-            {
-                return SkillType.Unknown;
+                case SkillTypeDto.Unknown:
+                    return SkillType.Unknown;
+                case SkillTypeDto.Basic:
+                    return SkillType.Basic;
+                case SkillTypeDto.Passive:
+                    return SkillType.Passive;
+                case SkillTypeDto.Ultimate:
+                    return SkillType.Ultimate;
+                default:
+                    return SkillType.Unknown;
             }
 
         }

@@ -3,7 +3,6 @@ using Client;
 using DTO;
 
 Console.WriteLine("Hello, World!");
-
 var championClient = new ChampionHttpClient(new HttpClient());
 
 // Get all champions

@@ -35,5 +35,10 @@ namespace ApiLol.Mapper
             return new Skin(skinDto.Name, champ, skinDto.Price, skinDto.Icon, skinDto.Image.Base64, skinDto.Description);
         }
 
+        public static Skin ToModelC(this SkinDtoC skinDto, Champion champ)
+        {
+            return new Skin(skinDto.Name, champ, skinDto.Price, skinDto.Icon, skinDto.Image.Base64, skinDto.Description);
+        }
+
     }
 }

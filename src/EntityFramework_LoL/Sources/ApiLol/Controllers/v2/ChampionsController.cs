@@ -33,7 +33,7 @@ namespace ApiLol.Controllers.v2
                 int nbTotal = await _manager.ChampionsMgr.GetNbItems();
                 if (pageRequest.count == 0)
                 {
-                    pageRequest = new PageRequest() { index = 0, count = nbTotal };
+                    pageRequest = new PageRequest() { index = 0, count = nbTotal, orderingPropertyName = pageRequest.orderingPropertyName, descending = pageRequest.descending, name = pageRequest.name };
                 }
                 else if (pageRequest.count * pageRequest.index >= nbTotal)
                 {
@@ -61,7 +61,7 @@ namespace ApiLol.Controllers.v2
                 int nbTotal = await _manager.ChampionsMgr.GetNbItems();
                 if (pageRequest.count == 0)
                 {
-                    pageRequest = new PageRequest() { index = 0, count = nbTotal };
+                    pageRequest = new PageRequest() { index = 0, count = nbTotal, orderingPropertyName = pageRequest.orderingPropertyName, descending = pageRequest.descending, name = pageRequest.name };
                 }
                 else if (pageRequest.count * pageRequest.index >= nbTotal || pageRequest.count > nbTotal)
                 {
@@ -69,9 +69,18 @@ namespace ApiLol.Controllers.v2
                     return BadRequest($"Champion limit exceed, max {nbTotal}");
                 }
 
-                IEnumerable<ChampionDto> dtos = (await _manager.ChampionsMgr.GetItems(pageRequest.index, pageRequest.count, pageRequest.orderingPropertyName, pageRequest.descending))
+                IEnumerable<ChampionDto> dtos;
+                if (pageRequest.name == null)
+                {
+                    dtos = (await _manager.ChampionsMgr.GetItems(pageRequest.index, pageRequest.count, pageRequest.orderingPropertyName, pageRequest.descending))
                         .Select(x => x.ToDto());
-                return Ok(new { Data = dtos, index = pageRequest.index, count = pageRequest.count, total = nbTotal});
+                }
+                else
+                {
+                    dtos = (await _manager.ChampionsMgr.GetItemsByName(pageRequest.name, pageRequest.index, pageRequest.count, pageRequest.orderingPropertyName, pageRequest.descending))
+                        .Select(x => x.ToDto());
+                }
+                return Ok(new { Data = dtos, index = pageRequest.index, count = pageRequest.count, total = nbTotal });
             }
             catch (Exception error)
             {
@@ -140,7 +149,7 @@ namespace ApiLol.Controllers.v2
                     var dtos2 = (await _manager.ChampionsMgr.GetItemByName(champion.Name, 0, await _manager.ChampionsMgr.GetNbItems()));
                     if (dtos2.IsNullOrEmpty() || dtos2.Count() > 0)
                     {
-                        return BadRequest("Name is already exist");
+                        return BadRequest($"New Name {champion.Name} is already exist");
                     }
                 }
                 return Ok((await _manager.ChampionsMgr.UpdateItem(dtos.First(), champion.ToModel())).ToDto());
