@@ -71,6 +71,8 @@ Normalement, tout est bon et vous serez redirigé vers Swagger, qui est l'interf
 
 </div>
 
+Vous pouvez aussi utiliser l'API via cette url: https://codefirst.iut.uca.fr/containers/emrekartal-lolApi/v3/champions
+
 - ### Comment lancer Le projet Entity Framework ? 
 
 Afin de générer les migrations et les tables, vous devez avoir installé correctement EntityFrameworkCore. Pour cela il existe la commande : **dotnet tool install --global dotnet-ef**, qui peut être lancé à partir d'un terminal. Si elle est déjà installée mais n'a pas la bonne version : **dotnet tool update --global dotnet-ef** (oui, il n'y a que l'*install* qui change. Vous êtes perspicace !).
