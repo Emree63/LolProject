@@ -26,7 +26,7 @@ La racine de mon GitLab contient deux dossiers essentiels pour le projet :
 
 [**src**](src) : **Toute la partie codage de l'application**
 
-[**doc**](doc) : **Documentation de l'application**
+[**doc**](doc) : **Documentation de l'application** (Images + Schéma et description de l'architecture globale de l'application)
 
 👉 [**Solution de l'application**](src/EntityFramework_LoL/Sources/LeagueOfLegends.sln)
 
