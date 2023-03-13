@@ -71,7 +71,7 @@ Normalement, tout est bon et vous serez redirigé vers Swagger, qui est l'interf
 
 </div>
 
-Vous pouvez aussi utiliser l'API via cette url: https://codefirst.iut.uca.fr/containers/emrekartal-lolApi/v3/champions
+Vous pouvez aussi utiliser l'API via cette url: https://codefirst.iut.uca.fr/containers/emrekartal-lolApi/Api/v3/champions
 
 - ### Comment lancer Le projet Entity Framework ? 
 
