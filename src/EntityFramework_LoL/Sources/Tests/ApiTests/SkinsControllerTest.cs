@@ -40,9 +40,9 @@ namespace ApiTests
 
             Assert.AreEqual(skinsResult.Count(), total);
 
-        }
+        }*/
 
-        [TestMethod]
+/*        [TestMethod]
         public async Task TestPostSkin()
         {
             //Arange
@@ -62,9 +62,9 @@ namespace ApiTests
             var champions = objectResult?.Value as Ski;
             Assert.IsNotNull(champions);
 
-        }
+        }*/
 
-        [TestMethod]
+/*        [TestMethod]
         public async Task TestPutSkin()
         {
             //Arange

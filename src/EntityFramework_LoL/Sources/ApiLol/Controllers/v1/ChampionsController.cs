@@ -67,6 +67,20 @@ namespace ApiLol.Controllers.v1
 
         }
 
+        [HttpGet("/countChampions")]
+        public async Task<ActionResult<int>> GetCountChampions()
+        {
+            try
+            {
+                return Ok(await _manager.ChampionsMgr.GetNbItems());
+            }
+            catch (Exception error)
+            {
+                _logger.LogError(error.Message);
+                return BadRequest(error.Message);
+            }
+        }
+
         // DELETE api/<ValuesController>/5
         [HttpDelete("{name}")]
         public async Task<IActionResult> Delete(string name)

@@ -27,7 +27,7 @@ namespace ApiLol.Controllers.v2
         [HttpGet]
         public async Task<IActionResult> Get([FromQuery] PageRequest pageRequest)
         {
-            _logger.LogInformation("Executing {Action} - CHAMPION - V2.0 with parameters: {Parameters}", nameof(Get), pageRequest.count);
+            _logger.LogInformation("Executing {Action} - CHAMPION - V2.0 with parameters: {Parameters}", nameof(Get), pageRequest);
             try
             {
                 int nbTotal = await _manager.ChampionsMgr.GetNbItems();
@@ -47,6 +47,7 @@ namespace ApiLol.Controllers.v2
             }
             catch (Exception error)
             {
+                _logger.LogError(error.Message);
                 return BadRequest(error.Message);
             }
         }
@@ -84,6 +85,7 @@ namespace ApiLol.Controllers.v2
             }
             catch (Exception error)
             {
+                _logger.LogError(error.Message);
                 return BadRequest(error.Message);
             }
         }
@@ -106,6 +108,7 @@ namespace ApiLol.Controllers.v2
             }
             catch (Exception error)
             {
+                _logger.LogError(error.Message);
                 return BadRequest(error.Message);
             }
         }
@@ -127,6 +130,7 @@ namespace ApiLol.Controllers.v2
             }
             catch (Exception error)
             {
+                _logger.LogError(error.Message);
                 return BadRequest(error.Message);
             }
         }
@@ -156,6 +160,7 @@ namespace ApiLol.Controllers.v2
             }
             catch (Exception error)
             {
+                _logger.LogError(error.Message);
                 return BadRequest(error.Message);
             }
         }
@@ -174,6 +179,7 @@ namespace ApiLol.Controllers.v2
             }
             catch (Exception error)
             {
+                _logger.LogError(error.Message);
                 return BadRequest(error.Message);
             }
         }
@@ -192,6 +198,21 @@ namespace ApiLol.Controllers.v2
             }
             catch (Exception error)
             {
+                _logger.LogError(error.Message);
+                return BadRequest(error.Message);
+            }
+        }
+
+        [HttpGet("/countChampions")]
+        public async Task<ActionResult<int>> GetCountChampions()
+        {
+            try
+            {
+                return Ok(await _manager.ChampionsMgr.GetNbItems());
+            }
+            catch (Exception error)
+            {
+                _logger.LogError(error.Message);
                 return BadRequest(error.Message);
             }
         }
@@ -213,6 +234,7 @@ namespace ApiLol.Controllers.v2
             }
             catch (Exception error)
             {
+                _logger.LogError(error.Message);
                 return BadRequest(error.Message);
             }
         }

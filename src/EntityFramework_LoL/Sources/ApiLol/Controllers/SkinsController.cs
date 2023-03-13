@@ -25,7 +25,7 @@ namespace ApiLol.Controllers
         [HttpGet]
         public async Task<IActionResult> Get([FromQuery] PageRequest pageRequest)
         {
-            _logger.LogInformation("Executing {Action} - SKIN with parameters: {Parameters}", nameof(Get), pageRequest.count);
+            _logger.LogInformation("Executing {Action} - SKIN with parameters: {Parameters}", nameof(Get), pageRequest);
             try
             {
                 int nbTotal = await _manager.SkinsMgr.GetNbItems();
@@ -36,7 +36,7 @@ namespace ApiLol.Controllers
                 else if (pageRequest.count * pageRequest.index >= nbTotal || pageRequest.count > nbTotal)
                 {
                     _logger.LogWarning("too many, maximum {number}", nbTotal);
-                    return BadRequest($"Champion limit exceed, max {nbTotal}");
+                    return BadRequest($"Skin limit exceed, max {nbTotal}");
                 }
 
                 IEnumerable<SkinDtoC> dtos;
@@ -136,7 +136,7 @@ namespace ApiLol.Controllers
                 // Checks if the new name exists
                 if (name != skin.Name)
                 {
-                    var dtos2 = (await _manager.SkinsMgr.GetItemByName(skin.Name, 0, await _manager.ChampionsMgr.GetNbItems()));
+                    var dtos2 = (await _manager.SkinsMgr.GetItemByName(skin.Name, 0, await _manager.SkinsMgr.GetNbItems()));
                     if (dtos2.IsNullOrEmpty() || dtos2.Count() > 0)
                     {
                         return BadRequest($"New Name {skin.Name} is already exist");
@@ -158,11 +158,49 @@ namespace ApiLol.Controllers
             }
         }
 
+        [HttpGet("/{name}/champion")]
+        public async Task<ActionResult<ChampionDto>> GetChampionBySkinName(string name)
+        {
+            _logger.LogInformation("method {Action} - Skin call with {name}", nameof(GetChampionBySkinName), name);
+            try
+            {
+                var dtos = (await _manager.SkinsMgr.GetItemByName(name, 0, await _manager.ChampionsMgr.GetNbItems()))
+                    .Select(x => x.ToDtoC());
+                if (dtos.IsNullOrEmpty())
+                {
+                    _logger.LogWarning($"{name} was not found");
+                    return NotFound($"{name} was not found");
+                }
+                var champion = (await _manager.ChampionsMgr.GetItemByName(dtos.First().ChampionName, 0, 1));
+                return Ok(champion.First().ToDto());
+            }
+            catch (Exception error)
+            {
+                _logger.LogError(error.Message);
+                return BadRequest(error.Message);
+            }
+        }
+
+
+        [HttpGet("/countSkins")]
+        public async Task<ActionResult<int>> GetCountSkins()
+        {
+            try
+            {
+                return Ok(await _manager.SkinsMgr.GetNbItems());
+            }
+            catch (Exception error)
+            {
+                _logger.LogError(error.Message);
+                return BadRequest(error.Message);
+            }
+        }
+
         // DELETE api/<SkinsController>/5
         [HttpDelete("{name}")]
         public async Task<IActionResult> Delete(string name)
         {
-            _logger.LogInformation("method {Action} - Skin call with {name}", nameof(Delete), name);
+            _logger.LogInformation("method {Action} - SKIN call with {name}", nameof(Delete), name);
             try
             {
                 var dtos = (await _manager.SkinsMgr.GetItemByName(name, 0, await _manager.SkinsMgr.GetNbItems()));
