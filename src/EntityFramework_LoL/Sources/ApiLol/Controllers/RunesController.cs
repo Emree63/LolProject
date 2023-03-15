@@ -51,7 +51,7 @@ namespace ApiLol.Controllers
                     dtos = (await _manager.RunesMgr.GetItemsByName(pageRequest.name, pageRequest.index, pageRequest.count, pageRequest.orderingPropertyName, pageRequest.descending))
                         .Select(x => x.ToDto());
                 }
-                return Ok(new PageResponse<RuneDto>{ Data = dtos, index = pageRequest.index, count = pageRequest.count, total = nbTotal });
+                return Ok(new PageResponse<RuneDto> { Data = dtos, index = pageRequest.index, count = pageRequest.count, total = nbTotal });
 
             }
             catch (Exception error)
@@ -94,7 +94,7 @@ namespace ApiLol.Controllers
                 if (await _manager.RunesMgr.GetNbItemsByName(rune.Name) == 0)
                 {
                     return CreatedAtAction(nameof(Get),
-                        (await _manager.RunesMgr.AddItem(rune.ToModel())));
+                        (await _manager.RunesMgr.AddItem(rune.ToModel())).ToDto());
                 }
                 _logger.LogWarning($"Name : {rune.Name} is already exist");
                 return BadRequest($"Name : {rune.Name} is already exist");
@@ -122,12 +122,12 @@ namespace ApiLol.Controllers
                 if (name != rune.Name)
                 {
                     var dtos2 = (await _manager.RunesMgr.GetItemByName(rune.Name, 0, await _manager.RunesMgr.GetNbItems()));
-                    if (dtos2.IsNullOrEmpty() || dtos2.Count() > 0)
+                    if (!dtos2.IsNullOrEmpty() || dtos2.Count() > 0)
                     {
                         return BadRequest($"New Name {rune.Name} is already exist");
                     }
                 }
-                return Ok(await _manager.RunesMgr.UpdateItem(dtos.First(),rune.ToModel()));
+                return Ok((await _manager.RunesMgr.UpdateItem(dtos.First(), rune.ToModel())).ToDto());
 
             }
             catch (Exception error)
@@ -160,7 +160,7 @@ namespace ApiLol.Controllers
         }
 
         [HttpGet("/countRunes")]
-        public async Task<ActionResult<int>> GetCountSkins()
+        public async Task<ActionResult> GetCountSkins()
         {
             try
             {

@@ -26,6 +26,11 @@ namespace ApiLol.Mapper
             {
                 champ.AddSkin(skin.ToModel(champ));
             }
+
+            foreach (var skill in championDto.Skills)
+            {
+                champ.AddSkill(skill.ToModel());
+            }
             return champ;
         }
 

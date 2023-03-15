@@ -71,7 +71,48 @@ namespace ApiTests
             var isSkinDto = objectResult?.Value as SkinDtoC;
             Assert.IsNotNull(isSkinDto);
 
-            Assert.AreEqual(total+1, await stub.SkinsMgr.GetNbItems());
+            Assert.AreEqual(total + 1, await stub.SkinsMgr.GetNbItems());
+
+        }
+
+        [TestMethod]
+        public async Task TestCountChampion()
+        {
+            //Arange
+            var SkinDto = new SkinDtoC
+            {
+                Name = "Project",
+                Description = "Test",
+                Icon = "",
+                Image = new LargeImageDto(),
+                Price = 900,
+                ChampionName = "aatrox"
+            };
+
+            //Act
+            var oldTotal = await stub.SkinsMgr.GetNbItems();
+            var oldResult = await skins.GetCountSkins();
+            await skins.Post(SkinDto);
+
+            var objectResult = oldResult as OkObjectResult;
+            Assert.IsNotNull(objectResult);
+
+            var newTotal = await stub.SkinsMgr.GetNbItems();
+            var newResult = await skins.GetCountSkins();
+
+            //Assert
+            var objectResultOld = oldResult as OkObjectResult;
+            Assert.IsNotNull(objectResultOld);
+
+            var objectResultNew = newResult as OkObjectResult;
+            Assert.IsNotNull(objectResultNew);
+
+            Assert.AreEqual(objectResultOld.Value, oldTotal);
+            Assert.AreNotEqual(objectResultOld.Value, newTotal);
+
+            Assert.AreEqual(objectResultNew.Value, newTotal);
+            Assert.AreNotEqual(objectResultNew.Value, oldTotal);
+
 
         }
 
@@ -90,7 +131,7 @@ namespace ApiTests
             };
             var SkinDtoPut = new SkinDtoC
             {
-                Name = "Project",
+                Name = "new Project",
                 Description = "ForTestTest",
                 Icon = "",
                 Image = new LargeImageDto(),
@@ -109,9 +150,11 @@ namespace ApiTests
             var skin = objectResult?.Value as SkinDtoC;
             Assert.IsNotNull(skin);
 
+            Assert.AreNotEqual(SkinDto.Name, skin.Name);
             Assert.AreNotEqual(SkinDto.Description, skin.Description);
             Assert.AreNotEqual(SkinDto.Price, skin.Price);
 
+            Assert.AreEqual(SkinDtoPut.Name, skin.Name);
             Assert.AreEqual(SkinDtoPut.Description, skin.Description);
             Assert.AreEqual(SkinDtoPut.Price, skin.Price);
 

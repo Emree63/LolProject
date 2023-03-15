@@ -29,7 +29,7 @@ namespace ApiTests
 
             //Act
             var total = await stub.ChampionsMgr.GetNbItems();
-            var champion = await champs.Get(new PageRequest(){ index = 0, count = total });
+            var champion = await champs.Get(new PageRequest() { index = 0, count = total });
 
             //Assert
             var objectResult = champion as OkObjectResult;
@@ -54,6 +54,13 @@ namespace ApiTests
                 Icon = "",
                 Image = new LargeImageDto() { Base64 = "" },
                 Skins = new List<SkinDto>()
+                {
+                    new SkinDto()  {Name = "Project", Description = "Test", Icon = "",Image = new LargeImageDto(),Price = 900 }
+                },
+                Skills = new List<SkillDto>()
+                {
+                    new SkillDto() {Name = "Test skill", Description="Empty", Type = SkillTypeDto.Unknown}
+                }
             };
 
             //Act
@@ -65,6 +72,14 @@ namespace ApiTests
 
             var champions = objectResult?.Value as ChampionDto;
             Assert.IsNotNull(champions);
+
+            Assert.AreEqual("Sylas", champions.Name);
+
+            Assert.AreEqual("Project", champions.Skins.First().Name);
+            Assert.AreEqual("Test", champions.Skins.First().Description);
+
+            Assert.AreEqual("Test skill", champions.Skills.First().Name);
+            Assert.AreEqual("Empty", champions.Skills.First().Description);
 
         }
 
@@ -80,6 +95,13 @@ namespace ApiTests
                 Icon = "",
                 Image = new LargeImageDto() { Base64 = "" },
                 Skins = new List<SkinDto>()
+                {
+                    new SkinDto()  {Name = "Project", Description = "Test", Icon = "",Image = new LargeImageDto(),Price = 900 }
+                },
+                Skills = new List<SkillDto>()
+                {
+                    new SkillDto() {Name = "Test skill", Description="Empty", Type = SkillTypeDto.Unknown}
+                }
             };
 
             //Act
@@ -121,6 +143,13 @@ namespace ApiTests
                 Icon = "",
                 Image = new LargeImageDto() { Base64 = "" },
                 Skins = new List<SkinDto>()
+                {
+                    new SkinDto()  {Name = "Project", Description = "Test", Icon = "",Image = new LargeImageDto(),Price = 900 }
+                },
+                Skills = new List<SkillDto>()
+                {
+                    new SkillDto() {Name = "Test skill", Description="Empty", Type = SkillTypeDto.Unknown}
+                }
             };
             var ChampionDtoPut = new ChampionDto
             {
@@ -129,7 +158,8 @@ namespace ApiTests
                 Class = ChampionClassDto.Tank,
                 Icon = "",
                 Image = new LargeImageDto() { Base64 = "" },
-                Skins = new List<SkinDto>()
+                Skins = new List<SkinDto>(),
+                Skills = new List<SkillDto>()
             };
 
             //Act

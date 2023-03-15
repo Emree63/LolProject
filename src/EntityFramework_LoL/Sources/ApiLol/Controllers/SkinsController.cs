@@ -137,7 +137,7 @@ namespace ApiLol.Controllers
                 if (name != skin.Name)
                 {
                     var dtos2 = (await _manager.SkinsMgr.GetItemByName(skin.Name, 0, await _manager.SkinsMgr.GetNbItems()));
-                    if (dtos2.IsNullOrEmpty() || dtos2.Count() > 0)
+                    if (!dtos2.IsNullOrEmpty() || dtos2.Count() > 0)
                     {
                         return BadRequest($"New Name {skin.Name} is already exist");
                     }
@@ -183,7 +183,7 @@ namespace ApiLol.Controllers
 
 
         [HttpGet("/countSkins")]
-        public async Task<ActionResult<int>> GetCountSkins()
+        public async Task<ActionResult> GetCountSkins()
         {
             try
             {

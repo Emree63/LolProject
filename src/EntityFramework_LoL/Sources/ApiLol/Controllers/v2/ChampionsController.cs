@@ -151,7 +151,7 @@ namespace ApiLol.Controllers.v2
                 if (name != champion.Name)
                 {
                     var dtos2 = (await _manager.ChampionsMgr.GetItemByName(champion.Name, 0, await _manager.ChampionsMgr.GetNbItems()));
-                    if (dtos2.IsNullOrEmpty() || dtos2.Count() > 0)
+                    if (!dtos2.IsNullOrEmpty() || dtos2.Count() > 0)
                     {
                         return BadRequest($"New Name {champion.Name} is already exist");
                     }
@@ -204,7 +204,7 @@ namespace ApiLol.Controllers.v2
         }
 
         [HttpGet("/countChampions")]
-        public async Task<ActionResult<int>> GetCountChampions()
+        public async Task<ActionResult> GetCountChampions()
         {
             try
             {
