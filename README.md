@@ -4,6 +4,18 @@
 
 </div>
 
+<div align = center>
+
+---
+
+[![Duplicated Lines (%)](https://codefirst.iut.uca.fr/sonar/api/project_badges/measure?project=LolProjectIUT&metric=duplicated_lines_density&token=b65c8ed30f0fbe374e41e98340dc910942b77bba)](https://codefirst.iut.uca.fr/sonar/dashboard?id=LolProjectIUT)
+[![Security Rating](https://codefirst.iut.uca.fr/sonar/api/project_badges/measure?project=LolProjectIUT&metric=security_rating&token=b65c8ed30f0fbe374e41e98340dc910942b77bba)](https://codefirst.iut.uca.fr/sonar/dashboard?id=LolProjectIUT)
+[![Vulnerabilities](https://codefirst.iut.uca.fr/sonar/api/project_badges/measure?project=LolProjectIUT&metric=vulnerabilities&token=b65c8ed30f0fbe374e41e98340dc910942b77bba)](https://codefirst.iut.uca.fr/sonar/dashboard?id=LolProjectIUT)
+
+---
+
+</div>
+
 
 **Thème du projet** : Réalisation d'une API et d'un ORM (Entity Framework) qui seront reliés à une base de données dans le thème de League of Legends <img src="https://logo-marque.com/wp-content/uploads/2020/11/League-of-Legends-Embleme.png" width="40" >
 </br>
@@ -14,7 +26,7 @@ La racine de mon GitLab contient deux dossiers essentiels pour le projet :
 
 [**src**](src) : **Toute la partie codage de l'application**
 
-[**doc**](doc) : **Documentation de l'application**
+[**doc**](doc) : **Documentation de l'application** (Images + Schéma et description de l'architecture globale de l'application)
 
 👉 [**Solution de l'application**](src/EntityFramework_LoL/Sources/LeagueOfLegends.sln)
 
@@ -58,6 +70,8 @@ Normalement, tout est bon et vous serez redirigé vers Swagger, qui est l'interf
 ![Version API](doc/Images/Swagger_Version.png)
 
 </div>
+
+Vous pouvez aussi utiliser l'API via cette url: https://codefirst.iut.uca.fr/containers/emrekartal-lolApi/Api/v3/champions
 
 - ### Comment lancer Le projet Entity Framework ? 
 
@@ -108,8 +122,10 @@ Mon environnement de travail est basé sur un outil et un langage en particulier
 
 ---
 
+&nbsp; ![Docker](https://img.shields.io/badge/Docker-2496ED.svg?style=for-the-badge&logo=Docker&logoColor=white)
 &nbsp; ![Dotnet](https://img.shields.io/badge/Core-000?style=for-the-badge&logo=Dotnet&logoColor=white&color=purple)
-&nbsp; ![C#](https://img.shields.io/badge/Csharp-000?style=for-the-badge&logo=csharp&logoColor=white&color=blue)
+&nbsp; ![C#](https://img.shields.io/badge/C%20Sharp-239120.svg?style=for-the-badge&logo=C-Sharp&logoColor=white)
+&nbsp; ![SQLite](https://img.shields.io/badge/SQLite-003B57.svg?style=for-the-badge&logo=SQLite&logoColor=white)
 
 ---
 

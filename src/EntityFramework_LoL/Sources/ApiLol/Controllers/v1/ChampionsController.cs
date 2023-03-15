@@ -25,7 +25,7 @@ namespace ApiLol.Controllers.v1
         [HttpGet]
         public async Task<IActionResult> Get([FromQuery] PageRequest pageRequest)
         {
-            _logger.LogInformation("Executing {Action} with parameters: {Parameters}", nameof(Get), pageRequest);
+            _logger.LogInformation("Executing {Action} - CHAMPION - V1.0 with parameters: {Parameters}", nameof(Get), pageRequest);
             IEnumerable<ChampionDto> dtos = (await _manager.ChampionsMgr.GetItems(pageRequest.index, pageRequest.count, pageRequest.orderingPropertyName, pageRequest.descending))
                 .Select(x => x.ToDto());
             return Ok(dtos);
@@ -36,7 +36,7 @@ namespace ApiLol.Controllers.v1
         [HttpGet("{name}")]
         public async Task<IActionResult> Get(string name)
         {
-            _logger.LogInformation("method {Action} call with {name}", nameof(Get), name);
+            _logger.LogInformation("method {Action} - CHAMPION - V1.0 call with {name}", nameof(Get), name);
             var dtos = (await _manager.ChampionsMgr.GetItemByName(name, 0, await _manager.ChampionsMgr.GetNbItems()))
                 .Select(x => x.ToDto());
 
@@ -49,7 +49,7 @@ namespace ApiLol.Controllers.v1
         public async Task<IActionResult> Post([FromBody] ChampionDto champion)
         {
 
-            _logger.LogInformation("method {Action} call with {item}", nameof(Post), champion);
+            _logger.LogInformation("method {Action} - CHAMPION - V1.0 call with {item}", nameof(Post), champion);
             return CreatedAtAction(nameof(Get),
                     (await _manager.ChampionsMgr.AddItem(champion.ToModel())).ToDto());
 
@@ -60,11 +60,25 @@ namespace ApiLol.Controllers.v1
         public async Task<IActionResult> Put(string name, [FromBody] ChampionDto champion)
         {
 
-            _logger.LogInformation("method {Action} call with {name} and {item}", nameof(Put), name, champion);
+            _logger.LogInformation("method {Action} - CHAMPION - V1.0 call with {name} and {item}", nameof(Put), name, champion);
             var dtos = (await _manager.ChampionsMgr.GetItemByName(name, 0, await _manager.ChampionsMgr.GetNbItems()));
 
             return Ok((await _manager.ChampionsMgr.UpdateItem(dtos.First(), champion.ToModel())).ToDto());
 
+        }
+
+        [HttpGet("/countChampions")]
+        public async Task<ActionResult<int>> GetCountChampions()
+        {
+            try
+            {
+                return Ok(await _manager.ChampionsMgr.GetNbItems());
+            }
+            catch (Exception error)
+            {
+                _logger.LogError(error.Message);
+                return BadRequest(error.Message);
+            }
         }
 
         // DELETE api/<ValuesController>/5
@@ -72,7 +86,7 @@ namespace ApiLol.Controllers.v1
         public async Task<IActionResult> Delete(string name)
         {
 
-            _logger.LogInformation("method {Action} call with {name}", nameof(Delete), name);
+            _logger.LogInformation("method {Action} - CHAMPION - V1.0 call with {name}", nameof(Delete), name);
             var dtos = (await _manager.ChampionsMgr.GetItemByName(name, 0, await _manager.ChampionsMgr.GetNbItems()));
 
             return Ok(await _manager.ChampionsMgr.DeleteItem(dtos.First()));
