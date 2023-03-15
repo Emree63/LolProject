@@ -50,7 +50,7 @@ namespace ApiLol.Controllers
                     dtos = (await _manager.SkinsMgr.GetItemsByName(pageRequest.name, pageRequest.index, pageRequest.count, pageRequest.orderingPropertyName, pageRequest.descending))
                         .Select(x => x.ToDtoC());
                 }
-                return Ok(new { Data = dtos, index = pageRequest.index, count = pageRequest.count, total = nbTotal });
+                return Ok(new PageResponse<SkinDtoC> { Data = dtos, index = pageRequest.index, count = pageRequest.count, total = nbTotal });
 
             }
             catch (Exception error)

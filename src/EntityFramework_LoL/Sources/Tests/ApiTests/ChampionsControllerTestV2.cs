@@ -9,11 +9,11 @@ using StubLib;
 namespace ApiTests
 {
     [TestClass]
-    public class ChampionsControllerTest
+    public class ChampionsControllerTestV2
     {
         private readonly StubData stub;
         private readonly ChampionsController champs;
-        public ChampionsControllerTest()
+        public ChampionsControllerTestV2()
         {
             stub = new StubData();
             champs = new ChampionsController(stub, new NullLogger<ChampionsController>());
@@ -36,6 +36,29 @@ namespace ApiTests
             Assert.IsNotNull(champions);
 
             Assert.AreEqual(champions.Count(), total);
+
+        }
+
+        [TestMethod]
+        public async Task TestGetV3Champions()
+        {
+            //Arrange
+
+            //Act
+            var total = await stub.ChampionsMgr.GetNbItems();
+            var champion = await champs.GetV3(new PageRequest());
+
+            //Assert
+            var objectResult = champion as OkObjectResult;
+            Assert.IsNotNull(objectResult);
+
+            var skinsResult = objectResult?.Value as PageResponse<ChampionDto>;
+            Assert.IsNotNull(skinsResult);
+
+            var result = skinsResult?.Data as IEnumerable<ChampionDto>;
+            Assert.IsNotNull(result);
+
+            Assert.AreEqual(result.Count(), total);
 
         }
 

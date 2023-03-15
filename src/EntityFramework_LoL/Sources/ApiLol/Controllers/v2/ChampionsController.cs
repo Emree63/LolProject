@@ -81,7 +81,7 @@ namespace ApiLol.Controllers.v2
                     dtos = (await _manager.ChampionsMgr.GetItemsByName(pageRequest.name, pageRequest.index, pageRequest.count, pageRequest.orderingPropertyName, pageRequest.descending))
                         .Select(x => x.ToDto());
                 }
-                return Ok(new { Data = dtos, index = pageRequest.index, count = pageRequest.count, total = nbTotal });
+                return Ok(new PageResponse<ChampionDto>{ Data = dtos, index = pageRequest.index, count = pageRequest.count, total = nbTotal });
             }
             catch (Exception error)
             {

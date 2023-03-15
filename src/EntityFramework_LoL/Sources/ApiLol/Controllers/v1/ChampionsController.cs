@@ -68,7 +68,7 @@ namespace ApiLol.Controllers.v1
         }
 
         [HttpGet("/countChampions")]
-        public async Task<ActionResult<int>> GetCountChampions()
+        public async Task<ActionResult> GetCountChampions()
         {
             try
             {
