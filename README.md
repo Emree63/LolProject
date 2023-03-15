@@ -33,9 +33,9 @@ La racine de mon GitLab contient deux dossiers :open_file_folder: essentiels pou
 
 <img src="doc/Images/Title-Fonctionnement.png" width="460" >
 
-- ### :building_construction: Comment est structurer l'architecture globale de l'application ?
+- ### :building_construction: Comment est structurée l'architecture globale de l'application ?
 
-Voici, un **schéma** pour mieux caricaturer mon architecture :
+Voici un **schéma** pour mieux représenter mon architecture :
 
 
 <img src="doc/Schémas/Architecture_Global.png" width="1000" >
