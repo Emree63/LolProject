@@ -22,16 +22,36 @@
 
 <img src="doc/Images/Title-Répartition.png" width="400">
 
-La racine de mon GitLab contient deux dossiers essentiels pour le projet :
+La racine de mon GitLab contient deux dossiers :open_file_folder: essentiels pour le projet :
 
 [**src**](src) : **Toute la partie codage de l'application**
 
-[**doc**](doc) : **Documentation de l'application** (Images + Schéma et description de l'architecture globale de l'application)
+[**doc**](doc) : **Documentation de l'application** (Images + Schéma de l'architecture globale de l'application)
 
 👉 [**Solution de l'application**](src/EntityFramework_LoL/Sources/LeagueOfLegends.sln)
 
 
 <img src="doc/Images/Title-Fonctionnement.png" width="460" >
+
+- ### :building_construction: Comment est structurer l'architecture globale de l'application ?
+
+Voici, un **schéma** pour mieux caricaturer mon architecture :
+
+
+<img src="doc/Schémas/Architecture_Global.png" width="1000" >
+
+</br>
+</br>
+
+:information_source: Tout d'abord, il y a la partie client, qui correspond à tous les appareils :computer: qui vont effectuer des requêtes à mon API et recevoir, sous format *.json*:envelope: (JavaScript Object Notation), des informations sur des champions, des skins, etc.
+
+
+La web API est chargée de transformer les classes métiers du modèle en DTO (Data Transfer Object), afin de filtrer et renvoyer seulement les données essentielles aux utilisateurs. Pour obtenir les données qu'elle va transmettre, elle utilise d'abord l'IDataManager du modèle, qui est hérité par le stub (:pushpin:un regroupement de fausses données qui permet de s'assurer que tout fonctionne et d'éviter de bloquer le développement), puis le DbManager, qui contactera la base de données et assurera la persistance des données.
+
+Grâce à l'injection de dépendances dans le projet, la Web API n'a pas besoin d'être modifiée lorsqu'on veut passer du StubLib au DbManager (si vous ne savez pas ce que c'est, je vous invite à voir cette vidéo qui explique très clairement l'[Injection de dépendances](https://www.youtube.com/watch?v=OeWgBNR1BLU&t=10s&ab_channel=BaptisteMobileDev)).
+
+La partie **bases de données** est gérée par le DbManager, qui utilise l'ORM Entity Framework (plus précisément le DbContext) pour récupérer les données dans la base de données. De plus, grâce à une factory :factory: (oui, comme celle de la web API), elle transforme les données en tables (appelées "Entities") en classes du modèle.
+
 
 - ### Comment récupérer le projet ? 
 
@@ -53,7 +73,7 @@ Vous pouvez le cloner via un terminal dans le répertoire de votre choix en util
 
 :information_source: *Si vous ne disposez pas de Visual Studio, allez sur le site [Microsoft Visual Studio](https://visualstudio.microsoft.com/fr/downloads/) pour pouvoir le télécharger !!!*
 
-- ### Comment lancer l'API dotnet ? 
+- ### Comment lancer l'API dotnet :question:
 
 Pour pouvoir utiliser toutes les requêtes de l'API, il est nécessaire de récupérer le projet si cela n'a pas été fait, puis de le lancer à partir de Visual Studio. Vous pouvez directement cliquer sur la solution du projet. Ensuite, dans les projets de démarrage, choisissez "Api-Lol" :
 
@@ -71,7 +91,7 @@ Normalement, tout est bon et vous serez redirigé vers Swagger, qui est l'interf
 
 </div>
 
-Vous pouvez aussi utiliser l'API via cette url: https://codefirst.iut.uca.fr/containers/emrekartal-lolApi/Api/v3/champions
+:paperclip: Vous pouvez aussi utiliser l'API via cette url: https://codefirst.iut.uca.fr/containers/emrekartal-lolApi/Api/v3/champions
 
 - ### Comment lancer Le projet Entity Framework ? 
 
@@ -114,6 +134,12 @@ réalisez à nouveau la migration (ou mettez à jour celle actuelle), puis suppr
 
 :information_source: *Notez qu'il est également possible, grâce à SQLLite, d'ajouter, modifier ou supprimer des données dans les tables.*
 
+- ### Avancement du projet :construction_worker:
+
+Où en suis-je:grey_question::grey_exclamation: (:white_check_mark: réalisé, :warning: presque abouti, :x: non commencé )
+
+<br>
+
 <img src="doc/Images/Title-Environnement.png" width="400" >
 
 Mon environnement de travail est basé sur un outil et un langage en particulier : 👇
@@ -133,9 +159,14 @@ Mon environnement de travail est basé sur un outil et un langage en particulier
 
 <img src="doc/Images/Title-Technicien.png" width="400" >
 
-⚙️ Emre KARTAL
+:mortar_board: Emre KARTAL
 <br>
 
+
 <div align = center>
+<a href = "https://codefirst.iut.uca.fr/git/emre.kartal">
+<img src="https://codefirst.iut.uca.fr/git/avatars/402cf312e853192f42c0135a888725c2?size=870" width="50" >
+</br>
+</a>
 © PM2
 </div>
