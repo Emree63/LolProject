@@ -138,6 +138,49 @@ réalisez à nouveau la migration (ou mettez à jour celle actuelle), puis suppr
 
 Où en suis-je:grey_question::grey_exclamation: (:white_check_mark: réalisé, :warning: presque abouti, :x: non commencé )
 
+
+ Côté API :
+
+- :warning: [**Partie 1**](src/EntityFramework_Lol/Sources/ApiLol/Controllers) : **Mise en place de toutes les opérations CRUD**
+
+- :white_check_mark: [**Partie 2**](src/EntityFramework_Lol/Sources/ApiLol/Controllers) : **Respect des règles de routage, utilisation des bons status code**
+
+- :white_check_mark: [**Partie 3**](src/EntityFramework_Lol/Sources/ApiLol/Controllers) : **Versionnage de l'api**
+
+- :warning: [**Partie 4**](src/EntityFramework_Lol/Sources/Tests/ApiTests) : **Tests unitaires**
+
+- :white_check_mark: [**Partie 5**](.drone.yml) : **Dockerisation et Hébergement de l'API**
+
+- :white_check_mark: [**Partie 6**](src/EntityFramework_Lol/Sources/ApiLol/Controllers) : **Logs **
+
+- :white_check_mark: [**Partie 7**](src/EntityFramework_Lol/Sources/ApiLol/Controllers) : **Filtrage + Pagination des données **
+
+- :x: [**Partie 8**](src/EntityFramework_Lol/Sources/ApiLol/) : **Utilisation des fichiers configurations **
+
+- :x: [**Partie 9**](src/EntityFramework_Lol/Sources/) : **Réalisation du client MAUI et liaison avec l'api **
+
+- :x: [**Partie 10**](src/EntityFramework_Lol/Sources/ApiLol/) : **Liaison avec la base de données **
+
+Côté Entity_Framework :
+
+- :warning: [**Partie 1**](src/EntityFramework_Lol/Sources/MyFlib/Entities) : **Réalisation des Entities**
+
+- :white_check_mark: [**Partie 2**](src/EntityFramework_Lol/Sources/MyFlib/DataSeeder.cs) : **Data seeder**
+
+- :warning: [**Partie 3**](src/EntityFramework_Lol/Sources/Tests/UT_EF) : **Tests unitaires**
+
+- :x: [**Partie 4**](src/EntityFramework_Lol/Sources/MyFlib) : **Many to many**
+
+- :x: [**Partie 5**](src/EntityFramework_Lol/Sources/) : **DbManager**
+
+- :x: [**Partie 6**](src/EntityFramework_Lol/Sources/) : **Mapping**
+
+Autre :
+
+- :white_check_mark: [**Partie 1**](.drone.yml) : **Mise en place de SonarQube**
+
+- :white_check_mark: [**Partie 2**](.drone.yml) : **Schéma et description de l'architecture globale de l'application**
+
 <br>
 
 <img src="doc/Images/Title-Environnement.png" width="400" >
