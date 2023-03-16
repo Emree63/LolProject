@@ -6,6 +6,7 @@ using StubLib;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.PortableExecutable;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -60,7 +61,8 @@ namespace ApiTests
                 Skills = new List<SkillDto>()
                 {
                     new SkillDto() {Name = "Test skill", Description="Empty", Type = SkillTypeDto.Unknown}
-                }
+                },
+                Characteristics = {}
             };
 
             //Act

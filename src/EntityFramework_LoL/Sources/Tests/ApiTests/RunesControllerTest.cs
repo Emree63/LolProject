@@ -90,14 +90,14 @@ namespace ApiTests
 
             //Act
             var oldTotal = await stub.RunesMgr.GetNbItems();
-            var oldResult = await runes.GetCountSkins();
+            var oldResult = await runes.GetCountRunes();
             await runes.Post(runeDto);
 
             var objectResult = oldResult as OkObjectResult;
             Assert.IsNotNull(objectResult);
 
             var newTotal = await stub.RunesMgr.GetNbItems();
-            var newResult = await runes.GetCountSkins();
+            var newResult = await runes.GetCountRunes();
 
             //Assert
             var objectResultOld = oldResult as OkObjectResult;

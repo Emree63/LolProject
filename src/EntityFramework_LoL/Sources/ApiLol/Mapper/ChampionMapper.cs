@@ -32,7 +32,8 @@ namespace ApiLol.Mapper
             {
                 champ.AddSkill(skill.ToModel());
             }
-            champ.AddCharacteristics(championDto.Characteristics.Select(c => Tuple.Create(c.Key, c.Value)).ToArray());
+            if (championDto.Characteristics != null)
+                champ.AddCharacteristics(championDto.Characteristics.Select(c => Tuple.Create(c.Key, c.Value)).ToArray());
             return champ;
         }
 
