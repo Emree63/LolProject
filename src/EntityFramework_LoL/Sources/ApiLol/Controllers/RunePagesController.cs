@@ -62,7 +62,7 @@ namespace ApiLol.Controllers
             }
         }
 
-        // GET api/<RunePagesController>/5
+/*        // GET api/<RunePagesController>/5
         [HttpGet("{name}")]
         public async Task<IActionResult> Get(string name)
         {
@@ -117,6 +117,6 @@ namespace ApiLol.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-        }
+        }*/
     }
 }
