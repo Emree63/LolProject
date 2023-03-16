@@ -185,6 +185,7 @@ namespace ApiLol.Controllers
         [HttpGet("/countSkins")]
         public async Task<ActionResult> GetCountSkins()
         {
+            _logger.LogInformation("method {Action} - SKIN call", nameof(GetCountSkins));
             try
             {
                 return Ok(await _manager.SkinsMgr.GetNbItems());

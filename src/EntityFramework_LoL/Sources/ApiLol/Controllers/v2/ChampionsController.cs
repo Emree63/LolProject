@@ -206,6 +206,7 @@ namespace ApiLol.Controllers.v2
         [HttpGet("/countChampions")]
         public async Task<ActionResult> GetCountChampions()
         {
+            _logger.LogInformation("method {Action} - CHAMPION - V2.0 call", nameof(GetCountChampions));
             try
             {
                 return Ok(await _manager.ChampionsMgr.GetNbItems());

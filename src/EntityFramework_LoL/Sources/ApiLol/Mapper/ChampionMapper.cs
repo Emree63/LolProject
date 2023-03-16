@@ -15,7 +15,9 @@ namespace ApiLol.Mapper
                 Icon = champion.Icon,
                 Image = champion.Image.ToDto(),
                 Skins = champion.Skins.Select(e => e.ToDto()),
-                Skills = champion.Skills.Select(e => e.ToDto())
+                Skills = champion.Skills.Select(e => e.ToDto()),
+                Characteristics = champion.Characteristics.ToDictionary(c => c.Key, c => c.Value)
+
             };
         }
 
@@ -26,11 +28,11 @@ namespace ApiLol.Mapper
             {
                 champ.AddSkin(skin.ToModel(champ));
             }
-
             foreach (var skill in championDto.Skills)
             {
                 champ.AddSkill(skill.ToModel());
             }
+            champ.AddCharacteristics(championDto.Characteristics.Select(c => Tuple.Create(c.Key, c.Value)).ToArray());
             return champ;
         }
 

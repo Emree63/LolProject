@@ -44,7 +44,7 @@ namespace ApiLol.Controllers
                 if (pageRequest.name == null)
                 {
                     dtos = (await _manager.RunesMgr.GetItems(pageRequest.index, pageRequest.count, pageRequest.orderingPropertyName, pageRequest.descending))
-                    .Select(x => x.ToDto());
+                        .Select(x => x.ToDto());
                 }
                 else
                 {
@@ -160,8 +160,9 @@ namespace ApiLol.Controllers
         }
 
         [HttpGet("/countRunes")]
-        public async Task<ActionResult> GetCountSkins()
+        public async Task<ActionResult> GetCountRunes()
         {
+            _logger.LogInformation("method {Action} - RUNE call", nameof(GetCountRunes));
             try
             {
                 return Ok(await _manager.RunesMgr.GetNbItems());
