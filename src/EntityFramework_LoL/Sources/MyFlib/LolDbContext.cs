@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MyFlib.Entities;
 using MyFlib.Entities.enums;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,9 @@ namespace MyFlib
         public DbSet<SkillEntity> Skills { get; set; }
         public DbSet<SkinEntity> Skins { get; set; }
         public DbSet<RuneEntity> Runes { get; set; }
+        public DbSet<DictionaryCategoryRune> CategoryRunes { get; set; }
+        public DbSet<RunePageEntity> RunePages { get; set; }
+
         public LolDbContext()
         { }
 
@@ -38,9 +42,9 @@ namespace MyFlib
 
             //ChampionEntity
             modelBuilder.Entity<ChampionEntity>().HasKey(e => e.Id);
-
-
             modelBuilder.Entity<ChampionEntity>().Property(e => e.Id).ValueGeneratedOnAdd();
+            modelBuilder.Entity<ChampionEntity>().HasMany(champion => champion.RunePages).WithMany(runePage => runePage.Champions);
+
             ChampionEntity Akali = new ChampionEntity { Id = Guid.Parse("{4422C524-B2CB-43EF-8263-990C3CEA7CAE}"), Name = "Akali", Class = ChampionClassEntity.Assassin, Bio = "", Icon = "", ImageId = Guid.Parse("{8d121cdc-6787-4738-8edd-9e026ac16b65}") };
             ChampionEntity Aatrox = new ChampionEntity { Id = Guid.Parse("{A4F84D92-C20F-4F2D-B3F9-CA00EF556E72}"), Name = "Aatrox", Class = ChampionClassEntity.Fighter, Bio = "", Icon = "", ImageId = Guid.Parse("{9f9086f5-5cc5-47b5-af9b-a935f4e9b89c}") };
             ChampionEntity Ahri = new ChampionEntity { Id = Guid.Parse("{AE5FE535-F041-445E-B570-28B75BC78CB9}"), Name = "Ahri", Class = ChampionClassEntity.Mage, Bio = "", Icon = "", ImageId = Guid.Parse("{8d121cdc-6787-4738-8edd-9e026ac16b65}") };
@@ -52,9 +56,14 @@ namespace MyFlib
             modelBuilder.Entity<ChampionEntity>().HasData(Akali, Aatrox, Ahri, Akshan, Bard, Alistar);
 
             //SkillEntity
+            modelBuilder.Entity<SkillEntity>()
+                .HasOne(m => m.Champion)
+                .WithMany(a => a.Skills)
+                .HasForeignKey("ChampionForeignKey");
+
             modelBuilder.Entity<SkillEntity>().HasData(
-                new { Name = "Boule de feu", Description = "Fire!", Type = SkillTypeEntity.Basic },
-                new { Name = "White Star", Description = "Random damage", Type = SkillTypeEntity.Ultimate }
+                new { Name = "Boule de feu", Description = "Fire!", Type = SkillTypeEntity.Basic, ChampionForeignKey = Guid.Parse("{4422C524-B2CB-43EF-8263-990C3CEA7CAE}") },
+                new { Name = "White Star", Description = "Random damage", Type = SkillTypeEntity.Ultimate, ChampionForeignKey = Guid.Parse("{3708dcfd-02a1-491e-b4f7-e75bf274cf23}") }
             );
 
             //SkinEntity
@@ -69,9 +78,63 @@ namespace MyFlib
             );
 
             //RuneEntity
-            modelBuilder.Entity<RuneEntity>().HasData(
-                new RuneEntity { Name = "Hextech Flashtraption ", Description = "While Flash is on cooldown, it is replaced by Hexflash.", Family = RuneFamilyEntity.Unknown, ImageId = Guid.Parse("{8d121cdc-6787-4738-8edd-9e026ac16b65}") },
-                new RuneEntity { Name = "Manaflow Band ", Description = "Hitting enemy champions with a spell grants 25 maximum mana, up to 250 mana.", Family = RuneFamilyEntity.Domination, ImageId = Guid.Parse("{9f9086f5-5cc5-47b5-af9b-a935f4e9b89c}") }
+            RuneEntity runeHextech = new RuneEntity { Name = "Hextech Flashtraption ", Description = "While Flash is on cooldown, it is replaced by Hexflash.", Family = RuneFamilyEntity.Unknown, ImageId = Guid.Parse("{8d121cdc-6787-4738-8edd-9e026ac16b65}") };
+            RuneEntity runeManaflow = new RuneEntity { Name = "Manaflow Band ", Description = "Hitting enemy champions with a spell grants 25 maximum mana, up to 250 mana.", Family = RuneFamilyEntity.Domination, ImageId = Guid.Parse("{9f9086f5-5cc5-47b5-af9b-a935f4e9b89c}") };
+            modelBuilder.Entity<RuneEntity>().HasData(runeHextech, runeManaflow);
+
+            //RunePageEntity
+            RunePageEntity page1 = new RunePageEntity { Name = "Page 1" };
+            RunePageEntity page2 = new RunePageEntity { Name = "Page 2" };
+
+            modelBuilder.Entity<RunePageEntity>().HasData(page1, page2);
+
+            //DictionaryCategoryRune
+            modelBuilder.Entity<DictionaryCategoryRune>().HasKey(dictionary => new { dictionary.RunePageName, dictionary.RuneName });
+            modelBuilder.Entity<DictionaryCategoryRune>().HasData(
+                new DictionaryCategoryRune { category = CategoryEntity.Major, RuneName = runeHextech.Name, RunePageName = page1.Name },
+                new DictionaryCategoryRune { category = CategoryEntity.Minor1, RuneName = runeManaflow.Name, RunePageName = page1.Name },
+                new DictionaryCategoryRune { category = CategoryEntity.OtherMinor1, RuneName = runeManaflow.Name, RunePageName = page2.Name },
+                new DictionaryCategoryRune { category = CategoryEntity.OtherMinor2, RuneName = runeHextech.Name, RunePageName = page2.Name }
+            );
+
+            //CharacteristicEntity
+            modelBuilder.Entity<CharacteristicEntity>().HasKey(c => new { c.Name, c.ChampionForeignKey });
+
+            modelBuilder.Entity<CharacteristicEntity>().HasData(
+                new CharacteristicEntity { Name = "Attack Damage", Value = 58, ChampionForeignKey = Ahri.Id },
+                new CharacteristicEntity { Name = "Ability Power", Value = 92, ChampionForeignKey = Ahri.Id },
+                new CharacteristicEntity { Name = "Attack Speed", Value = 6, ChampionForeignKey = Ahri.Id },
+                new CharacteristicEntity { Name = "Health", Value = 526, ChampionForeignKey = Ahri.Id },
+                new CharacteristicEntity { Name = "Mana", Value = 418, ChampionForeignKey = Ahri.Id },
+
+                new CharacteristicEntity { Name = "Attack Damage", Value = 68, ChampionForeignKey = Akshan.Id },
+                new CharacteristicEntity { Name = "Ability Power", Value = 0, ChampionForeignKey = Akshan.Id },
+                new CharacteristicEntity { Name = "Attack Speed", Value = 1, ChampionForeignKey = Akshan.Id },
+                new CharacteristicEntity { Name = "Health", Value = 570, ChampionForeignKey = Akshan.Id },
+                new CharacteristicEntity { Name = "Mana", Value = 350, ChampionForeignKey = Akshan.Id },
+
+                new CharacteristicEntity { Name = "Attack Damage", Value = 70, ChampionForeignKey = Aatrox.Id },
+                new CharacteristicEntity { Name = "Ability Power", Value = 0, ChampionForeignKey = Aatrox.Id },
+                new CharacteristicEntity { Name = "Attack Speed", Value = 1, ChampionForeignKey = Aatrox.Id },
+                new CharacteristicEntity { Name = "Health", Value = 580, ChampionForeignKey = Aatrox.Id },
+                new CharacteristicEntity { Name = "Mana", Value = 0, ChampionForeignKey = Aatrox.Id },
+
+                new CharacteristicEntity { Name = "Attack Damage", Value = 56, ChampionForeignKey = Akali.Id },
+                new CharacteristicEntity { Name = "Ability Power", Value = 0, ChampionForeignKey = Akali.Id },
+                new CharacteristicEntity { Name = "Attack Speed", Value = 1, ChampionForeignKey = Akali.Id },
+                new CharacteristicEntity { Name = "Health", Value = 575, ChampionForeignKey = Akali.Id },
+                new CharacteristicEntity { Name = "Mana", Value = 200, ChampionForeignKey = Akali.Id },
+
+                new CharacteristicEntity { Name = "Attack Damage", Value = 63, ChampionForeignKey = Alistar.Id },
+                new CharacteristicEntity { Name = "Ability Power", Value = 0, ChampionForeignKey = Alistar.Id },
+                new CharacteristicEntity { Name = "Attack Speed", Value = 2, ChampionForeignKey = Alistar.Id },
+                new CharacteristicEntity { Name = "Health", Value = 573, ChampionForeignKey = Alistar.Id },
+                new CharacteristicEntity { Name = "Mana", Value = 278, ChampionForeignKey = Alistar.Id },
+
+                new CharacteristicEntity { Name = "Ability Power", Value = 30, ChampionForeignKey = Bard.Id },
+                new CharacteristicEntity { Name = "Attack Speed", Value = 1, ChampionForeignKey = Bard.Id },
+                new CharacteristicEntity { Name = "Health", Value = 535, ChampionForeignKey = Bard.Id },
+                new CharacteristicEntity { Name = "Mana", Value = 350, ChampionForeignKey = Bard.Id }
             );
 
         }

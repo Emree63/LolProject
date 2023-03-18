@@ -5,7 +5,7 @@ using static System.Console;
 using (var context = new LolDbContext())
 {
 
-    WriteLine("\nChampions :\n");
+    WriteLine("Champions :\n");
 
     foreach (var c in context.Champions)
     {
@@ -18,10 +18,6 @@ using (var context = new LolDbContext())
     foreach (var c in context.Champions)
     {
         WriteLine($"{c.Name} - {c.Class}");
-       /* foreach (var s in c.Skills)
-        {
-            WriteLine($"\t\t{s.Name} - {s.Description}");
-        }*/
     }
 
     WriteLine("\nSkills :\n");
@@ -37,8 +33,6 @@ using (var context = new LolDbContext())
     {
         WriteLine($"{c.Name} - {c.Description} - Price: {c.Price} - ChampionId: {c.ChampionForeignKey}");
     }
-
-    WriteLine("\nRunes :\n");
 
     context.SaveChangesAsync(); // or context.SaveChangesAsync
 }

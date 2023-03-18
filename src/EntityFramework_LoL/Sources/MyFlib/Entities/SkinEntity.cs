@@ -11,15 +11,17 @@ namespace MyFlib
     public class SkinEntity
     {
         [Key]
-        [MaxLength(256)]
+        [MaxLength(254, ErrorMessage = "the Skin name must not exceed 254 characters")]
         public string Name { get; set; }
         [Required]
-        [MaxLength(500)]
+        [MaxLength(1000)]
         public string Description { get; set; }
         [Required]
         public string Icon { get; set; }
         [Required]
         public float Price { get; set; }
+        [Required]
+        [ForeignKey("ChampionForeignKey")]
         public ChampionEntity Champion { get; set; }
         public Guid ChampionForeignKey { get; set; }
         public LargeImageEntity Image { get; set; }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +11,7 @@ namespace MyFlib
     public class SkillEntity
     {
         [Key]
-        [MaxLength(64)]
+        [MaxLength(64, ErrorMessage = "the Skill name must not exceed 64 characters")]
         public string Name { get; set; }
 
         [Required]
@@ -19,6 +20,11 @@ namespace MyFlib
 
         [Required]
         public SkillTypeEntity Type { get; set; }
+
+        [Required]
+        [ForeignKey("ChampionForeignKey")]
+        public ChampionEntity Champion { get; set; }
+        public Guid ChampionForeignKey { get; set; }
 
     }
 }

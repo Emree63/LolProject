@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MyFlib.Entities.enums
 {
-    enum CategoryEntity
+    public enum CategoryEntity
     {
         Major,
         Minor1,
