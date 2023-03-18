@@ -22,7 +22,7 @@ namespace ApiTests
             skins = new SkinsController(stub, new NullLogger<SkinsController>());
         }
 
-/*        [TestMethod]
+        [TestMethod]
         public async Task TestGetSkins()
         {
             //Arrange
@@ -35,92 +35,145 @@ namespace ApiTests
             var objectResult = skin as OkObjectResult;
             Assert.IsNotNull(objectResult);
 
-            var skinsResult = objectResult?.Value as IEnumerable<SkinDtoC>;
+            var skinsResult = objectResult.Value as PageResponse<SkinDtoC>;
             Assert.IsNotNull(skinsResult);
 
-            Assert.AreEqual(skinsResult.Count(), total);
+            var result = skinsResult.Data as IEnumerable<SkinDtoC>;
+            Assert.IsNotNull(result);
 
-        }*/
+            Assert.AreEqual(result.Count(), total);
+            Assert.AreEqual(total, skinsResult.total);
 
-/*        [TestMethod]
+        }
+
+        [TestMethod]
         public async Task TestPostSkin()
         {
             //Arange
             var SkinDto = new SkinDtoC
             {
-                Name = "Project",
-                ChampionName = "Aatrox"
+                Name = "Project Pyke",
+                Description = "Test",
+                Icon = "",
+                Image = new LargeImageDto(),
+                Price = 900,
+                ChampionName = "Volibear"
             };
 
             //Act
+            var total = await stub.SkinsMgr.GetNbItems();
             var skinsResult = await skins.Post(SkinDto);
 
             //Assert
             var objectResult = skinsResult as CreatedAtActionResult;
             Assert.IsNotNull(objectResult);
 
-            var champions = objectResult?.Value as Ski;
-            Assert.IsNotNull(champions);
+            var isSkinDto = objectResult?.Value as SkinDtoC;
+            Assert.IsNotNull(isSkinDto);
 
-        }*/
-
-/*        [TestMethod]
-        public async Task TestPutSkin()
-        {
-            //Arange
-            var ChampionDto = new ChampionDto
-            {
-                Name = "Sylas",
-                Bio = "Good",
-                Class = ChampionClassDto.Tank,
-                Icon = "",
-                Image = new LargeImageDto() { Base64 = "" },
-                Skins = new List<SkinDto>()
-            };
-            var ChampionDtoPut = new ChampionDto
-            {
-                Name = "Sylas",
-                Bio = "Bad",
-                Class = ChampionClassDto.Tank,
-                Icon = "",
-                Image = new LargeImageDto() { Base64 = "" },
-                Skins = new List<SkinDto>()
-            };
-
-            //Act
-            await champs.Post(ChampionDto);
-            var championsResult = await champs.Put(ChampionDto.Name, ChampionDtoPut);
-
-            //Assert
-            var objectResult = championsResult as OkObjectResult;
-            Assert.IsNotNull(objectResult);
-
-            var champions = objectResult?.Value as ChampionDto;
-            Assert.IsNotNull(champions);
-
-            Assert.AreNotEqual(ChampionDto.Bio, champions.Bio);
-            Assert.AreEqual(ChampionDtoPut.Bio, champions.Bio);
+            Assert.AreEqual(total + 1, await stub.SkinsMgr.GetNbItems());
 
         }
 
         [TestMethod]
-        public async Task TestDeleteChampion()
+        public async Task TestCountSkins()
+        {
+            //Arange
+            var SkinDto = new SkinDtoC
+            {
+                Name = "Project Pyke",
+                Description = "Test",
+                Icon = "",
+                Image = new LargeImageDto(),
+                Price = 900,
+                ChampionName = "Volibear"
+            };
+
+            //Act
+            var oldTotal = await stub.SkinsMgr.GetNbItems();
+            var oldResult = await skins.GetCountSkins();
+            await skins.Post(SkinDto);
+
+            var newTotal = await stub.SkinsMgr.GetNbItems();
+            var newResult = await skins.GetCountSkins();
+
+            //Assert
+            var objectResultOld = oldResult as OkObjectResult;
+            Assert.IsNotNull(objectResultOld);
+
+            var objectResultNew = newResult as OkObjectResult;
+            Assert.IsNotNull(objectResultNew);
+
+            Assert.AreEqual(objectResultOld.Value, oldTotal);
+            Assert.AreNotEqual(objectResultOld.Value, newTotal);
+
+            Assert.AreEqual(objectResultNew.Value, newTotal);
+            Assert.AreNotEqual(objectResultNew.Value, oldTotal);
+
+
+        }
+
+        [TestMethod]
+        public async Task TestPutSkin()
+        {
+            //Arange
+            var SkinDto = new SkinDtoC
+            {
+                Name = "Project",
+                Description = "Test",
+                Icon = "",
+                Image = new LargeImageDto(),
+                Price = 900,
+                ChampionName = "Volibear"
+            };
+            var SkinDtoPut = new SkinDtoC
+            {
+                Name = "new Project",
+                Description = "ForTestTest",
+                Icon = "",
+                Image = new LargeImageDto(),
+                Price = 850,
+                ChampionName = "Volibear"
+            };
+
+            //Act
+            await skins.Post(SkinDto);
+            var skinsResult = await skins.Put(SkinDto.Name, SkinDtoPut);
+
+            //Assert
+            var objectResult = skinsResult as OkObjectResult;
+            Assert.IsNotNull(objectResult);
+
+            var skin = objectResult?.Value as SkinDtoC;
+            Assert.IsNotNull(skin);
+
+            Assert.AreNotEqual(SkinDto.Name, skin.Name);
+            Assert.AreNotEqual(SkinDto.Description, skin.Description);
+            Assert.AreNotEqual(SkinDto.Price, skin.Price);
+
+            Assert.AreEqual(SkinDtoPut.Name, skin.Name);
+            Assert.AreEqual(SkinDtoPut.Description, skin.Description);
+            Assert.AreEqual(SkinDtoPut.Price, skin.Price);
+
+        }
+
+        [TestMethod]
+        public async Task TestDeleteSkin()
         {
             //Arange
 
 
             //Act
-            var total = await stub.ChampionsMgr.GetNbItems();
-            var championsResult = await champs.Delete("Akali");
+            var total = await stub.SkinsMgr.GetNbItems();
+            var skinsResult = await skins.Delete("Project");
 
             //Assert
-            var objectResult = championsResult as OkObjectResult;
+            var objectResult = skinsResult as NoContentResult;
             Assert.IsNotNull(objectResult);
 
-            Assert.AreEqual(objectResult.Value, true);
-            Assert.AreNotEqual(await stub.ChampionsMgr.GetNbItems(), total);
+            Assert.AreNotEqual(await stub.SkinsMgr.GetNbItems(), total);
 
-        }*/
+        }
 
     }
 }

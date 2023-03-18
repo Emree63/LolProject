@@ -50,7 +50,7 @@ namespace ApiLol.Controllers
                     dtos = (await _manager.SkinsMgr.GetItemsByName(pageRequest.name, pageRequest.index, pageRequest.count, pageRequest.orderingPropertyName, pageRequest.descending))
                         .Select(x => x.ToDtoC());
                 }
-                return Ok(new { Data = dtos, index = pageRequest.index, count = pageRequest.count, total = nbTotal });
+                return Ok(new PageResponse<SkinDtoC> { Data = dtos, index = pageRequest.index, count = pageRequest.count, total = nbTotal });
 
             }
             catch (Exception error)
@@ -67,7 +67,7 @@ namespace ApiLol.Controllers
             _logger.LogInformation("method {Action} - SKIN call with {name}", nameof(Get), name);
             try
             {
-                var dtos = (await _manager.SkinsMgr.GetItemByName(name, 0, await _manager.ChampionsMgr.GetNbItems()))
+                var dtos = (await _manager.SkinsMgr.GetItemByName(name, 0, await _manager.SkinsMgr.GetNbItems()))
                     .Select(x => x.ToDtoC());
                 if (dtos.IsNullOrEmpty())
                 {
@@ -137,7 +137,7 @@ namespace ApiLol.Controllers
                 if (name != skin.Name)
                 {
                     var dtos2 = (await _manager.SkinsMgr.GetItemByName(skin.Name, 0, await _manager.SkinsMgr.GetNbItems()));
-                    if (dtos2.IsNullOrEmpty() || dtos2.Count() > 0)
+                    if (!dtos2.IsNullOrEmpty() || dtos2.Count() > 0)
                     {
                         return BadRequest($"New Name {skin.Name} is already exist");
                     }
@@ -183,8 +183,9 @@ namespace ApiLol.Controllers
 
 
         [HttpGet("/countSkins")]
-        public async Task<ActionResult<int>> GetCountSkins()
+        public async Task<ActionResult> GetCountSkins()
         {
+            _logger.LogInformation("method {Action} - SKIN call", nameof(GetCountSkins));
             try
             {
                 return Ok(await _manager.SkinsMgr.GetNbItems());
@@ -207,9 +208,10 @@ namespace ApiLol.Controllers
                 if (dtos.IsNullOrEmpty())
                 {
                     _logger.LogWarning("{name} was not found", name);
-                    return BadRequest();
+                    return NotFound($"{name} was not found");
                 }
-                return Ok(await _manager.SkinsMgr.DeleteItem(dtos.First()));
+                await _manager.SkinsMgr.DeleteItem(dtos.First());
+                return NoContent();
             }
             catch (Exception error)
             {

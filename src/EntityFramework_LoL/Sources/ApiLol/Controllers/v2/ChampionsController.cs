@@ -81,7 +81,7 @@ namespace ApiLol.Controllers.v2
                     dtos = (await _manager.ChampionsMgr.GetItemsByName(pageRequest.name, pageRequest.index, pageRequest.count, pageRequest.orderingPropertyName, pageRequest.descending))
                         .Select(x => x.ToDto());
                 }
-                return Ok(new { Data = dtos, index = pageRequest.index, count = pageRequest.count, total = nbTotal });
+                return Ok(new PageResponse<ChampionDto>{ Data = dtos, index = pageRequest.index, count = pageRequest.count, total = nbTotal });
             }
             catch (Exception error)
             {
@@ -151,7 +151,7 @@ namespace ApiLol.Controllers.v2
                 if (name != champion.Name)
                 {
                     var dtos2 = (await _manager.ChampionsMgr.GetItemByName(champion.Name, 0, await _manager.ChampionsMgr.GetNbItems()));
-                    if (dtos2.IsNullOrEmpty() || dtos2.Count() > 0)
+                    if (!dtos2.IsNullOrEmpty() || dtos2.Count() > 0)
                     {
                         return BadRequest($"New Name {champion.Name} is already exist");
                     }
@@ -204,8 +204,9 @@ namespace ApiLol.Controllers.v2
         }
 
         [HttpGet("/countChampions")]
-        public async Task<ActionResult<int>> GetCountChampions()
+        public async Task<ActionResult> GetCountChampions()
         {
+            _logger.LogInformation("method {Action} - CHAMPION - V2.0 call", nameof(GetCountChampions));
             try
             {
                 return Ok(await _manager.ChampionsMgr.GetNbItems());
@@ -228,9 +229,10 @@ namespace ApiLol.Controllers.v2
                 if (dtos.IsNullOrEmpty())
                 {
                     _logger.LogWarning("{name} was not found", name);
-                    return BadRequest();
+                    return NotFound($"{name} was not found");
                 }
-                return Ok(await _manager.ChampionsMgr.DeleteItem(dtos.First()));
+                await _manager.ChampionsMgr.DeleteItem(dtos.First());
+                return NoContent();
             }
             catch (Exception error)
             {

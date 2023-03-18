@@ -124,5 +124,26 @@ namespace UT_EF
             }
 
         }
+
+        [Fact]
+        public void Test_DataSeeder()
+        {
+            var options = new DbContextOptionsBuilder<LolDbContext>()
+                .UseInMemoryDatabase(databaseName: "DataSeeder_Test_Champion_database")
+                .Options;
+
+
+            using (var context = new LolDbContext(options))
+            {
+                DataSeeder.SeedData(context);
+                string nameToFind = "hecarim";
+                ChampionClassEntity type = ChampionClassEntity.Assassin;
+                Assert.Equal(1, context.Champions.Where(c => c.Name.ToLower().Contains(nameToFind)).Count());
+                Assert.Equal(1, context.Champions.Where(c => c.Class == type).Count());
+                Assert.Equal(3, context.Champions.Count());
+
+            }
+
+        }
     }
 }
