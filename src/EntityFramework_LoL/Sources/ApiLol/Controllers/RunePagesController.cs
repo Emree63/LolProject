@@ -108,19 +108,44 @@ namespace ApiLol.Controllers
         }
 
         // PUT api/<RunePagesController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut("{name}")]
+        public async Task<IActionResult> Put(string name, [FromBody] RunePageDto runePage)
         {
+            _logger.LogInformation("method {Action} - RUNEPAGE call with {name} and {item}", nameof(Put), name, runePage);
+            try
+            {
+                var dtos = (await _manager.RunePagesMgr.GetItemByName(name, 0, await _manager.RunePagesMgr.GetNbItems()));
+                if (dtos.IsNullOrEmpty())
+                {
+                    return NotFound($"Name {name} not exist");
+                }
+                // Checks if the new name exists
+                if (name != runePage.Name)
+                {
+                    var dtos2 = (await _manager.RunesMgr.GetItemByName(runePage.Name, 0, await _manager.RunePagesMgr.GetNbItems()));
+                    if (!dtos2.IsNullOrEmpty() || dtos2.Count() > 0)
+                    {
+                        return BadRequest($"New Name {runePage.Name} is already exist");
+                    }
+                }
+                return Ok((await _manager.RunePagesMgr.UpdateItem(dtos.First(), runePage.ToModel())).ToDto());
+
+            }
+            catch (Exception error)
+            {
+                _logger.LogError(error.Message);
+                return BadRequest(error.Message);
+            }
         }
 
         // DELETE api/<RunePagesController>/5
         [HttpDelete("{name}")]
         public async Task<IActionResult> Delete(string name)
         {
-            _logger.LogInformation("method {Action} - RUNE call with {name}", nameof(Delete), name);
+            _logger.LogInformation("method {Action} - RUNEPAGE call with {name}", nameof(Delete), name);
             try
             {
-                var dtos = (await _manager.RunePagesMgr.GetItemByName(name, 0, await _manager.RunesMgr.GetNbItems()));
+                var dtos = (await _manager.RunePagesMgr.GetItemByName(name, 0, await _manager.RunePagesMgr.GetNbItems()));
                 if (dtos.IsNullOrEmpty())
                 {
                     _logger.LogWarning("{name} was not found", name);
@@ -135,5 +160,22 @@ namespace ApiLol.Controllers
                 return BadRequest(error.Message);
             }
         }
+
+        [HttpGet("/countRunePages")]
+        public async Task<ActionResult> GetCountRunePages()
+        {
+            _logger.LogInformation("method {Action} - RUNEPAGE call", nameof(GetCountRunePages));
+            try
+            {
+                return Ok(await _manager.RunePagesMgr.GetNbItems());
+            }
+            catch (Exception error)
+            {
+                _logger.LogError(error.Message);
+                return BadRequest(error.Message);
+
+            }
+        }
+
     }
 }

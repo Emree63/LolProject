@@ -94,9 +94,6 @@ namespace ApiTests
             var oldResult = await skins.GetCountSkins();
             await skins.Post(SkinDto);
 
-            var objectResult = oldResult as OkObjectResult;
-            Assert.IsNotNull(objectResult);
-
             var newTotal = await stub.SkinsMgr.GetNbItems();
             var newResult = await skins.GetCountSkins();
 

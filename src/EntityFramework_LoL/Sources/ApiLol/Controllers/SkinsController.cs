@@ -67,7 +67,7 @@ namespace ApiLol.Controllers
             _logger.LogInformation("method {Action} - SKIN call with {name}", nameof(Get), name);
             try
             {
-                var dtos = (await _manager.SkinsMgr.GetItemByName(name, 0, await _manager.ChampionsMgr.GetNbItems()))
+                var dtos = (await _manager.SkinsMgr.GetItemByName(name, 0, await _manager.SkinsMgr.GetNbItems()))
                     .Select(x => x.ToDtoC());
                 if (dtos.IsNullOrEmpty())
                 {

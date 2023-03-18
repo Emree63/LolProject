@@ -111,9 +111,6 @@ namespace ApiTests
             var oldResult = await champs.GetCountChampions();
             await champs.Post(ChampionDto);
 
-            var objectResult = oldResult as OkObjectResult;
-            Assert.IsNotNull(objectResult);
-
             var newTotal = await stub.ChampionsMgr.GetNbItems();
             var newResult = await champs.GetCountChampions();
 

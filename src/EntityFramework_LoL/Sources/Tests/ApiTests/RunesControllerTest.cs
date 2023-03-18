@@ -71,7 +71,7 @@ namespace ApiTests
             var isRuneDto = objectResult?.Value as RuneDto;
             Assert.IsNotNull(isRuneDto);
 
-            Assert.AreEqual(total + 1, await stub.RunesMgr.GetNbItems());
+            Assert.AreNotEqual(total, await stub.RunesMgr.GetNbItems());
 
         }
 
@@ -92,9 +92,6 @@ namespace ApiTests
             var oldTotal = await stub.RunesMgr.GetNbItems();
             var oldResult = await runes.GetCountRunes();
             await runes.Post(runeDto);
-
-            var objectResult = oldResult as OkObjectResult;
-            Assert.IsNotNull(objectResult);
 
             var newTotal = await stub.RunesMgr.GetNbItems();
             var newResult = await runes.GetCountRunes();

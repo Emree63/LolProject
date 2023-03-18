@@ -1,6 +1,7 @@
 ﻿using ApiLol.Mapper.enums;
 using DTO;
 using Model;
+using static Model.RunePage;
 
 namespace ApiLol.Mapper
 {
@@ -12,17 +13,26 @@ namespace ApiLol.Mapper
             return new RunePageDto()
             {
                 Name = runePage.Name,
-                Runes = runePage.Runes.ToDictionary(c => c.Key.ToDto(), r => r.Value.ToDto())
+                Runes = runePage.Runes.ToDictionary(c => c.Key.ToString(), r => r.Value.ToDto())
             };
         }
 
         public static RunePage ToModel(this RunePageDto runePageDto)
         {
+            Category category;
+            Dictionary<Category, Rune> runDico = runePageDto.Runes.ToDictionary(
+                r => (RunePage.Category)Enum.Parse(typeof(RunePage.Category), r.Key),
+                r => r.Value.ToModel()
+            );
 
             var runePage = new RunePage(runePageDto.Name);
-            foreach( var rune in runePageDto.Runes)
+            foreach (var rune in runePageDto.Runes)
             {
-                runePage[rune.Key.ToModel()] = rune.Value.ToModel();
+                if (!Enum.TryParse<Category>(rune.Key, true, out category))
+                {
+                    continue;
+                }
+                runePage[category] = rune.Value.ToModel();
             }
 
             return runePage;
