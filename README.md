@@ -11,6 +11,10 @@
 [![Duplicated Lines (%)](https://codefirst.iut.uca.fr/sonar/api/project_badges/measure?project=LolProjectIUT&metric=duplicated_lines_density&token=b65c8ed30f0fbe374e41e98340dc910942b77bba)](https://codefirst.iut.uca.fr/sonar/dashboard?id=LolProjectIUT)
 [![Security Rating](https://codefirst.iut.uca.fr/sonar/api/project_badges/measure?project=LolProjectIUT&metric=security_rating&token=b65c8ed30f0fbe374e41e98340dc910942b77bba)](https://codefirst.iut.uca.fr/sonar/dashboard?id=LolProjectIUT)
 [![Vulnerabilities](https://codefirst.iut.uca.fr/sonar/api/project_badges/measure?project=LolProjectIUT&metric=vulnerabilities&token=b65c8ed30f0fbe374e41e98340dc910942b77bba)](https://codefirst.iut.uca.fr/sonar/dashboard?id=LolProjectIUT)
+[![Coverage](https://codefirst.iut.uca.fr/sonar/api/project_badges/measure?project=LolProjectIUT&metric=coverage&token=b65c8ed30f0fbe374e41e98340dc910942b77bba)](https://codefirst.iut.uca.fr/sonar/dashboard?id=LolProjectIUT)
+[![Bugs](https://codefirst.iut.uca.fr/sonar/api/project_badges/measure?project=LolProjectIUT&metric=bugs&token=b65c8ed30f0fbe374e41e98340dc910942b77bba)](https://codefirst.iut.uca.fr/sonar/dashboard?id=LolProjectIUT)
+[![Maintainability Rating](https://codefirst.iut.uca.fr/sonar/api/project_badges/measure?project=LolProjectIUT&metric=sqale_rating&token=b65c8ed30f0fbe374e41e98340dc910942b77bba)](https://codefirst.iut.uca.fr/sonar/dashboard?id=LolProjectIUT)
+
 
 ---
 
