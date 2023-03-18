@@ -188,13 +188,12 @@ namespace ApiTests
 
             //Act
             var total = await stub.ChampionsMgr.GetNbItems();
-            var championsResult = await champs.Delete("Akali");
+            var championsResult = await champs.Delete("Renekton");
 
             //Assert
-            var objectResult = championsResult as OkObjectResult;
+            var objectResult = championsResult as NoContentResult;
             Assert.IsNotNull(objectResult);
 
-            Assert.AreEqual(objectResult.Value, true);
             Assert.AreNotEqual(await stub.ChampionsMgr.GetNbItems(), total);
 
         }

@@ -11,7 +11,7 @@ public class Champion : IEquatable<Champion>
         get => name;
         private init
         {
-            if(string.IsNullOrWhiteSpace(value))
+            if (string.IsNullOrWhiteSpace(value))
             {
                 name = "Unknown";
                 return;
@@ -26,7 +26,7 @@ public class Champion : IEquatable<Champion>
         get => bio;
         set
         {
-            if(value == null)
+            if (value == null)
             {
                 bio = "";
                 return;
@@ -54,7 +54,7 @@ public class Champion : IEquatable<Champion>
     }
 
     public ReadOnlyCollection<Skin> Skins { get; private set; }
-    private List<Skin> skins = new ();
+    private List<Skin> skins = new();
 
     public ReadOnlyDictionary<string, int> Characteristics { get; private set; }
     private readonly Dictionary<string, int> characteristics = new Dictionary<string, int>();
@@ -81,7 +81,7 @@ public class Champion : IEquatable<Champion>
 
     public void AddCharacteristics(params Tuple<string, int>[] someCharacteristics)
     {
-        foreach(var c in someCharacteristics)
+        foreach (var c in someCharacteristics)
         {
             characteristics[c.Item1] = c.Item2;
         }
@@ -94,12 +94,12 @@ public class Champion : IEquatable<Champion>
     {
         get
         {
-            if(!characteristics.TryGetValue(label, out int value)) return null;
+            if (!characteristics.TryGetValue(label, out int value)) return null;
             else return value;
         }
         set
         {
-            if(!value.HasValue)
+            if (!value.HasValue)
             {
                 RemoveCharacteristics(label);
                 return;
@@ -110,9 +110,9 @@ public class Champion : IEquatable<Champion>
 
     public override bool Equals(object? obj)
     {
-        if(ReferenceEquals(obj, null)) return false;
-        if(ReferenceEquals(obj, this)) return true;
-        if(GetType() != obj.GetType()) return false;
+        if (ReferenceEquals(obj, null)) return false;
+        if (ReferenceEquals(obj, this)) return true;
+        if (GetType() != obj.GetType()) return false;
         return Equals(obj as Champion);
     }
 
@@ -125,27 +125,27 @@ public class Champion : IEquatable<Champion>
     public override string ToString()
     {
         StringBuilder sb = new StringBuilder($"{Name} ({Class})");
-        if(!string.IsNullOrWhiteSpace(bio))
+        if (!string.IsNullOrWhiteSpace(bio))
         {
             sb.AppendLine($"\t{bio}");
         }
-        if(characteristics.Any())
-        { 
+        if (characteristics.Any())
+        {
             sb.AppendLine("\tCharacteristics:");
-            foreach(var characteristic in characteristics)
+            foreach (var characteristic in characteristics)
             {
                 sb.AppendLine($"\t\t{characteristic.Key} - {characteristic.Value}");
             }
         }
-        if(skills.Any())
+        if (skills.Any())
         {
             sb.AppendLine("\tSkills:");
-            foreach(var skill in Skills)
+            foreach (var skill in Skills)
             {
                 sb.AppendLine($"\t\t{skill.Name} - {skill.Description}");
             }
         }
         return sb.ToString();
-    } 
+    }
 }
 

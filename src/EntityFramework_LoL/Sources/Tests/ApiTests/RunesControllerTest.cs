@@ -76,7 +76,7 @@ namespace ApiTests
         }
 
         [TestMethod]
-        public async Task TestCountChampion()
+        public async Task TestCountRunes()
         {
             //Arange
             var runeDto = new RuneDto
@@ -116,7 +116,7 @@ namespace ApiTests
         }
 
         [TestMethod]
-        public async Task TestPutSkin()
+        public async Task TestPutRune()
         {
             //Arange
             var runeDto = new RuneDto
@@ -157,20 +157,19 @@ namespace ApiTests
         }
 
         [TestMethod]
-        public async Task TestDeleteChampion()
+        public async Task TestDeleteRune()
         {
             //Arange
 
 
             //Act
             var total = await stub.RunesMgr.GetNbItems();
-            var runesResult = await runes.Delete("Conqueror");
+            var result = await runes.Delete("Conqueror");
 
             //Assert
-            var objectResult = runesResult as OkObjectResult;
+            var objectResult = result as NoContentResult;
             Assert.IsNotNull(objectResult);
 
-            Assert.AreEqual(objectResult.Value, true);
             Assert.AreNotEqual(await stub.RunesMgr.GetNbItems(), total);
 
         }

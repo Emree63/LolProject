@@ -114,9 +114,26 @@ namespace ApiLol.Controllers
         }
 
         // DELETE api/<RunePagesController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete("{name}")]
+        public async Task<IActionResult> Delete(string name)
         {
+            _logger.LogInformation("method {Action} - RUNE call with {name}", nameof(Delete), name);
+            try
+            {
+                var dtos = (await _manager.RunePagesMgr.GetItemByName(name, 0, await _manager.RunesMgr.GetNbItems()));
+                if (dtos.IsNullOrEmpty())
+                {
+                    _logger.LogWarning("{name} was not found", name);
+                    return NotFound($"{name} was not found");
+                }
+                await _manager.RunePagesMgr.DeleteItem(dtos.First());
+                return NoContent();
+            }
+            catch (Exception error)
+            {
+                _logger.LogError(error.Message);
+                return BadRequest(error.Message);
+            }
         }
     }
 }

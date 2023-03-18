@@ -52,12 +52,12 @@ namespace ApiTests
             //Arange
             var SkinDto = new SkinDtoC
             {
-                Name = "Project",
+                Name = "Project Pyke",
                 Description = "Test",
                 Icon = "",
                 Image = new LargeImageDto(),
                 Price = 900,
-                ChampionName = "aatrox"
+                ChampionName = "Volibear"
             };
 
             //Act
@@ -76,17 +76,17 @@ namespace ApiTests
         }
 
         [TestMethod]
-        public async Task TestCountChampion()
+        public async Task TestCountSkins()
         {
             //Arange
             var SkinDto = new SkinDtoC
             {
-                Name = "Project",
+                Name = "Project Pyke",
                 Description = "Test",
                 Icon = "",
                 Image = new LargeImageDto(),
                 Price = 900,
-                ChampionName = "aatrox"
+                ChampionName = "Volibear"
             };
 
             //Act
@@ -127,7 +127,7 @@ namespace ApiTests
                 Icon = "",
                 Image = new LargeImageDto(),
                 Price = 900,
-                ChampionName = "aatrox"
+                ChampionName = "Volibear"
             };
             var SkinDtoPut = new SkinDtoC
             {
@@ -136,7 +136,7 @@ namespace ApiTests
                 Icon = "",
                 Image = new LargeImageDto(),
                 Price = 850,
-                ChampionName = "aatrox"
+                ChampionName = "Volibear"
             };
 
             //Act
@@ -161,20 +161,19 @@ namespace ApiTests
         }
 
         [TestMethod]
-        public async Task TestDeleteChampion()
+        public async Task TestDeleteSkin()
         {
             //Arange
 
 
             //Act
             var total = await stub.SkinsMgr.GetNbItems();
-            var skinsResult = await skins.Delete("Stinger");
+            var skinsResult = await skins.Delete("Project");
 
             //Assert
-            var objectResult = skinsResult as OkObjectResult;
+            var objectResult = skinsResult as NoContentResult;
             Assert.IsNotNull(objectResult);
 
-            Assert.AreEqual(objectResult.Value, true);
             Assert.AreNotEqual(await stub.SkinsMgr.GetNbItems(), total);
 
         }

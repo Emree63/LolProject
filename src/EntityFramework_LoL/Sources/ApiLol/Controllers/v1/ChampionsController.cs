@@ -89,7 +89,8 @@ namespace ApiLol.Controllers.v1
             _logger.LogInformation("method {Action} - CHAMPION - V1.0 call with {name}", nameof(Delete), name);
             var dtos = (await _manager.ChampionsMgr.GetItemByName(name, 0, await _manager.ChampionsMgr.GetNbItems()));
 
-            return Ok(await _manager.ChampionsMgr.DeleteItem(dtos.First()));
+            await _manager.ChampionsMgr.DeleteItem(dtos.First());
+            return NoContent();
 
         }
     }

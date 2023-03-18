@@ -229,9 +229,10 @@ namespace ApiLol.Controllers.v2
                 if (dtos.IsNullOrEmpty())
                 {
                     _logger.LogWarning("{name} was not found", name);
-                    return BadRequest();
+                    return NotFound($"{name} was not found");
                 }
-                return Ok(await _manager.ChampionsMgr.DeleteItem(dtos.First()));
+                await _manager.ChampionsMgr.DeleteItem(dtos.First());
+                return NoContent();
             }
             catch (Exception error)
             {
