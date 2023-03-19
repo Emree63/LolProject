@@ -73,8 +73,8 @@ namespace MyFlib
             );
 
             //RuneEntity
-            RuneEntity runeHextech = new RuneEntity { Name = "Hextech Flashtraption ", Description = "While Flash is on cooldown, it is replaced by Hexflash.", Family = RuneFamilyEntity.Unknown, ImageId = Guid.Parse("{8d121cdc-6787-4738-8edd-9e026ac16b65}") };
-            RuneEntity runeManaflow = new RuneEntity { Name = "Manaflow Band ", Description = "Hitting enemy champions with a spell grants 25 maximum mana, up to 250 mana.", Family = RuneFamilyEntity.Domination, ImageId = Guid.Parse("{9f9086f5-5cc5-47b5-af9b-a935f4e9b89c}") };
+            RuneEntity runeHextech = new RuneEntity { Name = "Hextech Flashtraption ", Description = "While Flash is on cooldown, it is replaced by Hexflash.", Family = RuneFamilyEntity.Unknown, Icon = "", ImageId = Guid.Parse("{8d121cdc-6787-4738-8edd-9e026ac16b65}") };
+            RuneEntity runeManaflow = new RuneEntity { Name = "Manaflow Band ", Description = "Hitting enemy champions with a spell grants 25 maximum mana, up to 250 mana.", Family = RuneFamilyEntity.Domination, Icon = "", ImageId = Guid.Parse("{9f9086f5-5cc5-47b5-af9b-a935f4e9b89c}") };
             modelBuilder.Entity<RuneEntity>().HasData(runeHextech, runeManaflow);
 
             //RunePageEntity

@@ -6,8 +6,7 @@ namespace ApiLol.Mapper
     public static class ChampionMapper
     {
         public static ChampionDto ToDto(this Champion champion)
-        {
-            return new ChampionDto()
+            => new()
             {
                 Name = champion.Name,
                 Bio = champion.Bio,
@@ -17,12 +16,12 @@ namespace ApiLol.Mapper
                 Skins = champion.Skins.Select(e => e.ToDto()),
                 Skills = champion.Skills.Select(e => e.ToDto())
             };
-        }
+
 
         public static Champion ToModel(this ChampionDto championDto)
         {
             var champ = new Champion(championDto.Name, championDto.Class.ToModel(), championDto.Icon, championDto.Image.Base64, championDto.Bio);
-            foreach(var skin in championDto.Skins)
+            foreach (var skin in championDto.Skins)
             {
                 champ.AddSkin(skin.ToModel(champ));
             }

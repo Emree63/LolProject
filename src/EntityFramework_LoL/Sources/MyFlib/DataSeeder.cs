@@ -29,8 +29,8 @@ namespace MyFlib
             context.AddRange(yasuoTempest, LuxFinal);
 
             // Runes
-            RuneEntity conqueror = new RuneEntity { Name = "Conqueror", Description = "by dealing damage to an enemy champion, you accumulate stacks that, once fully stacked, increase your damage and provide you with healing.", Family = RuneFamilyEntity.Unknown, ImageId = Guid.Parse("{8d121cdc-6787-4738-8edd-9e026ac16b65}") };
-            RuneEntity ravenousHunter = new RuneEntity { Name = "Ravenous Hunter", Description = "killing minions, monsters, or enemy champions grants you stacks of Ravenous Hunter, which increase your damage against enemy champions and provide you with healing.", Family = RuneFamilyEntity.Domination, ImageId = Guid.Parse("{8d121cdc-6787-4738-8edd-9e026ac16b65}") };
+            RuneEntity conqueror = new RuneEntity { Name = "Conqueror", Description = "by dealing damage to an enemy champion, you accumulate stacks that, once fully stacked, increase your damage and provide you with healing.", Family = RuneFamilyEntity.Unknown, Icon = "", ImageId = Guid.Parse("{8d121cdc-6787-4738-8edd-9e026ac16b65}") };
+            RuneEntity ravenousHunter = new RuneEntity { Name = "Ravenous Hunter", Description = "killing minions, monsters, or enemy champions grants you stacks of Ravenous Hunter, which increase your damage against enemy champions and provide you with healing.", Family = RuneFamilyEntity.Domination, Icon = "", ImageId = Guid.Parse("{8d121cdc-6787-4738-8edd-9e026ac16b65}") };
 
             context.AddRange(conqueror, ravenousHunter);
 

@@ -16,6 +16,7 @@ namespace MyFlib
         [Required]
         public RuneFamilyEntity Family { get; set; }
         public ICollection<DictionaryCategoryRune> DictionaryCategoryRunes { get; set; }
+        public string Icon { get; set; }
         public LargeImageEntity Image { get; set; }
 
         [ForeignKey("Image")]

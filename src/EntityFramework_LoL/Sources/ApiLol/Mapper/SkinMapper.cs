@@ -6,8 +6,7 @@ namespace ApiLol.Mapper
     public static class SkinMapper
     {
         public static SkinDto ToDto(this Skin skin)
-        {
-            return new SkinDto()
+            => new()
             {
                 Name = skin.Name,
                 Description = skin.Description,
@@ -15,11 +14,9 @@ namespace ApiLol.Mapper
                 Image = skin.Image.ToDto(),
                 Price = skin.Price
             };
-        }
 
         public static SkinDtoC ToDtoC(this Skin skin)
-        {
-            return new SkinDtoC()
+            => new()
             {
                 Name = skin.Name,
                 Description = skin.Description,
@@ -28,17 +25,10 @@ namespace ApiLol.Mapper
                 Price = skin.Price,
                 ChampionName = skin.Champion.Name
             };
-        }
 
-        public static Skin ToModel(this SkinDto skinDto, Champion champ)
-        {
-            return new Skin(skinDto.Name, champ, skinDto.Price, skinDto.Icon, skinDto.Image.Base64, skinDto.Description);
-        }
+        public static Skin ToModel(this SkinDto skinDto, Champion champ) => new(skinDto.Name, champ, skinDto.Price, skinDto.Icon, skinDto.Image.Base64, skinDto.Description);
 
-        public static Skin ToModelC(this SkinDtoC skinDto, Champion champ)
-        {
-            return new Skin(skinDto.Name, champ, skinDto.Price, skinDto.Icon, skinDto.Image.Base64, skinDto.Description);
-        }
+        public static Skin ToModelC(this SkinDtoC skinDto, Champion champ) => new(skinDto.Name, champ, skinDto.Price, skinDto.Icon, skinDto.Image.Base64, skinDto.Description);
 
     }
 }
