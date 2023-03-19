@@ -64,17 +64,17 @@ Où en suis-je:grey_question::grey_exclamation: (:white_check_mark: réalisé, :
 
 Côté Entity_Framework :
 
-- :warning: [**Partie 1**](src/EntityFramework_Lol/Sources/MyFlib/Entities) : **Réalisation des Entities**
+- :white_check_mark: [**Partie 1**](src/EntityFramework_Lol/Sources/MyFlib/Entities) : **Réalisation des Entities**
 
 - :white_check_mark: [**Partie 2**](src/EntityFramework_Lol/Sources/MyFlib/DataSeeder.cs) : **Data seeder**
 
-- :warning: [**Partie 3**](src/EntityFramework_Lol/Sources/Tests/UT_EF) : **Tests unitaires**
+- :white_check_mark: [**Partie 3**](src/EntityFramework_Lol/Sources/Tests/UT_EF) : **Tests unitaires**
 
-- :x: [**Partie 4**](src/EntityFramework_Lol/Sources/MyFlib) : **Many to many**
+- :white_check_mark: [**Partie 4**](src/EntityFramework_Lol/Sources/MyFlib) : **Many to many**
 
-- :x: [**Partie 5**](src/EntityFramework_Lol/Sources/) : **DbManager**
+- :warning: [**Partie 5**](src/EntityFramework_Lol/Sources/) : **DbManager**
 
-- :x: [**Partie 6**](src/EntityFramework_Lol/Sources/) : **Mapping**
+- :warning: [**Partie 6**](src/EntityFramework_Lol/Sources/) : **Mapping**
 
 Autre :
 
