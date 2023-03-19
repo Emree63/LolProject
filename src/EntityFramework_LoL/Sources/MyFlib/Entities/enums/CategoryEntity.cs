@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MyFlib.Entities.enums
+﻿namespace MyFlib.Entities.enums
 {
-    enum CategoryEntity
+    public enum CategoryEntity
     {
         Major,
         Minor1,

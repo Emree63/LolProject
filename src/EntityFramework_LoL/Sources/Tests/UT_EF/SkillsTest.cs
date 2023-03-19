@@ -19,10 +19,10 @@ namespace UT_EF
 
             using (var context = new LolDbContext(options))
             {
-                SkillEntity fireBall = new SkillEntity { Name = "Boule de feu", Description = "Fire!", Type = SkillTypeEntity.Basic };
-                SkillEntity whiteStar = new SkillEntity { Name = "White Star", Description = "Random damage", Type = SkillTypeEntity.Ultimate };
-                SkillEntity yasuoTempest = new SkillEntity { Name = "Yasuo's Steel Tempest", Description = " une attaque de mêlée qui peut être chargée pour infliger des dégâts supplémentaires et projeter les ennemis dans les airs.", Type = SkillTypeEntity.Basic };
-                SkillEntity LuxFinal = new SkillEntity { Name = "Lux's Final Spark", Description = "une attaque à distance qui inflige des dégâts massifs dans une direction.", Type = SkillTypeEntity.Ultimate };
+                SkillEntity fireBall = new SkillEntity { Name = "Boule de feu", Description = "Fire!", Type = SkillTypeEntity.Basic, ChampionForeignKey = Guid.Parse("{234F5E7F-F196-4C88-AD1C-6C392AA2E038}") };
+                SkillEntity whiteStar = new SkillEntity { Name = "White Star", Description = "Random damage", Type = SkillTypeEntity.Ultimate, ChampionForeignKey = Guid.Parse("{15E0C4F4-4C04-4CCE-8F4D-78F37F63E63F}") };
+                SkillEntity yasuoTempest = new SkillEntity { Name = "Yasuo's Steel Tempest", Description = " une attaque de mêlée qui peut être chargée pour infliger des dégâts supplémentaires et projeter les ennemis dans les airs.", Type = SkillTypeEntity.Basic, ChampionForeignKey = Guid.Parse("{F32FA768-A1DC-4F6A-9366-FFEC6B0D4159}") };
+                SkillEntity LuxFinal = new SkillEntity { Name = "Lux's Final Spark", Description = "une attaque à distance qui inflige des dégâts massifs dans une direction.", Type = SkillTypeEntity.Ultimate, ChampionForeignKey = Guid.Parse("{F32FA768-A1DC-4F6A-9366-FFEC6B0D4159}") };
 
                 context.Skills.AddRange(fireBall, whiteStar, yasuoTempest, LuxFinal);
                 context.SaveChanges();
@@ -44,10 +44,10 @@ namespace UT_EF
 
             using (var context = new LolDbContext(options))
             {
-                SkillEntity fireBall = new SkillEntity { Name = "Boule de feu", Description = "Fire!", Type = SkillTypeEntity.Unknown };
-                SkillEntity whiteStar = new SkillEntity { Name = "White Star", Description = "Random damage", Type = SkillTypeEntity.Ultimate };
-                SkillEntity yasuoTempest = new SkillEntity { Name = "Yasuo's Steel Tempest", Description = " une attaque de mêlée qui peut être chargée pour infliger des dégâts supplémentaires et projeter les ennemis dans les airs.", Type = SkillTypeEntity.Basic };
-                SkillEntity LuxFinal = new SkillEntity { Name = "Lux's Final Spark", Description = "une attaque à distance qui inflige des dégâts massifs dans une direction.", Type = SkillTypeEntity.Ultimate };
+                SkillEntity fireBall = new SkillEntity { Name = "Boule de feu", Description = "Fire!", Type = SkillTypeEntity.Basic, ChampionForeignKey = Guid.Parse("{234F5E7F-F196-4C88-AD1C-6C392AA2E038}") };
+                SkillEntity whiteStar = new SkillEntity { Name = "White Star", Description = "Random damage", Type = SkillTypeEntity.Ultimate, ChampionForeignKey = Guid.Parse("{15E0C4F4-4C04-4CCE-8F4D-78F37F63E63F}") };
+                SkillEntity yasuoTempest = new SkillEntity { Name = "Yasuo's Steel Tempest", Description = " une attaque de mêlée qui peut être chargée pour infliger des dégâts supplémentaires et projeter les ennemis dans les airs.", Type = SkillTypeEntity.Basic, ChampionForeignKey = Guid.Parse("{F32FA768-A1DC-4F6A-9366-FFEC6B0D4159}") };
+                SkillEntity LuxFinal = new SkillEntity { Name = "Lux's Final Spark", Description = "une attaque à distance qui inflige des dégâts massifs dans une direction.", Type = SkillTypeEntity.Ultimate, ChampionForeignKey = Guid.Parse("{F32FA768-A1DC-4F6A-9366-FFEC6B0D4159}") };
 
                 context.Skills.AddRange(fireBall, whiteStar, yasuoTempest, LuxFinal);
                 context.SaveChanges();
@@ -87,10 +87,10 @@ namespace UT_EF
 
             using (var context = new LolDbContext(options))
             {
-                SkillEntity fireBall = new SkillEntity { Name = "Boule de feu", Description = "Fire!", Type = SkillTypeEntity.Basic };
-                SkillEntity whiteStar = new SkillEntity { Name = "White Star", Description = "Random damage", Type = SkillTypeEntity.Ultimate };
-                SkillEntity yasuoTempest = new SkillEntity { Name = "Yasuo's Steel Tempest", Description = " une attaque de mêlée qui peut être chargée pour infliger des dégâts supplémentaires et projeter les ennemis dans les airs.", Type = SkillTypeEntity.Basic };
-                SkillEntity LuxFinal = new SkillEntity { Name = "Lux's Final Spark", Description = "une attaque à distance qui inflige des dégâts massifs dans une direction.", Type = SkillTypeEntity.Ultimate };
+                SkillEntity fireBall = new SkillEntity { Name = "Boule de feu", Description = "Fire!", Type = SkillTypeEntity.Basic, ChampionForeignKey = Guid.Parse("{234F5E7F-F196-4C88-AD1C-6C392AA2E038}") };
+                SkillEntity whiteStar = new SkillEntity { Name = "White Star", Description = "Random damage", Type = SkillTypeEntity.Ultimate, ChampionForeignKey = Guid.Parse("{15E0C4F4-4C04-4CCE-8F4D-78F37F63E63F}") };
+                SkillEntity yasuoTempest = new SkillEntity { Name = "Yasuo's Steel Tempest", Description = " une attaque de mêlée qui peut être chargée pour infliger des dégâts supplémentaires et projeter les ennemis dans les airs.", Type = SkillTypeEntity.Basic, ChampionForeignKey = Guid.Parse("{F32FA768-A1DC-4F6A-9366-FFEC6B0D4159}") };
+                SkillEntity LuxFinal = new SkillEntity { Name = "Lux's Final Spark", Description = "une attaque à distance qui inflige des dégâts massifs dans une direction.", Type = SkillTypeEntity.Ultimate, ChampionForeignKey = Guid.Parse("{F32FA768-A1DC-4F6A-9366-FFEC6B0D4159}") };
 
                 context.Skills.AddRange(fireBall, whiteStar, yasuoTempest, LuxFinal);
                 context.SaveChanges();

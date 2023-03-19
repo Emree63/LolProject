@@ -1,6 +1,4 @@
-using ApiLol.Mapper;
 using Microsoft.AspNetCore.Mvc;
-using Model;
 
 namespace ApiLol.Controllers
 {
@@ -23,13 +21,6 @@ namespace ApiLol.Controllers
         [HttpGet(Name = "GetWeatherForecast")]
         public IEnumerable<WeatherForecast> Get()
         {
-            /*
-            var champion = new Champion("");
-
-            //var dtop = ChampionMapper.ToDto(champion);
-
-            var dto = champion.ToDto();*/
-
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
                 Date = DateTime.Now.AddDays(index),
