@@ -18,7 +18,7 @@ namespace MyFlib
         public DbSet<RuneEntity> Runes { get; set; }
         public DbSet<DictionaryCategoryRune> CategoryRunes { get; set; }
         public DbSet<RunePageEntity> RunePages { get; set; }
-
+        public DbSet<CharacteristicEntity> Characteristic { get; set; }
         public LolDbContext()
         { }
 
