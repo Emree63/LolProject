@@ -23,7 +23,7 @@ steps:
     commands:
       - cd src/EntityFramework_LoL/Sources/
       - dotnet restore LeagueOfLegendsCI.sln
-      - dotnet test LeagueOfLegends.sln --no-restore
+      - dotnet test LeagueOfLegendsCI.sln --no-restore
     depends_on: [build]
 
   - name: code-analysis
