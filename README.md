@@ -34,6 +34,8 @@ La racine de mon GitLab contient deux dossiers :open_file_folder: essentiels pou
 
 👉 [**Solution de l'application**](src/EntityFramework_LoL/Sources/LeagueOfLegends.sln)
 
+👉 [**Solution de l'application pour la CI**](src/EntityFramework_LoL/Sources/LeagueOfLegendsCI.sln)
+
 
 - ### Avancement du projet :construction_worker:
 
