@@ -105,6 +105,8 @@ Grâce à l'injection de dépendances dans le projet, la Web API n'a pas besoin 
 
 La partie **bases de données** est gérée par le DbManager, qui utilise l'ORM Entity Framework (plus précisément le DbContext) pour récupérer les données dans la base de données. De plus, grâce à une factory :factory: (oui, comme celle de la web API), elle transforme les données en tables (appelées "Entities") en classes du modèle.
 
+Le client MAUI pourra effectuer des requêtes HTTP à l'API via l'API Manager, qui hérite de IDataManager et possède une liste de fonctions responsables d'exécuter les requêtes. De cette manière, le client n'aura pas besoin de connaître l'API pour interagir avec elle. :bulb:
+
 
 - ### Comment récupérer le projet ? 
 
