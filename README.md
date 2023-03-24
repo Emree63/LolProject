@@ -20,7 +20,7 @@
 
 </div>
 
- 
+
 **Thème du projet** : Réalisation d'une API et d'un ORM (Entity Framework) qui seront reliés à une base de données dans le thème de League of Legends <img src="https://logo-marque.com/wp-content/uploads/2020/11/League-of-Legends-Embleme.png" width="40" >
 </br>
 
