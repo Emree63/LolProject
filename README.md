@@ -21,12 +21,12 @@
 </div>
 
 
-**Thème du projet** : Réalisation d'une API et d'un ORM (Entity Framework) qui seront reliés à une base de données dans le thème de League of Legends <img src="https://logo-marque.com/wp-content/uploads/2020/11/League-of-Legends-Embleme.png" width="40" >
+**Thème du projet** : Réalisation d'une API et d'un ORM (Entity Framework) qui seront reliés à une base de données (SQLite) dans le thème de League of Legends <img src="https://logo-marque.com/wp-content/uploads/2020/11/League-of-Legends-Embleme.png" width="40" >
 </br>
 
 <img src="doc/Images/Title-Répartition.png" width="400">
 
-La racine de mon GitLab contient deux dossiers :open_file_folder: essentiels pour le projet :
+<u>La racine de mon GitLab contient deux dossiers :open_file_folder: essentiels pour le projet :</u>
 
 [**src**](src) : **Toute la partie codage de l'application**
 
@@ -39,7 +39,7 @@ La racine de mon GitLab contient deux dossiers :open_file_folder: essentiels pou
 
 - ### Avancement du projet :construction_worker:
 
-Où en suis-je:grey_question::grey_exclamation: (:white_check_mark: réalisé, :warning: presque abouti, :x: non commencé )
+<u>Où en suis-je</u>:grey_question::grey_exclamation: (:white_check_mark: réalisé, :warning: presque abouti, :x: non commencé )
 
 
  Côté API :
@@ -195,7 +195,7 @@ réalisez à nouveau la migration (ou mettez à jour celle actuelle), puis suppr
 
 Si vous préférez éviter la manipulation de l'API, vous pouvez également utiliser le **client MAUI**. Celui-ci contacte directement l'ApiManager, qui se charge des requêtes HTTP à l'API, et vous permet de visualiser et de modifier les données grâce à une interface graphique.
 
-Page **Home**:
+<u>Page **Home**:</u>
 
 <div align = center>
 
@@ -203,7 +203,7 @@ Page **Home**:
 
 </div>
 
-Page **Champions**:
+<u>Page **Champions**:</u>
 
 <div align = center>
 
