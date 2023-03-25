@@ -234,7 +234,7 @@ Mon environnement de travail est basé sur un outil et un langage en particulier
 
 <img src="doc/Images/Title-Technicien.png" width="400" >
 
-:mortar_board: Emre KARTAL : Emre.kartal@etu.uca.fr
+:mortar_board: **Emre KARTAL** - *Emre.kartal@etu.uca.fr*
 <br>
 
 
@@ -250,4 +250,3 @@ Mon environnement de travail est basé sur un outil et un langage en particulier
 
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Licence Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a><br />Ce(tte) œuvre est mise à disposition selon les termes de la <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Licence Creative Commons Attribution - Pas d&#39;Utilisation Commerciale - Pas de Modification 4.0 International</a>.
 
-<hr>
