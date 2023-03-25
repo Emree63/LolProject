@@ -191,6 +191,30 @@ réalisez à nouveau la migration (ou mettez à jour celle actuelle), puis suppr
 
 <br>
 
+- ### Comment utiliser l'application MAUI ?
+
+Si vous préférez éviter la manipulation de l'API, vous pouvez également utiliser le **client MAUI**. Celui-ci contacte directement l'ApiManager, qui se charge des requêtes HTTP à l'API, et vous permet de visualiser et de modifier les données grâce à une interface graphique.
+
+Page **Home**:
+
+<div align = center>
+
+![start BD](doc/Images/MauiClientHome.png)
+
+</div>
+
+Page **Champions**:
+
+<div align = center>
+
+![start BD](doc/Images/MauiClientChampions.gif)
+
+</div>
+
+Vous pouvez vous amuser à filtrer les champions sur cette page, visualiser leurs skins, les modifier, et même en ajouter ! :grin:
+
+:information_source: *Pour utiliser cette application, vous devez avoir la dernière version de Visual Studio, avoir effectué la migration auparavant (comme indiqué ci-dessus), et avoir sélectionné la solution **LeagueOfLegends** plutôt que **LeagueOfLegendsCi**. Si vous avez besoin d'aide ou si vous souhaitez obtenir plus d'informations, vous pouvez contacter le technicien responsable de l'application (c'est-à-dire moi), en vous référant à mon mail ci-dessous. :email:*
+
 <img src="doc/Images/Title-Environnement.png" width="400" >
 
 Mon environnement de travail est basé sur un outil et un langage en particulier : 👇
@@ -210,7 +234,7 @@ Mon environnement de travail est basé sur un outil et un langage en particulier
 
 <img src="doc/Images/Title-Technicien.png" width="400" >
 
-:mortar_board: Emre KARTAL
+:mortar_board: Emre KARTAL : Emre.kartal@etu.uca.fr
 <br>
 
 

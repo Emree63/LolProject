@@ -1,5 +1,5 @@
 ﻿// See https://aka.ms/new-console-template for more information
-using MyFlib;
+/*using MyFlib;
 using static System.Console;
 
 using (var context = new LolDbContext())
@@ -35,4 +35,4 @@ using (var context = new LolDbContext())
     }
 
     context.SaveChangesAsync(); // or context.SaveChangesAsync
-}
+}*/

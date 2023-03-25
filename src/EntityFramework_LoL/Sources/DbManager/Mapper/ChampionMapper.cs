@@ -8,7 +8,7 @@ namespace DbManager.Mapper
     {
         public static Champion ToModel(this ChampionEntity championEntity)
         {
-            Champion champion = new (championEntity.Name, championEntity.Class.ToModel(), championEntity.Icon, championEntity.Image.Base64.ToString(), championEntity.Bio);
+            Champion champion = new (championEntity.Name, championEntity.Class.ToModel(), championEntity.Icon, "", championEntity.Bio);
             foreach (var skill in championEntity.Skills)
             {
                 champion.AddSkill(skill.ToModel());
