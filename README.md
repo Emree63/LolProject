@@ -21,7 +21,7 @@
 </div>
 
 
-**Thème du projet** : Réalisation d'une API et d'un ORM (Entity Framework) qui seront reliés à une base de données (SQLite) dans le thème de League of Legends <img src="https://logo-marque.com/wp-content/uploads/2020/11/League-of-Legends-Embleme.png" width="40" >
+**Thème du projet** : Réalisation d'une API Rest Full et d'un ORM (Entity Framework) qui seront reliés à une base de données (SQLite) dans le thème de League of Legends <img src="https://logo-marque.com/wp-content/uploads/2020/11/League-of-Legends-Embleme.png" width="40" >
 </br>
 
 <img src="doc/Images/Title-Répartition.png" width="400">
@@ -37,52 +37,6 @@
 👉 [**Solution de l'application pour la CI**](src/EntityFramework_LoL/Sources/LeagueOfLegendsCI.sln)
 
 
-- ### Avancement du projet :construction_worker:
-
-<u>Où en suis-je</u>:grey_question::grey_exclamation: (:white_check_mark: réalisé, :warning: presque abouti, :x: non commencé )
-
-
- Côté API :
-
-- :white_check_mark: [**Partie 1**](src/EntityFramework_Lol/Sources/ApiLol/Controllers) : **Mise en place de toutes les opérations CRUD**
-
-- :white_check_mark: [**Partie 2**](src/EntityFramework_Lol/Sources/ApiLol/Controllers) : **Respect des règles de routage, utilisation des bons status code**
-
-- :white_check_mark: [**Partie 3**](src/EntityFramework_Lol/Sources/ApiLol/Controllers) : **Versionnage de l'api**
-
-- :white_check_mark: [**Partie 4**](src/EntityFramework_Lol/Sources/Tests/ApiTests) : **Tests unitaires**
-
-- :white_check_mark: [**Partie 5**](.drone.yml) : **Dockerisation et Hébergement de l'API**
-
-- :white_check_mark: [**Partie 6**](src/EntityFramework_Lol/Sources/ApiLol/Controllers) : **Logs**
-
-- :white_check_mark: [**Partie 7**](src/EntityFramework_Lol/Sources/ApiLol/Controllers) : **Filtrage + Pagination des données**
-
-- :x: [**Partie 8**](src/EntityFramework_Lol/Sources/ApiLol/) : **Utilisation des fichiers configurations**
-
-- :x: [**Partie 9**](src/EntityFramework_Lol/Sources/) : **Réalisation du client MAUI et liaison avec l'api**
-
-- :x: [**Partie 10**](src/EntityFramework_Lol/Sources/ApiLol/) : **Liaison avec la base de données**
-
-Côté Entity_Framework :
-
-- :white_check_mark: [**Partie 1**](src/EntityFramework_Lol/Sources/MyFlib/Entities) : **Réalisation des Entities**
-
-- :white_check_mark: [**Partie 2**](src/EntityFramework_Lol/Sources/MyFlib/DataSeeder.cs) : **Data seeder**
-
-- :white_check_mark: [**Partie 3**](src/EntityFramework_Lol/Sources/Tests/UT_EF) : **Tests unitaires**
-
-- :white_check_mark: [**Partie 4**](src/EntityFramework_Lol/Sources/MyFlib) : **Many to many**
-
-- :warning: [**Partie 5**](src/EntityFramework_Lol/Sources/) : **DbManager**
-
-- :warning: [**Partie 6**](src/EntityFramework_Lol/Sources/) : **Mapping**
-
-Autre :
-
-- :white_check_mark: [**Partie 1**](.drone.yml) : **Mise en place de SonarQube**
-
-- :white_check_mark: [**Partie 2**](.drone.yml) : **Schéma et description de l'architecture globale de l'application**
 
 <img src="doc/Images/Title-Fonctionnement.png" width="460" >
 
@@ -103,7 +57,7 @@ La web API est chargée de transformer les classes métiers du modèle en DTO (D
 
 Grâce à l'injection de dépendances dans le projet, la Web API n'a pas besoin d'être modifiée lorsqu'on veut passer du StubLib au DbManager (si vous ne savez pas ce que c'est, je vous invite à voir cette vidéo qui explique très clairement l'[Injection de dépendances](https://www.youtube.com/watch?v=OeWgBNR1BLU&t=10s&ab_channel=BaptisteMobileDev)).
 
-La partie **bases de données** est gérée par le DbManager, qui utilise l'ORM Entity Framework (plus précisément le DbContext) pour récupérer les données dans la base de données. De plus, grâce à une factory :factory: (oui, comme celle de la web API), elle transforme les données en tables (appelées "Entities") en classes du modèle.
+La partie **bases de données** est gérée par le DbManager, qui utilise l'ORM Entity Framework (plus précisément le DbContext) pour récupérer les données dans la base de données. De plus, grâce à une factory :factory: (oui, comme celle de la web API), elle transforme les données en tables (appelées "Entities") en classes du modèle (et inversement).
 
 Le client MAUI pourra effectuer des requêtes HTTP à l'API via l'API Manager, qui hérite de IDataManager et possède une liste de fonctions responsables d'exécuter les requêtes. De cette manière, le client n'aura pas besoin de connaître l'API pour interagir avec elle. :bulb:
 
@@ -130,7 +84,7 @@ Vous pouvez le cloner via un terminal dans le répertoire de votre choix en util
 
 - ### Comment lancer l'API dotnet :question:
 
-Pour pouvoir utiliser toutes les requêtes de l'API, il est nécessaire de récupérer le projet si cela n'a pas été fait, puis de le lancer à partir de Visual Studio. Vous pouvez directement cliquer sur la solution du projet. Ensuite, dans les projets de démarrage, choisissez "Api-Lol" :
+Pour pouvoir utiliser toutes les requêtes de l'API, il est nécessaire de récupérer le projet si cela n'a pas été fait, puis de le lancer à partir de Visual Studio. Vous pouvez directement cliquer sur la solution du projet. Ensuite, dans les projets de démarrage, choisissez **Api-Lol** :
 
 <div align = center>
 
@@ -160,7 +114,7 @@ Assurez-vous également d'avoir installé les packages Nuget suivants sur Visual
 
 </div>
 
-Ensuite, sur le terminal PowerShell ou Visual Studio, lancer la migration via la commande : **dotnet ef migrations add monNomDeMigration** (n'oubliez pas de vous situer dans le dossier "/MyFlib" lorsque vous l'exécutez)!
+Ensuite, sur le terminal PowerShell ou Visual Studio, lancer la migration via la commande : **dotnet ef migrations add monNomDeMigration** (n'oubliez pas de vous situer dans le dossier **/MyFlib** lorsque vous l'exécutez)!
 
 - ### Comment voir la base de données ?
 
@@ -213,7 +167,54 @@ Si vous préférez éviter la manipulation de l'API, vous pouvez également util
 
 Vous pouvez vous amuser à filtrer les champions sur cette page, visualiser leurs skins, les modifier, et même en ajouter ! :grin:
 
-:information_source: *Pour utiliser cette application, vous devez avoir la dernière version de Visual Studio, avoir effectué la migration auparavant (comme indiqué ci-dessus), et avoir sélectionné la solution **LeagueOfLegends** plutôt que **LeagueOfLegendsCi**. Si vous avez besoin d'aide ou si vous souhaitez obtenir plus d'informations, vous pouvez contacter le technicien responsable de l'application (c'est-à-dire moi), en vous référant à mon mail ci-dessous. :email:*
+:information_source: *Pour utiliser cette application, vous devez avoir la dernière version de Visual Studio, avoir effectué la migration auparavant (comme indiqué ci-dessus), et avoir sélectionné la solution **LeagueOfLegends** plutôt que **LeagueOfLegendsCi**. Si vous avez besoin d'aide ou si vous souhaitez obtenir plus d'informations, vous pouvez contacter le technicien responsable de l'application (c'est-à-dire moi), en vous référant à mon mail ci-dessous. :email: Notez également qu'il est capable de lancer l'application soit à partir de votre téléphone Android, soit via un émulateur !*
+
+- ### Avancement du projet :construction_worker:
+
+<u>Où en suis-je</u>:grey_question::grey_exclamation: (:white_check_mark: réalisé, :warning: presque abouti, :x: non commencé )
+
+
+ Côté API :
+
+- :white_check_mark: [**Partie 1**](src/EntityFramework_Lol/Sources/ApiLol/Controllers) : **Mise en place de toutes les opérations CRUD**
+
+- :white_check_mark: [**Partie 2**](src/EntityFramework_Lol/Sources/ApiLol/Controllers) : **Respect des règles de routage, utilisation des bons status code**
+
+- :white_check_mark: [**Partie 3**](src/EntityFramework_Lol/Sources/ApiLol/Controllers) : **Versionnage de l'api**
+
+- :white_check_mark: [**Partie 4**](src/EntityFramework_Lol/Sources/Tests/ApiTests) : **Tests unitaires**
+
+- :white_check_mark: [**Partie 5**](.drone.yml) : **Dockerisation et Hébergement de l'API**
+
+- :white_check_mark: [**Partie 6**](src/EntityFramework_Lol/Sources/ApiLol/Controllers) : **Logs**
+
+- :white_check_mark: [**Partie 7**](src/EntityFramework_Lol/Sources/ApiLol/Controllers) : **Filtrage + Pagination des données**
+
+- :x: [**Partie 8**](src/EntityFramework_Lol/Sources/ApiLol/) : **Utilisation des fichiers configurations**
+
+- :warning: [**Partie 9**](src/EntityFramework_Lol/Sources/) : **Réalisation du client MAUI et liaison avec l'api**
+
+- :white_check_mark: [**Partie 10**](src/EntityFramework_Lol/Sources/ApiLol/) : **Liaison avec la base de données**
+
+Côté Entity_Framework :
+
+- :white_check_mark: [**Partie 1**](src/EntityFramework_Lol/Sources/MyFlib/Entities) : **Réalisation des Entities**
+
+- :white_check_mark: [**Partie 2**](src/EntityFramework_Lol/Sources/MyFlib/DataSeeder.cs) : **Data seeder**
+
+- :white_check_mark: [**Partie 3**](src/EntityFramework_Lol/Sources/Tests/UT_EF) : **Tests unitaires**
+
+- :white_check_mark: [**Partie 4**](src/EntityFramework_Lol/Sources/MyFlib) : **Many to many**
+
+- :white_check_mark: [**Partie 5**](src/EntityFramework_Lol/Sources/) : **DbManager**
+
+- :white_check_mark: [**Partie 6**](src/EntityFramework_Lol/Sources/) : **Mapping**
+
+Autre :
+
+- :white_check_mark: [**Partie 1**](.drone.yml) : **Mise en place de SonarQube**
+
+- :white_check_mark: [**Partie 2**](.drone.yml) : **Schéma et description de l'architecture globale de l'application**
 
 <img src="doc/Images/Title-Environnement.png" width="400" >
 
