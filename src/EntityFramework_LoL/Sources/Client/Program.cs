@@ -1,19 +1,18 @@
-﻿// See https://aka.ms/new-console-template for more information
-using Client;
-using DTO;
+﻿/*// See https://aka.ms/new-console-template for more information
+using static ApiManager.ApiManagerData;
 
 Console.WriteLine("Hello, World!");
-var championClient = new ChampionHttpClient(new HttpClient());
+var championClient = new ChampionsManager(new HttpClient());
 
 // Get all champions
-var champions = await championClient.GetChampion(0,6);
+var champions = await championClient.GetItems(0,6);
 Console.WriteLine("All champions:");
 foreach (var champion in champions)
 {
     Console.WriteLine($"{champion.Name} ({champion.Bio})");
 }
 
-/*// Add a new champion
+*//*// Add a new champion
 var newChampion = new ChampionDto { Name = "Akali", Role = "Assassin" };
 championClient.Add(newChampion);
 
@@ -34,6 +33,6 @@ if (championToUpdate != null)
     Console.WriteLine($"{championToUpdate.Name} updated.");
 }
 
-*/
+*//*
 
-Console.ReadLine();
+Console.ReadLine();*/

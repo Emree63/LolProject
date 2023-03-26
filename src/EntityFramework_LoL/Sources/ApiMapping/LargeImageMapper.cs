@@ -1,7 +1,7 @@
 ﻿using DTO;
 using Model;
 
-namespace ApiLol.Mapper
+namespace ApiMapping
 {
     public static class LargeImageMapper
     {

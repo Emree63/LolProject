@@ -1,8 +1,7 @@
-﻿using CommunityToolkit.Maui;
+﻿using ApiManager;
+using CommunityToolkit.Maui;
 using LolApp.ViewModels;
 using Microsoft.Extensions.Logging;
-using Microsoft.Maui.Handlers;
-using Microsoft.Maui.Platform;
 using Model;
 using StubLib;
 using ViewModels;

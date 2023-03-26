@@ -1,9 +1,8 @@
-﻿using ApiLol.Mapper.enums;
-using DTO;
+﻿using DTO;
 using Model;
 using static Model.RunePage;
 
-namespace ApiLol.Mapper
+namespace ApiMapping
 {
     public static class RunePageMapper
     {
