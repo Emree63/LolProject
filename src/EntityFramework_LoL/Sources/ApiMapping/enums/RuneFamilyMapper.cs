@@ -2,7 +2,7 @@
 using DTO.enums;
 using Model;
 
-namespace ApiLol.Mapper.enums
+namespace ApiMapping.enums
 {
     public static class RuneFamilyMapper
     {

@@ -1,5 +1,5 @@
 ﻿/*// See https://aka.ms/new-console-template for more information
-*//*using static ApiManager.ApiManagerData;
+using static ApiManager.ApiManagerData;
 
 Console.WriteLine("Hello, World!");
 var championClient = new ChampionsManager(new HttpClient());
@@ -10,9 +10,9 @@ Console.WriteLine("All champions:");
 foreach (var champion in champions)
 {
     Console.WriteLine($"{champion.Name} ({champion.Bio})");
-}*/
+}
 
-/*// Add a new champion
+*//*// Add a new champion
 var newChampion = new ChampionDto { Name = "Akali", Role = "Assassin" };
 championClient.Add(newChampion);
 
