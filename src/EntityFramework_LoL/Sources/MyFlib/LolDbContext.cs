@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MyFlib.Entities;
 using MyFlib.Entities.enums;
+using System.IO;
+using System.Reflection;
 
 namespace MyFlib
 {
@@ -24,7 +26,8 @@ namespace MyFlib
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlite("Data Source=DataBase.db");
+                string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "..\\..\\..\\..\\MyFlib\\DataBase.db");
+                optionsBuilder.UseSqlite($"Data Source={path}");
             }
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -93,6 +96,10 @@ namespace MyFlib
             );
 
             //CharacteristicEntity
+            modelBuilder.Entity<CharacteristicEntity>()
+                .HasOne(m => m.Champion)
+                .WithMany(a => a.Characteristics)
+                .HasForeignKey("ChampionForeignKey");
             modelBuilder.Entity<CharacteristicEntity>().HasKey(c => new { c.Name, c.ChampionForeignKey });
 
             modelBuilder.Entity<CharacteristicEntity>().HasData(

@@ -1,11 +1,21 @@
-﻿using Model;
+﻿using Microsoft.EntityFrameworkCore;
+using Model;
 using MyFlib;
 
-namespace DbManager
+namespace DbLib
 {
     public partial class DbManager : IDataManager
     {
         protected LolDbContext DbContext { get; set; }
+
+        public DbManager() 
+        {
+            DbContext = new LolDbContext();
+            ChampionsMgr = new ChampionsManager(this);
+            SkinsMgr = new SkinsManager(this);
+            RunesMgr = new RunesManager(this);
+            RunePagesMgr = new RunePagesManager(this);
+        }
 
         public DbManager(LolDbContext dbContext)
         {

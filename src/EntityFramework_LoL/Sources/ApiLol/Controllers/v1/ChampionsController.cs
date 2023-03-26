@@ -61,9 +61,9 @@ namespace ApiLol.Controllers.v1
         {
 
             _logger.LogInformation("method {Action} - CHAMPION - V1.0 call with {name} and {item}", nameof(Put), name, champion);
-            var dtos = (await _manager.ChampionsMgr.GetItemByName(name, 0, await _manager.ChampionsMgr.GetNbItems()));
+            var champs = (await _manager.ChampionsMgr.GetItemByName(name, 0, await _manager.ChampionsMgr.GetNbItems()));
 
-            return Ok((await _manager.ChampionsMgr.UpdateItem(dtos.First(), champion.ToModel())).ToDto());
+            return Ok((await _manager.ChampionsMgr.UpdateItem(champs.First(), champion.ToModel())).ToDto());
 
         }
 
@@ -87,9 +87,9 @@ namespace ApiLol.Controllers.v1
         {
 
             _logger.LogInformation("method {Action} - CHAMPION - V1.0 call with {name}", nameof(Delete), name);
-            var dtos = (await _manager.ChampionsMgr.GetItemByName(name, 0, await _manager.ChampionsMgr.GetNbItems()));
+            var champs = (await _manager.ChampionsMgr.GetItemByName(name, 0, await _manager.ChampionsMgr.GetNbItems()));
 
-            await _manager.ChampionsMgr.DeleteItem(dtos.First());
+            await _manager.ChampionsMgr.DeleteItem(champs.First());
             return NoContent();
 
         }

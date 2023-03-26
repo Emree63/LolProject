@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.AspNetCore.Mvc.Versioning;
 using Model;
-using StubLib;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,7 +28,7 @@ builder.Services.AddVersionedApiExplorer(setup =>
     setup.SubstituteApiVersionInUrl = true;
 });
 
-builder.Services.AddSingleton<IDataManager, StubData>();
+builder.Services.AddSingleton<IDataManager, DbLib.DbManager>();
 
 var app = builder.Build();
 

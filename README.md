@@ -21,12 +21,12 @@
 </div>
 
 
-**Thème du projet** : Réalisation d'une API et d'un ORM (Entity Framework) qui seront reliés à une base de données dans le thème de League of Legends <img src="https://logo-marque.com/wp-content/uploads/2020/11/League-of-Legends-Embleme.png" width="40" >
+**Thème du projet** : Réalisation d'une API et d'un ORM (Entity Framework) qui seront reliés à une base de données (SQLite) dans le thème de League of Legends <img src="https://logo-marque.com/wp-content/uploads/2020/11/League-of-Legends-Embleme.png" width="40" >
 </br>
 
 <img src="doc/Images/Title-Répartition.png" width="400">
 
-La racine de mon GitLab contient deux dossiers :open_file_folder: essentiels pour le projet :
+<u>La racine de mon GitLab contient deux dossiers :open_file_folder: essentiels pour le projet :</u>
 
 [**src**](src) : **Toute la partie codage de l'application**
 
@@ -34,10 +34,12 @@ La racine de mon GitLab contient deux dossiers :open_file_folder: essentiels pou
 
 👉 [**Solution de l'application**](src/EntityFramework_LoL/Sources/LeagueOfLegends.sln)
 
+👉 [**Solution de l'application pour la CI**](src/EntityFramework_LoL/Sources/LeagueOfLegendsCI.sln)
+
 
 - ### Avancement du projet :construction_worker:
 
-Où en suis-je:grey_question::grey_exclamation: (:white_check_mark: réalisé, :warning: presque abouti, :x: non commencé )
+<u>Où en suis-je</u>:grey_question::grey_exclamation: (:white_check_mark: réalisé, :warning: presque abouti, :x: non commencé )
 
 
  Côté API :
@@ -102,6 +104,8 @@ La web API est chargée de transformer les classes métiers du modèle en DTO (D
 Grâce à l'injection de dépendances dans le projet, la Web API n'a pas besoin d'être modifiée lorsqu'on veut passer du StubLib au DbManager (si vous ne savez pas ce que c'est, je vous invite à voir cette vidéo qui explique très clairement l'[Injection de dépendances](https://www.youtube.com/watch?v=OeWgBNR1BLU&t=10s&ab_channel=BaptisteMobileDev)).
 
 La partie **bases de données** est gérée par le DbManager, qui utilise l'ORM Entity Framework (plus précisément le DbContext) pour récupérer les données dans la base de données. De plus, grâce à une factory :factory: (oui, comme celle de la web API), elle transforme les données en tables (appelées "Entities") en classes du modèle.
+
+Le client MAUI pourra effectuer des requêtes HTTP à l'API via l'API Manager, qui hérite de IDataManager et possède une liste de fonctions responsables d'exécuter les requêtes. De cette manière, le client n'aura pas besoin de connaître l'API pour interagir avec elle. :bulb:
 
 
 - ### Comment récupérer le projet ? 
@@ -187,6 +191,30 @@ réalisez à nouveau la migration (ou mettez à jour celle actuelle), puis suppr
 
 <br>
 
+- ### Comment utiliser l'application MAUI ?
+
+Si vous préférez éviter la manipulation de l'API, vous pouvez également utiliser le **client MAUI**. Celui-ci contacte directement l'ApiManager, qui se charge des requêtes HTTP à l'API, et vous permet de visualiser et de modifier les données grâce à une interface graphique.
+
+<u>Page **Home**:</u>
+
+<div align = center>
+
+![start BD](doc/Images/MauiClientHome.png)
+
+</div>
+
+<u>Page **Champions**:</u>
+
+<div align = center>
+
+![start BD](doc/Images/MauiClientChampions.gif)
+
+</div>
+
+Vous pouvez vous amuser à filtrer les champions sur cette page, visualiser leurs skins, les modifier, et même en ajouter ! :grin:
+
+:information_source: *Pour utiliser cette application, vous devez avoir la dernière version de Visual Studio, avoir effectué la migration auparavant (comme indiqué ci-dessus), et avoir sélectionné la solution **LeagueOfLegends** plutôt que **LeagueOfLegendsCi**. Si vous avez besoin d'aide ou si vous souhaitez obtenir plus d'informations, vous pouvez contacter le technicien responsable de l'application (c'est-à-dire moi), en vous référant à mon mail ci-dessous. :email:*
+
 <img src="doc/Images/Title-Environnement.png" width="400" >
 
 Mon environnement de travail est basé sur un outil et un langage en particulier : 👇
@@ -206,7 +234,7 @@ Mon environnement de travail est basé sur un outil et un langage en particulier
 
 <img src="doc/Images/Title-Technicien.png" width="400" >
 
-:mortar_board: Emre KARTAL
+:mortar_board: **Emre KARTAL** - *Emre.kartal@etu.uca.fr*
 <br>
 
 
@@ -217,3 +245,8 @@ Mon environnement de travail est basé sur un outil et un langage en particulier
 </a>
 © PM2
 </div>
+
+<hr>
+
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Licence Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a><br />Ce(tte) œuvre est mise à disposition selon les termes de la <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Licence Creative Commons Attribution - Pas d&#39;Utilisation Commerciale - Pas de Modification 4.0 International</a>.
+
