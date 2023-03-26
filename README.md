@@ -42,7 +42,7 @@
 
 - ### :building_construction: Comment est structurée l'architecture globale de l'application ?
 
-Voici un **schéma** pour mieux représenter mon architecture :
+ Voici un **schéma** pour mieux représenter mon architecture :
 
 
 <img src="doc/Schémas/Architecture_Global.png" width="1000" >
@@ -57,7 +57,7 @@ La web API est chargée de transformer les classes métiers du modèle en DTO (D
 
 Grâce à l'injection de dépendances dans le projet, la Web API n'a pas besoin d'être modifiée lorsqu'on veut passer du StubLib au DbManager (si vous ne savez pas ce que c'est, je vous invite à voir cette vidéo qui explique très clairement l'[Injection de dépendances](https://www.youtube.com/watch?v=OeWgBNR1BLU&t=10s&ab_channel=BaptisteMobileDev)).
 
-La partie **bases de données** est gérée par le DbManager, qui utilise l'ORM Entity Framework (plus précisément le DbContext) pour récupérer les données dans la base de données. De plus, grâce à une factory :factory: (oui, comme celle de la web API), elle transforme les données en tables (appelées "Entities") en classes du modèle (et inversement).
+La partie ```bases de données``` est gérée par le DbManager, qui utilise l'ORM Entity Framework (plus précisément le DbContext) pour récupérer les données dans la base de données. De plus, grâce à une factory :factory: (oui, comme celle de la web API), elle transforme les données en tables (appelées "Entities") en classes du modèle (et inversement).
 
 Le client MAUI pourra effectuer des requêtes HTTP à l'API via l'API Manager, qui hérite de IDataManager et possède une liste de fonctions responsables d'exécuter les requêtes. De cette manière, le client n'aura pas besoin de connaître l'API pour interagir avec elle. :bulb:
 
@@ -92,7 +92,7 @@ Pour pouvoir utiliser toutes les requêtes de l'API, il est nécessaire de récu
 
 </div>
 
-Normalement, tout est bon et vous serez redirigé vers Swagger, qui est l'interface graphique permettant d'effectuer facilement des requêtes. Il vous suffit ensuite de choisir la version en haut à droite. La version 3.0 est normalement la plus récente et la plus performante en termes de gestion d'erreur :
+Normalement, tout est bon et vous serez redirigé vers Swagger, qui est l'interface graphique permettant d'effectuer facilement des requêtes. Il vous suffit ensuite de choisir la version en haut à droite. La ```version 2.0``` est normalement la plus récente et la plus performante en termes de gestion d'erreur :
 
 <div align = center>
 
@@ -118,7 +118,7 @@ Ensuite, sur le terminal PowerShell ou Visual Studio, lancer la migration via la
 
 - ### Comment voir la base de données ?
 
-C'est bien beau toutes ces étapes, mais s’il n'y a pas de résultat, à quoi cela sert !
+```C'est bien beau toutes ces étapes, mais s’il n'y a pas de résultat, à quoi cela sert !```
 
 Tout d'abord, veuillez regarder dans l'onglet Extensions si l'outil **SQLite and SQL Server Compact Toolbax** est bien installé.
 
