@@ -149,6 +149,14 @@ réalisez à nouveau la migration (ou mettez à jour celle actuelle), puis suppr
 
 Si vous préférez éviter la manipulation de l'API, vous pouvez également utiliser le **client MAUI**. Celui-ci contacte directement l'ApiManager, qui se charge des requêtes HTTP à l'API, et vous permet de visualiser et de modifier les données grâce à une interface graphique.
 
+Pour accomplir cela, veuillez configurer les propriétés de la solution en cliquant avec le bouton droit de la souris sur la solution, puis en sélectionnant "propriétés". De cette façon, vous pourrez lancer à la fois l'API et l'application League of Legends. Assurez-vous d'avoir les mêmes configurations :
+
+<div align = center>
+
+![HowToLaunch](doc/Images/HowToLaunch.png)
+
+</div>
+
 <u>Page **Home**:</u>
 
 <div align = center>
