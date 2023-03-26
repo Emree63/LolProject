@@ -177,6 +177,21 @@ Vous pouvez vous amuser à filtrer les champions sur cette page, visualiser leur
 
 :information_source: *Pour utiliser cette application, vous devez avoir la dernière version de Visual Studio, avoir effectué la migration auparavant (comme indiqué ci-dessus), et avoir sélectionné la solution **LeagueOfLegends** plutôt que **LeagueOfLegendsCi**. Si vous avez besoin d'aide ou si vous souhaitez obtenir plus d'informations, vous pouvez contacter le technicien responsable de l'application (c'est-à-dire moi), en vous référant à mon mail ci-dessous. :email: Notez également qu'il est capable de lancer l'application soit à partir de votre téléphone Android, soit via un émulateur !*
 
+
+- ### Tests Unitaires :triangular_flag_on_post:
+
+Afin de garantir un code de qualité avec le moins d'erreurs possible, j'ai pris soin de réaliser des tests unitaires tout au long de ce projet à l'aide de la bibliothèque **XUnit**. J'ai ensuite intégré ces tests à mon processus d'intégration continue (CI) via l'outil ```Drone```, ce qui m'a permis de détecter rapidement toute erreur ou anomalie tout au long du projet. L'utilisation de tests unitaires et d'une intégration continue a été essentielle pour garantir la qualité du code, améliorer la maintenabilité et réduire le temps nécessaire pour détecter et corriger les erreurs.:bug:
+
+Toute la partie EF et API a été testée correctement. Cependant, le DbManager et l'ApiManager qui les utilisent n'ont pas été testés et ont été retirés de la couverture de code sur **SonarQube**. Voici la couverture de code actuelle de chaque partie (le 26/03/23) :
+
+<div align = center>
+
+![Couverture de code](doc/Images/Tests-Coverage.png)
+
+</div>
+
+:information_source: *La partie API a été testée uniquement pour vérifier le bon fonctionnement de ses mécanismes de base. Cependant, je n'ai pas réalisé de tests pour vérifier les scénarios d'erreur possibles qui pourraient survenir lors de l'exécution de ces fonctions. De plus, la partie modèle et la bibliothèque Stublib ont été testées simultanément avec l'API.*
+
 - ### Avancement du projet :construction_worker:
 
 <u>Où en suis-je</u>:grey_question::grey_exclamation: (:white_check_mark: réalisé, :warning: presque abouti, :x: non commencé )
