@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Model;
+﻿using Model;
 using MyFlib;
 
 namespace DbLib

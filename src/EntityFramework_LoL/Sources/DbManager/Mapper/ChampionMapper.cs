@@ -15,7 +15,7 @@ namespace DbManager.Mapper
             }
             foreach (var skin in championEntity.Skins)
             {
-                champion.AddSkin(new Skin(skin.Name, champion, skin.Price, skin.Icon, skin.Image.Base64, skin.Description));
+                champion.AddSkin(new Skin(skin.Name, champion, skin.Price, skin.Icon, "", skin.Description));
             }
             if (championEntity.Characteristics != null)
             {

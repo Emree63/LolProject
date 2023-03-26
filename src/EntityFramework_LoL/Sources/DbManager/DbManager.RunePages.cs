@@ -47,9 +47,12 @@ namespace DbLib
                     index, count, orderingPropertyName, descending).Select(c => c.ToModel(parent.DbContext));
 
             public async Task<IEnumerable<RunePage?>> GetItems(int index, int count, string? orderingPropertyName = null, bool descending = false)
-                => parent.DbContext.RunePages.Include(rp => rp.Champions).Include(rp => rp.DictionaryCategoryRunes).GetItemsWithFilterAndOrdering(
+            {
+                parent.DbContext.Runes.Include(r => r.Image);
+                return parent.DbContext.RunePages.Include(rp => rp.Champions).Include(rp => rp.DictionaryCategoryRunes).Include(rp => rp.DictionaryCategoryRunes).GetItemsWithFilterAndOrdering(
                     rp => true,
                     index, count, orderingPropertyName, descending).Select(c => c.ToModel(parent.DbContext));
+            }
 
             public async Task<IEnumerable<RunePage?>> GetItemsByChampion(Champion? champion, int index, int count, string? orderingPropertyName = null, bool descending = false)
                 => parent.DbContext.RunePages.Include(rp => rp.Champions).Include(rp => rp.DictionaryCategoryRunes).GetItemsWithFilterAndOrdering(
