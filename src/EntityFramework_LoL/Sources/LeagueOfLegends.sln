@@ -21,7 +21,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DTO", "DTO\DTO.csproj", "{3
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiTests", "Tests\ApiTests\ApiTests.csproj", "{1779D8A4-2E12-47F3-BDA2-2E7F04B758EB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Client", "Client\Client.csproj", "{464DAB04-BE65-429D-9A39-3E1BB43C521A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiManager", "Client\ApiManager.csproj", "{464DAB04-BE65-429D-9A39-3E1BB43C521A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyFlib", "MyFlib\MyFlib.csproj", "{2142AB69-B483-4B0A-96DC-CFA87DEB11A5}"
 EndProject

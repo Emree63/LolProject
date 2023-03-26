@@ -1,4 +1,5 @@
 ﻿using DbManager.Mapper;
+using Microsoft.EntityFrameworkCore;
 using Model;
 
 namespace DbLib
@@ -40,22 +41,22 @@ namespace DbLib
                 = (rune, substring) => rune.Name.Contains(substring, StringComparison.InvariantCultureIgnoreCase);
 
             public async Task<IEnumerable<Rune?>> GetItemByName(string substring, int index, int count, string? orderingPropertyName = null, bool descending = false)
-                => parent.DbContext.Runes.GetItemsWithFilterAndOrdering(
+                => parent.DbContext.Runes.Include(r => r.Image).GetItemsWithFilterAndOrdering(
                     rune => filterByName(rune.ToModel(), substring),
                     index, count, orderingPropertyName, descending).Select(c => c.ToModel());
 
             public async Task<IEnumerable<Rune?>> GetItems(int index, int count, string? orderingPropertyName = null, bool descending = false)
-                => parent.DbContext.Runes.GetItemsWithFilterAndOrdering(
+                => parent.DbContext.Runes.Include(r => r.Image).GetItemsWithFilterAndOrdering(
                     r => true,
                     index, count, orderingPropertyName, descending).Select(c => c.ToModel());
 
             public async Task<IEnumerable<Rune?>> GetItemsByFamily(RuneFamily family, int index, int count, string? orderingPropertyName = null, bool descending = false)
-                => parent.DbContext.Runes.GetItemsWithFilterAndOrdering(
+                => parent.DbContext.Runes.Include(r => r.Image).GetItemsWithFilterAndOrdering(
                     rune => filterByRuneFamily(rune.ToModel(), family),
                     index, count, orderingPropertyName, descending).Select(c => c.ToModel());
 
             public async Task<IEnumerable<Rune?>> GetItemsByName(string substring, int index, int count, string? orderingPropertyName = null, bool descending = false)
-                => parent.DbContext.Runes.GetItemsWithFilterAndOrdering(
+                => parent.DbContext.Runes.Include(r => r.Image).GetItemsWithFilterAndOrdering(
                     rune => filterByNameContains(rune.ToModel(), substring),
                     index, count, orderingPropertyName, descending).Select(c => c.ToModel());
 

@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.AspNetCore.Mvc.Versioning;
+using Microsoft.OpenApi.Models;
 using Model;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,7 +10,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options =>
+{
+    options.SwaggerDoc("v1", new OpenApiInfo { Title = "My API v1", Version = "v1" });
+    options.SwaggerDoc("v2", new OpenApiInfo { Title = "My API v2", Version = "v2" });
+});
 
 
 builder.Services.AddApiVersioning(opt =>
