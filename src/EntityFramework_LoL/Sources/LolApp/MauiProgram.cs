@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Maui;
+﻿using ApiManager;
+using CommunityToolkit.Maui;
 using LolApp.ViewModels;
 using Microsoft.Extensions.Logging;
 using Model;
