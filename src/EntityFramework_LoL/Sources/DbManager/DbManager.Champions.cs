@@ -22,7 +22,7 @@ namespace DbLib
 
             public async Task<bool> DeleteItem(Champion? item)
             {
-                var toDelete = parent.DbContext.Champions.Find(item.Name);
+                var toDelete = parent.DbContext.Champions.Where(c => c.Name == item.Name).First();
                 if (toDelete != null)
                 {
                     parent.DbContext.Champions.Remove(toDelete);
@@ -38,12 +38,12 @@ namespace DbLib
             private Func<Champion, string, bool> filterByName = (champ, substring) => champ.Name.Equals(substring, StringComparison.InvariantCultureIgnoreCase);
 
             public async Task<IEnumerable<Champion?>> GetItemByName(string substring, int index, int count, string? orderingPropertyName = null, bool descending = false)
-                => parent.DbContext.Champions.GetItemsWithFilterAndOrdering(champ => filterByName(champ.ToModel(), substring), index, count, orderingPropertyName, descending)
+                => parent.DbContext.Champions.Include(c => c.Skills).Include(c => c.Characteristics).Include(c => c.Skins).Include(c => c.Image).GetItemsWithFilterAndOrdering(champ => filterByName(champ.ToModel(), substring), index, count, orderingPropertyName, descending)
                         .Select(c => c.ToModel());
 
 
             public async Task<IEnumerable<Champion?>> GetItems(int index, int count, string? orderingPropertyName = null, bool descending = false)
-                => parent.DbContext.Champions.GetItemsWithFilterAndOrdering(
+                => parent.DbContext.Champions.Include(c => c.Skills).Include(c => c.Characteristics).Include(c => c.Skins).Include(c => c.Image).GetItemsWithFilterAndOrdering(
                         c => true,
                         index, count,
                         orderingPropertyName, descending).Select(c => c.ToModel());
@@ -51,34 +51,34 @@ namespace DbLib
             private Func<Champion, string, bool> filterByCharacteristic = (champ, charName) => champ.Characteristics.Keys.Any(k => k.Contains(charName, StringComparison.InvariantCultureIgnoreCase));
 
             public async Task<IEnumerable<Champion?>> GetItemsByCharacteristic(string charName, int index, int count, string? orderingPropertyName = null, bool descending = false)
-                => parent.DbContext.Champions.Include(c => c.Characteristics).GetItemsWithFilterAndOrdering(
+                => parent.DbContext.Champions.Include(c => c.Skills).Include(c => c.Characteristics).Include(c => c.Skins).Include(c => c.Image).GetItemsWithFilterAndOrdering(
                         champ => filterByCharacteristic(champ.ToModel(), charName),
                         index, count, orderingPropertyName, descending).Select(c => c.ToModel());
 
             private Func<Champion, ChampionClass, bool> filterByClass = (champ, championClass) => champ.Class == championClass;
 
             public async Task<IEnumerable<Champion?>> GetItemsByClass(ChampionClass championClass, int index, int count, string? orderingPropertyName = null, bool descending = false)
-            => parent.DbContext.Champions.GetItemsWithFilterAndOrdering(
+            => parent.DbContext.Champions.Include(c => c.Skills).Include(c => c.Characteristics).Include(c => c.Skins).Include(c => c.Image).GetItemsWithFilterAndOrdering(
                     champ => filterByClass(champ.ToModel(), championClass),
                     index, count, orderingPropertyName, descending).Select(c => c.ToModel());
 
             public async Task<IEnumerable<Champion?>> GetItemsByName(string substring, int index, int count, string? orderingPropertyName = null, bool descending = false)
-                => parent.DbContext.Champions.GetItemsWithFilterAndOrdering(champ => filterByNameContains(champ.ToModel(), substring), index, count, orderingPropertyName, descending)
+                => parent.DbContext.Champions.Include(c => c.Skills).Include(c => c.Characteristics).Include(c => c.Skins).Include(c => c.Image).GetItemsWithFilterAndOrdering(champ => filterByNameContains(champ.ToModel(), substring), index, count, orderingPropertyName, descending)
                         .Select(c => c.ToModel());
 
             public async Task<IEnumerable<Champion?>> GetItemsByRunePage(RunePage? runePage, int index, int count, string? orderingPropertyName = null, bool descending = false)
-                => parent.DbContext.Champions.Include("RunePages").GetItemsWithFilterAndOrdering(
+                => parent.DbContext.Champions.Include(c => c.Skills).Include(c => c.Characteristics).Include(c => c.Skins).Include(c => c.Image).GetItemsWithFilterAndOrdering(
                         c => c.RunePages.Any(rp => rp.Equals(runePage.ToEntity(parent.DbContext))),
                         index, count,
                         orderingPropertyName, descending).Select(c => c.ToModel());
 
             public async Task<IEnumerable<Champion?>> GetItemsBySkill(Skill? skill, int index, int count, string? orderingPropertyName = null, bool descending = false)
-                => parent.DbContext.Champions.GetItemsWithFilterAndOrdering(champ => filterBySkill(champ.ToModel(), skill), index, count, orderingPropertyName, descending)
+                => parent.DbContext.Champions.Include(c => c.Skills).Include(c => c.Characteristics).Include(c => c.Skins).Include(c => c.Image).GetItemsWithFilterAndOrdering(champ => filterBySkill(champ.ToModel(), skill), index, count, orderingPropertyName, descending)
                         .Select(c => c.ToModel());
 
 
             public async Task<IEnumerable<Champion?>> GetItemsBySkill(string skill, int index, int count, string? orderingPropertyName = null, bool descending = false)
-                => parent.DbContext.Champions.GetItemsWithFilterAndOrdering(champ => filterBySkillSubstring(champ.ToModel(), skill), index, count, orderingPropertyName, descending)
+                => parent.DbContext.Champions.Include(c => c.Skills).Include(c => c.Characteristics).Include(c => c.Skins).Include(c => c.Image).GetItemsWithFilterAndOrdering(champ => filterBySkillSubstring(champ.ToModel(), skill), index, count, orderingPropertyName, descending)
                         .Select(c => c.ToModel());
 
             public async Task<int> GetNbItems()
@@ -112,10 +112,17 @@ namespace DbLib
 
             public async Task<Champion?> UpdateItem(Champion? oldItem, Champion? newItem)
             {
-                var toUpdate = parent.DbContext.Champions.Find(oldItem.Name);
-                toUpdate = newItem.ToEntity(parent.DbContext);
+                var toUpdate = parent.DbContext.Champions.FirstOrDefault(champ => champ.Name == oldItem.Name);
+                var newEntity = newItem.ToEntity(parent.DbContext);
+                toUpdate.Bio = newEntity.Bio;
+                toUpdate.Class = newEntity.Class;
+                toUpdate.Icon = newEntity.Icon;
+                toUpdate.Image = newEntity.Image;
+                toUpdate.Skins = newEntity.Skins;
+                toUpdate.Skills = newEntity.Skills;
+                toUpdate.Characteristics = newEntity.Characteristics;
                 parent.DbContext.SaveChanges();
-                return newItem;
+                return toUpdate?.ToModel();
             }
         }
     }

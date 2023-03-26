@@ -8,16 +8,20 @@ namespace DbManager.Mapper
     {
         public static Skill ToModel(this SkillEntity skillEntity) => new(skillEntity.Name, skillEntity.Type.ToModel(), skillEntity.Description);
 
-
-        public static SkillEntity ToEntity(this Skill skill, ChampionEntity championEntity)
+        public static SkillEntity ToEntity(this Skill skill, ChampionEntity championEntity, LolDbContext context)
         {
-            return new()
+            var skillSearch = context.Skills.Find(skill.Name);
+            if (skillSearch == null)
             {
-                Name = skill.Name,
-                Description = skill.Description,
-                Type = skill.Type.ToEntity(),
-                Champion = championEntity
-            };
+                return new()
+                {
+                    Name = skill.Name,
+                    Description = skill.Description,
+                    Type = skill.Type.ToEntity(),
+                    Champion = championEntity
+                };
+            }
+            throw new Exception("Skill was already exist");
         }
 
     }

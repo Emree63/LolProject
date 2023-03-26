@@ -96,6 +96,10 @@ namespace MyFlib
             );
 
             //CharacteristicEntity
+            modelBuilder.Entity<CharacteristicEntity>()
+                .HasOne(m => m.Champion)
+                .WithMany(a => a.Characteristics)
+                .HasForeignKey("ChampionForeignKey");
             modelBuilder.Entity<CharacteristicEntity>().HasKey(c => new { c.Name, c.ChampionForeignKey });
 
             modelBuilder.Entity<CharacteristicEntity>().HasData(

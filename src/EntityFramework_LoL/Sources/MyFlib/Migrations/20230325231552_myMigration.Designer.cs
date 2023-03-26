@@ -11,7 +11,7 @@ using MyFlib;
 namespace MyFlib.Migrations
 {
     [DbContext(typeof(LolDbContext))]
-    [Migration("20230325153221_myMigration")]
+    [Migration("20230325231552_myMigration")]
     partial class myMigration
     {
         /// <inheritdoc />
